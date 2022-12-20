@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Container, Modal } from 'react-bootstrap';
+import { UncontrolledTooltip } from 'reactstrap';
 
 const Notification = ({ showInfo, handleCloseInfo, 
   bodyMessage, infoTitle, notificationAct, ActionName, infoType }) => {
@@ -31,7 +32,12 @@ const Notification = ({ showInfo, handleCloseInfo,
           }
           <small>Thank you for taking you time and stop by</small>
         </Container>
-        <Button onClick={handleCloseInfo} className="bg-warning m-2 btn-outline-info btn-block">Close me</Button>
+        <Button id='closeme' onClick={handleCloseInfo} className="bg-warning m-2 btn-outline-info btn-block">Close me</Button>
+        <UncontrolledTooltip
+                  placement="bottom"
+                  target="closeme">
+                  Close the current overlay view
+                </UncontrolledTooltip>
         <Button onClick={notificationAct} className="m-2 btn-outline-info btn-block" >{ActionName}</Button>
       </Modal.Body>
       <Modal.Footer>
