@@ -1,0 +1,41 @@
+header{
+text-align: center;
+background-color: #1d7dccbf;
+width: 85%;
+margin: 0 auto;
+}
+
+
+ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* height:10vh; */
+}
+
+li{
+    
+    line-height: 5;
+    display: inline-block;
+    margin-right: 1rem;
+    width: 15vw;
+    height: 80px;
+    text-decoration: none;
+   
+}
+li > a{
+    text-decoration: none;
+    color:red;
+    display: block;
+}
+li >  a:hover{
+    border: 3px white double;
+    opacity: 0.7px;
+    color:snow;
+}
+a.active{
+    color: snow;
+    border: 3px white double;
+    border-radius: 10px;
+}

@@ -1,0 +1,18 @@
+.App {
+  text-align: center;
+  background: url(' https://source.unsplash.com/1080x700/?recipe') no-repeat ;
+background-position: left;
+background-size: cover;
+background-attachment: fixed;
+}
+main{
+  width: 85%;
+  margin: 0 auto;
+}
+
+.notfoundText{
+  font: 2em/2.2em cursive;
+  color: #095484;
+  padding: 1em;
+  font-weight: 900;
+}
