@@ -1,22 +1,23 @@
 import React, { useState, useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Notification from "./Notification";
 
 const RecipeSearch = () => {
   const navigation = useNavigate();
   const search = useRef();
-  // const [searchData,setSearchData] = useState(search.current.value);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
 
   const SearchHandler = (e) => {
     e.preventDefault();
     if (search.current.value) {
 
-     console.log(search.current.value);
-      navigation(`/viewRecipes/`,{state:{value:search.current.value || 'a'}});
-
+      navigation(`/viewRecipes/`, { state: { value: search.current.value || '' } });
 
     } else {
-      alert(`Search Empty: can't search for empty data, retry..`);
+      setShow(true);
       return false;
     }
   };
@@ -41,6 +42,10 @@ const RecipeSearch = () => {
             />
           </span>
         </div>
+        <Notification showInfo={show} handleCloseInfo={handleClose}
+          bodyMessage={`Your Search value is Empty: I can't search for an empty data, Type something and then retry..`}
+          infoTitle={'Missing search Value'} notificationAct={handleClose}
+          ActionName={'Retry'} infoType={'input not found'} />
       </div>
     </form>
   );

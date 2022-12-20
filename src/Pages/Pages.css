@@ -1,4 +1,4 @@
-.recipeAuthor{
+.recipeAuthor, .noReview{
     font-family: 'Pacifico', cursive;
     font-weight: 900;
     font-size: 30px;
@@ -7,8 +7,8 @@
     padding: 0.8rem;
     overflow: hidden;
 }
-.recipeAuthor > span {
-    color: #5F9DD9;
+.recipeAuthor > span, .noReview {
+    color: #03658c;
 }
 .one__image{
     object-fit: contain;

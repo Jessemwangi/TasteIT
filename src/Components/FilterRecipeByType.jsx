@@ -51,7 +51,6 @@ const FilterRecipeByType = ({ getAll,filterType }) => {
                   <Button color="primary" outline className="m-2" key={cat.id} onClick={(e)=>filterType(e,cat.value)}>
                     {cat.value}
                     
-                    {/* {console.log(ingridients)} */}
                     <Badge
                       className="m-1"
                       color="primary"

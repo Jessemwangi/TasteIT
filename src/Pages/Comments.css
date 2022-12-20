@@ -173,7 +173,7 @@
     border-radius: 0 0 4px 4px;
   }
   
-  .comment-box .comment-name.by-author,
+  .comment-box .comment-name.by-author, 
   .comment-box .comment-name.by-author a {
     color: #03658c;
   }

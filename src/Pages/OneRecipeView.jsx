@@ -32,6 +32,9 @@ const OneRecipeView = () => {
   const [showInfo, setShowInfo] = useState(false);
   const [bodyMessage,setBodyMessage] = useState(initData);
   const [infoTitle,setInfoTitle] = useState();
+  const [ActionName,setActionName] =useState();
+  const [infoType,setInfoType] =useState();
+
   const handleCloseInfo = () => setShowInfo(false);
 
   const oneRecipe = async (id) => {
@@ -70,8 +73,9 @@ const OneRecipeView = () => {
       	  .then((res) => {
             setBodyMessage(res.data);
             setIsLoading(false);
-            setInfoTitle('Your Title');
-            setShowInfo(true);
+            setInfoTitle('Comment Posted');
+            setShowInfo(true); setActionName('View Recipe');
+            setInfoType('comments');
       	  })
       	  .catch((err) => {
       	    console.log(err);
@@ -93,9 +97,15 @@ return false;
     const addToFeatured = async () =>{
 
      try {
-	const res = await axios.put(`http://localhost:3001/recipe/${oneRecipeD.id}`,
+	const {data} = await axios.put(`http://localhost:3001/recipe/${oneRecipeD.id}`,
 	     {...oneRecipeD, featured:true });
-       console.log(res);
+       console.log(data);
+       setInfoTitle('Recipe Added to Featured List');
+       setShowInfo(true);
+       setActionName('Back to Recipe');
+            setInfoType('');
+       setBodyMessage(`Recipe name, ${data.name.toUpperCase()} by ${data.author.toUpperCase()} was succefully added to this week featured recipe`)
+
 } catch (error) {
 	console.log(error);
 }
@@ -173,9 +183,11 @@ return false;
               <RecipeComments handleClose={handleClose} 
               show={show} inputs={inputs}
               AddCommentHandler={AddCommentHandler} commetEntry ={commetEntry}/>
+             
               <Notification showInfo={showInfo} notificationAct ={handleCloseInfo}
               handleCloseInfo = {handleCloseInfo} bodyMessage ={bodyMessage} 
-              infoTitle = {infoTitle} ActionName = {'View Recipe'} infoType ={'comments'}/>
+              infoTitle = {infoTitle} ActionName = {ActionName} infoType ={infoType}/>
+
             <Button className="msgButton" variant="secondary" onClick={handleShow}>
           Add a Comment
         </Button>

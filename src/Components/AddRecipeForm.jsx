@@ -11,12 +11,13 @@ import UserForm from "./UserForm";
 import Notification from "./Notification";
 
 const AddRecipeForm = ({ handleSend, filechange }) => {
-  const [bodyMessage,setBodyMessage] = useState({});
-  const [showInfo, setShowInfo] =useState(false);
+  const [bodyMessage, setBodyMessage] = useState({});
+  const [showInfo, setShowInfo] = useState(false);
   const navigate = useNavigate();
   const handleCloseInfo = () => {
     window.location.reload(false);
-    setShowInfo(false)};
+    setShowInfo(false)
+  };
 
   const innitilaState = {
     ingredientId: "",
@@ -56,7 +57,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
 
   const selectchange = (e) => {
     let countryArray = e.target.value.split(",");
-    console.log(countryArray);
+
     setFormInput({
       ...forminput,
       country: {
@@ -108,7 +109,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
     });
   };
 
-  const removeStep = (e) => {};
+  const removeStep = (e) => { };
 
   const addSteps = (e) => {
     e.preventDefault();
@@ -120,12 +121,11 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
       },
     ];
     setStepsArray(newArray);
-    // console.log(stepsArray);
     setSteps(StepsInit);
   };
 
-  const notificationAct = () =>{
-    setShowInfo(false); 
+  const notificationAct = () => {
+    setShowInfo(false);
     navigate("/viewRecipes");
   }
   const postRecipe = (e) => {
@@ -139,9 +139,8 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
     axios
       .post("http://localhost:3001/recipe", { ...recipe })
       .then((res) => {
-        console.log(res.data);
         setBodyMessage(res.data);
-        setShowInfo(true);     
+        setShowInfo(true);
       })
       .catch((err) => {
         setsubmitMsg("Sending Data......", { err });
@@ -189,8 +188,8 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
 
         </div>
         <Notification showInfo={showInfo} ActionName={`View All Recipes`}
-        notificationAct ={notificationAct} handleCloseInfo={handleCloseInfo}
-        infoTitle = {`RECIPE ADDED SUCCESFULLY`} bodyMessage={bodyMessage } infoType={''}/>
+          notificationAct={notificationAct} handleCloseInfo={handleCloseInfo}
+          infoTitle={`RECIPE ADDED SUCCESFULLY`} bodyMessage={bodyMessage} infoType={''} />
       </div>
     </>
   );

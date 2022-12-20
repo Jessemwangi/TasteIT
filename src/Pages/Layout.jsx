@@ -6,11 +6,11 @@ import Header from '../Views/Header';
 const Layout = () => {
     return (
         <>
-        <Header/>
-     
-        <Outlet/>
-       
-            <Footer/>
+            <Header />
+
+            <Outlet />
+
+            <Footer />
         </>
     );
 };

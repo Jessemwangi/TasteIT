@@ -361,7 +361,8 @@
           "name": "add sugar and stir",
           "timers": "1"
         }
-      ]
+      ],
+      "featured": true
     },
     {
       "name": "momo",

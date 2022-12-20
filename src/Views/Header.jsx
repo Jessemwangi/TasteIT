@@ -41,12 +41,15 @@ const Header = () => {
               }}
             >
               {" "}
-              Chef Zone Stop
+              Chef Zone
             </span>
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="me-auto" navbar>
+            <NavItem>
+                <NavLink to="/">Home</NavLink>
+              </NavItem>
               <NavItem>
                 <NavLink to="/addRecipe">Add Recipes</NavLink>
               </NavItem>
