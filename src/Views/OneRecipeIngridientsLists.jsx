@@ -6,7 +6,7 @@ const OneRecipeIngridientsLists = ({ ingridientsList }) => {
         <Container className="bg-light border p-3" fluid="fluid" >
             <Row className="bg-light">
                 <Col>
-                    <h4>Recipe Ingridients </h4>
+                    <h4 className="noReview recipeAuthor">Recipe Ingridients </h4>
                     {
                         ingridientsList.length > 0 ?
                             (

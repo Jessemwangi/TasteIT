@@ -162,7 +162,7 @@ const OneRecipeView = () => {
                 </div>
                 <div  className="two__image">
                   <img className="img_abs"
-                    src={`https://source.unsplash.com/450x450/?${oneRecipeD.name} `}
+                    src={`https://source.unsplash.com/450x400/?${oneRecipeD.name} `}
                     alt={oneRecipeD.name}/>
 
                     <div className="img_abs one_recip_prep">
@@ -190,7 +190,7 @@ const OneRecipeView = () => {
             <Container className="bg-light border p-3" fluid="fluid" >
               <Row className="bg-light">
                 <Col>
-                  <h3>Reviews</h3>
+                  <h3 className="noReview recipeAuthor">Reviews</h3>
                 </Col>
                 <hr />
               </Row>

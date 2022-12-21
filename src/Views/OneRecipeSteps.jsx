@@ -8,7 +8,7 @@ const OneRecipeSteps = ({stepsArray}) => {
         <Container className="bg-light border p-3" fluid="fluid" >
         <Row className="bg-light">
           <Col>
-           <h4>Recipe steps</h4> 
+           <h4 className="noReview recipeAuthor">Recipe steps</h4> 
            {stepsArray.length > 0 ? (
             <Table striped hover responsive bordered>
         <thead><tr>

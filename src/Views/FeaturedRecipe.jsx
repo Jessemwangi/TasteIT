@@ -30,6 +30,23 @@ const FeaturedRecipe = (featured) => {
     };
 
     const slides = items.map((item, index) => {
+        let caption = 
+            <div className='caCaption'>
+                <div className='crInfo'>
+                    <h4>Summary</h4>
+                    <p>- Author : {item.author},</p>
+                    <p>- Country : {item.country?.name}</p>
+                    <p>- Total  Ingridients : {item.ingredients.length} ,</p>
+                    <p>- Total Steps : {item.steps.length}</p>
+                </div>
+                <div className='ingridContents'>
+                    <h4>Ingridients</h4>
+                    <div className='ingridList'><ol>
+                        {item.ingredients.map(ingrid => <li key={ingrid.ingredientId}>{ingrid.name}</li>)}
+                    </ol>
+                    </div>
+                </div>
+            </div>
         return (
             <CarouselItem
                 className="custom-tag"
@@ -41,23 +58,7 @@ const FeaturedRecipe = (featured) => {
                 <img src={`https://source.unsplash.com/1020x400/?${item.name}`} alt={item.altText} />
                 <CarouselCaption
                     className="text-danger"
-                    captionText={
-                        <div className='caCaption'>
-                            <div className='crInfo'>
-                                <h4>Summary</h4>
-                                <p>- Author : {item.author},</p>
-                                <p>- Country : {item.country?.name}</p>
-                                <p>- Total  Ingridients : {item.ingredients.length} ,</p>
-                                <p>- Total Steps : {item.steps.length}</p>
-                            </div>
-                            <div className='ingridContents'>
-                                <h4>Ingridients</h4>
-                                <div className='ingridList'><ol>
-                                    {item.ingredients.map(ingrid => <li>{ingrid.name}</li>)}
-                                </ol>
-                                </div>
-                            </div>
-                        </div>}
+                    captionText={caption}
                     captionHeader={item.name}
                 />
             </CarouselItem>

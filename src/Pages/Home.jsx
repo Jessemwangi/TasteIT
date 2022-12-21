@@ -8,7 +8,6 @@ import HomeCategory from '../Views/HomeCategory';
 const Home = () => {
   const [isloading, setIsLoading] = useState(true);
   const [featured, setFeatured] = useState({});
-  const totalFeatured = 5;
 
   const getFeaturedRecipe = async () => {
     setIsLoading(true);

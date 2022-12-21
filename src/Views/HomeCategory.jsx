@@ -34,6 +34,15 @@ const HomeCategory = () => {
                     <div className='bg-light m-2 border border-dark rounded p-1 home_row'>
                         {category.map(cat =>
                             <div className='m-2 border border-dark rounded p-2 home_col' 
+                            key={cat.value}
+                            style={{  
+                                backgroundImage: `url( https://source.unsplash.com/100x100/?${cat.text})`,
+                                backgroundPosition: 'center',
+                                backgroundSize: 'cover',
+                                backgroundRepeat: 'no-repeat'
+                              }}
+
+                            // style={{backGround:`url(https://source.unsplash.com/100x100/?${cat.value} )`}}
                             onClick={() => navigation(`/viewRecipes/`, { state: { value: cat.value } })}>
 
                                 {cat.text}
