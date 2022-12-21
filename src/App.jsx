@@ -5,10 +5,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./Views/CSS/Views.css";
-
-import Home from "./Pages/Home";
+import {useEffect} from 'react';
 
 import "./App.css";
+
+import Home from "./Pages/Home";
 import AddRecipeForm from "./Components/AddRecipeForm";
 import RecipeViewCard from "./Views/RecipeViewCard";
 import OneRecipeView from "./Pages/OneRecipeView";
@@ -44,6 +45,9 @@ const router = createBrowserRouter(
 );
 
 function App() {
+  useEffect(() => {
+    document.title = 'Taste It';
+  }, []);
   return (
     <div className="App">
       <RouterProvider router={router} />

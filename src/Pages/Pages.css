@@ -1,3 +1,7 @@
+.banner_img{
+    background:url('https://acegif.com/wp-content/uploads/2022/fzk5d/taco-acegif-7-making-taco.gif') no-repeat bottom;
+    background-size: cover;
+}
 .recipeAuthor, .noReview{
     font-family: 'Pacifico', cursive;
     font-weight: 900;
@@ -7,13 +11,47 @@
     padding: 0.8rem;
     overflow: hidden;
 }
-.recipeAuthor > span, .noReview {
+ .noReview {
     color: #03658c;
+}
+.oneRecipeMid{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    position: relative;
 }
 .one__image{
     object-fit: contain;
     overflow: hidden;
-    width: 50%;
+    width: 70%;
+    background-color: black;
+}
+.two__image{
+    object-fit: contain;
+   position: relative;
+    width: 500px;
+    height: 450px;
+    box-shadow: 2px 1px 2px black;
+    background: linear-gradient(0deg, #000000cd 50%, #00000034 100%);
+
+}
+
+.img_abs{
+    position: absolute;
+    width: 100%;
+  left: 0;
+  color: snow;
+
+}
+.one_recip_prep{
+    height: 450px;
+    padding: 2rem 0.5rem 1rem 0.5rem;
+display: flex;
+flex-direction: column;
+text-align: left;
+align-content: space-around;
+flex-wrap: wrap;
+background: linear-gradient(0deg, #000000cd 50%, #00000034 100%);
 }
 
 .img_gif{
@@ -23,10 +61,7 @@
 .darkish{
     background: gray;
 }
-.rowDispaly{
-    display: inline-block;
-    margin: 1rem 0 ;
-}
+
 .row{
     align-items: center;
     background: gray;

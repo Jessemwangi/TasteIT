@@ -124,22 +124,27 @@ const OneRecipeView = () => {
 
             <Container className="bg-light border" fluid="fluid">
               <Row className="mt-0 p-0">
-                <Col className="bg-light p-2">
-                  <h2 className="recipeAuthor"><span>Recipe </span>
-                    <img className="img_gif" src="https://acegif.com/wp-content/uploads/2022/fzk5d/taco-acegif-7-making-taco.gif"
-                      alt="" /> {oneRecipeD.name}  </h2>
-                  <p>
-                    <Button className="msgButton" variant="secondary" onClick={addToFeatured}>
-                      Add To featured
-                      <Badge
-                      className="m-2  bg-light pinned"
-                     
-                      children={<SlPin stroke="white" fill="red"
-                       strokeWidth="0" style={{ color: "red", fontSize: "28px", cursor: "pointer" }}/>
-                        
-                      }
-                    ></Badge></Button></p>
-                </Col>
+                <div className="p-2 banner_img">
+                  <div className="oneRecipeintro">
+                    <h2 className="recipeAuthor"><span>Recipe </span>
+                      {/* <img className="img_gif" 
+                    src="https://acegif.com/wp-content
+                    /uploads/2022/fzk5d/taco-acegif-7-making-taco.gif"
+                      alt="" /> */}
+                      {oneRecipeD.name}  </h2>
+                    <p>
+                      <Button className="msgButton" variant="secondary" onClick={addToFeatured}>
+                        Add To featured
+                        <Badge
+                          className="m-2  bg-light pinned"
+
+                          children={<SlPin stroke="white" fill="red"
+                            strokeWidth="0" style={{ color: "red", fontSize: "28px", cursor: "pointer" }} />
+
+                          }
+                        ></Badge></Button></p>
+                  </div>
+                </div>
               </Row>
               <Row className="mt-0 p-0">
                 <Col className="bg-light p-2">
@@ -147,45 +152,40 @@ const OneRecipeView = () => {
                 </Col>
               </Row>
 
-              <Row className="mt-2 p-3">
-                <Col>  <img
-                  src={`https://source.unsplash.com/500x300/?${oneRecipeD.name} `}
+              <div className="mt-2 p-3 oneRecipeMid">
+                <div className="one__image">  
+                <img
+                  src={`https://source.unsplash.com/900x450/?${oneRecipeD.name} `}
                   alt={oneRecipeD.name}
-                  className="one_image"
+                  
                 />
-                </Col>
-                <Col>
-                  <img
-                    src={`https://source.unsplash.com/300x300/?${oneRecipeD.name} `}
-                    alt={oneRecipeD.name}
-                    className="one_image"
-                  />
-                </Col>
+                </div>
+                <div  className="two__image">
+                  <img className="img_abs"
+                    src={`https://source.unsplash.com/450x450/?${oneRecipeD.name} `}
+                    alt={oneRecipeD.name}/>
 
-              </Row>
-              <Row className="bg-Secondary border">
-                <Col xs={12} md={8} className="bg-Secondary border">
-                  <div className="rowDispaly">
-                    <span className="recipeAuthor"> 🥘 <span> Ingridients : </span> {oneRecipeD.ingredients.length}</span>
-                    <span className="recipeAuthor"> <span>Preparation Steps : </span> {oneRecipeD.steps.length}</span>
-
-                    <span className="recipeAuthor">⏱️ <span>Minutes : </span>{oneRecipeD.steps.reduce((a, b) => a + parseInt(b.timers), 0)}</span>
-                  </div>
-                </Col>
-                <Col xs={6} md={4} className="bg-light border p-1">
-                  <div className="rowDispaly">
+                    <div className="img_abs one_recip_prep">
+                      <div className="border p-1"> <span className="recipeAuthor"> 🥘
+                    <span> Ingridients : </span> {oneRecipeD.ingredients.length}</span></div>
+                      <div className="border p-1"> <span className="recipeAuthor"><span>Preparation Steps : </span> {oneRecipeD.steps.length}</span></div>
+                      <div className="border p-1">                  <span className="recipeAuthor">⏱️
+                    <span>Minutes : </span>{oneRecipeD.steps.reduce((a, b) => a + parseInt(b.timers), 0)}</span>
+                    </div>
+                    <div className="border p-1">
                     <span className="recipeAuthor"> <span> {oneRecipeD.country.name} : </span></span>
                     <img src={oneRecipeD.country.flagUrl} alt={oneRecipeD.country.name} className='SmFlag' />
                   </div>
+                    </div>
+                </div>
 
-                </Col>
+              </div>
 
-              </Row>
 
             </Container>
 
-            <OneRecipeSteps stepsArray={oneRecipeD.steps}/>
-            <OneRecipeIngridientsLists ingridientsList = {oneRecipeD.ingredients}/>
+            <OneRecipeIngridientsLists ingridientsList={oneRecipeD.ingredients} />
+            <OneRecipeSteps stepsArray={oneRecipeD.steps} />
 
             <Container className="bg-light border p-3" fluid="fluid" >
               <Row className="bg-light">
