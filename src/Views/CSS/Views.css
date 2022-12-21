@@ -166,3 +166,18 @@
 	
 	margin: 1rem auto;
   }
+  .home_row{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+  }
+  .home_col{
+	width: 25%;
+	cursor: pointer;
+	box-shadow: 3px 3px 6px black;
+  }
+  .home_col:hover{
+	background-color: #00000045;
+	opacity: 0.9;
+  }

@@ -11,7 +11,6 @@ const FeaturedRecipe = (featured) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(false);
     const items = featured.featuredRecipe;
-    console.log('items', featured.featuredRecipe);
 
     const next = () => {
         if (animating) return;

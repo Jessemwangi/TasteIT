@@ -3,7 +3,7 @@ import axios from "axios";
 import uuid from "react-uuid";
 
 import { useParams } from "react-router-dom";
-import { Col, Row, Container, Spinner, Button } from 'reactstrap';
+import { Col, Row, Container, Spinner, Button, Badge } from 'reactstrap';
 
 import RelatedIngridients from "./RelatedIngridients";
 import Comments from "./Comments";
@@ -13,6 +13,7 @@ import './Pages.css';
 import Notification from "../Components/Notification";
 import OneRecipeSteps from "../Views/OneRecipeSteps";
 import OneRecipeIngridientsLists from "../Views/OneRecipeIngridientsLists";
+import { SlPin } from "react-icons/sl";
 
 const OneRecipeView = () => {
 
@@ -127,7 +128,17 @@ const OneRecipeView = () => {
                   <h2 className="recipeAuthor"><span>Recipe </span>
                     <img className="img_gif" src="https://acegif.com/wp-content/uploads/2022/fzk5d/taco-acegif-7-making-taco.gif"
                       alt="" /> {oneRecipeD.name}  </h2>
-                  <p><Button className="msgButton" variant="secondary" onClick={addToFeatured}>Add To featured</Button></p>
+                  <p>
+                    <Button className="msgButton" variant="secondary" onClick={addToFeatured}>
+                      Add To featured
+                      <Badge
+                      className="m-2  bg-light pinned"
+                     
+                      children={<SlPin stroke="white" fill="red"
+                       strokeWidth="0" style={{ color: "red", fontSize: "28px", cursor: "pointer" }}/>
+                        
+                      }
+                    ></Badge></Button></p>
                 </Col>
               </Row>
               <Row className="mt-0 p-0">

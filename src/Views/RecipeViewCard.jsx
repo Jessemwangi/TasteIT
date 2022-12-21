@@ -67,7 +67,9 @@ const navigate = useNavigate();
       filteredRecipes = recipes.filter((recipe) => {
         return (
           recipe.name.toLowerCase().includes(search.toLowerCase()) ||
-          recipe.country.name.toLowerCase().includes(search.toLowerCase())
+          recipe.country.name.toLowerCase().includes(search.toLowerCase()) ||
+          (filterByTypeFn(search)).includes(recipe.name)
+          
         );
       });
     }

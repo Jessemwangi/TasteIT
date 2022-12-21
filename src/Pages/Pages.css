@@ -85,3 +85,8 @@ padding: 0.5rem;
     display: list-item;
     height: auto;
 }
+.pinned{
+    background-color: #03658c;
+    
+    font-size: 36px;
+}

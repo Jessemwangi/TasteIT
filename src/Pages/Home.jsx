@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Spinner } from 'reactstrap';
 import FeaturedRecipe from '../Views/FeaturedRecipe';
+import HomeCategory from '../Views/HomeCategory';
 
 const Home = () => {
   const [isloading, setIsLoading] = useState(true);
@@ -42,6 +43,7 @@ const Home = () => {
               <h1 style={{ color: "snow", padding: "0.5rem" }}>this week featured Recipes</h1>
               <FeaturedRecipe featuredRecipe={featured} />
             </Container>
+            <HomeCategory/>
           </>
         )
       }

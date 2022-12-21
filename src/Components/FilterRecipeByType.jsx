@@ -20,6 +20,7 @@ const FilterRecipeByType = ({ getAll,filterType }) => {
 
   useEffect(() => {
     const getIngridnients = async () => {
+      setIsloading(true);
       let ingridientsData = [];
       let type = [];
       try {
@@ -28,6 +29,7 @@ const FilterRecipeByType = ({ getAll,filterType }) => {
         ingridientsData.map((ingredient) =>
           ingredient.map((item) => type.push(item.type))
         );
+        setIsloading(false);
       } catch (error) {
         console.log(error);
       }
