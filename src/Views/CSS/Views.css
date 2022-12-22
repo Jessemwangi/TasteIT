@@ -177,6 +177,14 @@
 	cursor: pointer;
 	box-shadow: 3px 3px 6px black;
 	height: 200px;
+	display: flex;
+	align-items: center;
+	font-size: 28px;
+	text-align: center;
+  }
+  .home_col:hover{
+	background: linear-gradient(0deg, #000000ce 60%, #0000008f 100%);
+	color: white;
   }
   .home_col:hover{
 	background-color: #00000045;
