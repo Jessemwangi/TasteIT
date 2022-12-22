@@ -173,9 +173,10 @@
 	justify-content: space-evenly;
   }
   .home_col{
-	width: 25%;
+	width: 200px;
 	cursor: pointer;
 	box-shadow: 3px 3px 6px black;
+	height: 200px;
   }
   .home_col:hover{
 	background-color: #00000045;

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Container, Spinner } from 'reactstrap';
 import FeaturedRecipe from '../Views/FeaturedRecipe';
 import HomeCategory from '../Views/HomeCategory';
+import HomeInfo from '../Views/HomeInfo';
 
 const Home = () => {
   const [isloading, setIsLoading] = useState(true);
@@ -41,8 +42,12 @@ const Home = () => {
             <Container className="bg-dark border rounded-top" fluid="fluid">
               <h1 style={{ color: "snow", padding: "0.5rem" }}>this week featured Recipes</h1>
               <FeaturedRecipe featuredRecipe={featured} />
-            </Container>
+           
+            <HomeInfo/>
+            <Container fluid="fluid" className='bg-light m-2 border rounded'>
             <HomeCategory/>
+            </Container>
+            </Container>
           </>
         )
       }

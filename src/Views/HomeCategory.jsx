@@ -25,7 +25,7 @@ const HomeCategory = () => {
     }, []);
 
     return (
-        <Container fluid="fluid" className='bg-light m-2 border rounded'>
+   <>
             {isLoading ?
                 (
                     <Spinner animation="grow" variant="light"></Spinner>
@@ -36,7 +36,7 @@ const HomeCategory = () => {
                             <div className='m-2 border border-dark rounded p-2 home_col' 
                             key={cat.value}
                             style={{  
-                                backgroundImage: `url( https://source.unsplash.com/100x100/?${cat.text})`,
+                                backgroundImage: `url( https://source.unsplash.com/200x200/?${cat.text==='Others' ? 'meal' : cat.text.substring(0,cat.text.indexOf(' '))})`,
                                 backgroundPosition: 'center',
                                 backgroundSize: 'cover',
                                 backgroundRepeat: 'no-repeat'
@@ -53,7 +53,7 @@ const HomeCategory = () => {
                 )
             }
 
-        </Container>
+        </>
 
 
     );
