@@ -91,7 +91,7 @@
 	display: -webkit-box;
 	max-height: 85px;
 	overflow: hidden;
-	font-family: "Playfair Display", serif;
+	font-family: "Playfair Display", sans-serif;
 	font-size: 23px;
 	line-height: 25px;
 	text-shadow: 0px 1px 5px black;
@@ -159,6 +159,7 @@
 	display: inline-block;
 	margin-left: 1rem;
   }
+  /* _____________________________________recipe card _______________________ */
   .emojis{
 	font-size: 2vh;
   }
@@ -177,16 +178,21 @@
 	cursor: pointer;
 	box-shadow: 3px 3px 6px black;
 	height: 200px;
+	font-size: 26px;
+	color: snow;
+	
+  }
+.catCaption{
+	height: 193px;
+	width: 100%;
+	background: linear-gradient(0deg, #00000053 60%, #0000006d 100%);
+	box-shadow: 3px 3px 6px black;
 	display: flex;
 	align-items: center;
-	font-size: 28px;
-	text-align: center;
-  }
-  .home_col:hover{
-	background: linear-gradient(0deg, #000000ce 60%, #0000008f 100%);
-	color: white;
-  }
-  .home_col:hover{
-	background-color: #00000045;
-	opacity: 0.9;
+	justify-content: space-around;
+
+}
+.catCaption:hover{
+	background: linear-gradient(0deg, #000000cb 60%, #0000006d 100%);
+	opacity: 0.8;
   }
