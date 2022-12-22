@@ -3,19 +3,42 @@
     no-repeat bottom;
   background-size: cover;
 }
+.img_abs {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  left: 0;
+  color: snow;
+  background: url();
+}
+.one_recip_prep {
+  height: 450px;
+  padding: 2rem 0.5rem 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  align-content: space-around;
+  flex-wrap: wrap;
+  background: linear-gradient(0deg, #000000cd 50%, #00000034 100%);
+}
+.one_recip_prep > div > .recipeAuthor{
+  margin-left: 1rem;
+}
 .recipeAuthor,
 .noReview {
   font-family: "Pacifico", cursive;
   font-weight: 900;
   font-size: 30px;
-  margin-left: 1rem;
   border-left: solid 2px gray;
   padding: 0.8rem;
   overflow: hidden;
 }
+
 .noReview {
   color: #03658c;
 }
+
+
 .oneRecipeMid {
   display: flex;
   flex-direction: row;
@@ -37,24 +60,7 @@
   background: linear-gradient(0deg, #000000cd 50%, #00000034 100%);
 }
 
-.img_abs {
-  position: absolute;
-  overflow: hidden;
-  width: 100%;
-  left: 0;
-  color: snow;
-  background: url();
-}
-.one_recip_prep {
-  height: 450px;
-  padding: 2rem 0.5rem 1rem 0.5rem;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  align-content: space-around;
-  flex-wrap: wrap;
-  background: linear-gradient(0deg, #000000cd 50%, #00000034 100%);
-}
+
 
 .img_gif {
   width: 9%;
@@ -125,4 +131,7 @@ button.msgButton {
   background-color: #03658c;
 
   font-size: 36px;
+}
+.disrelative{
+  position: relative;
 }

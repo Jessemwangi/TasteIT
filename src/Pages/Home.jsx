@@ -46,7 +46,7 @@ const Home = () => {
            <HomeIntroContent/>
             <HomeInfo/>
             <Container fluid="fluid" className='bg-light m-2 border rounded'>
-            <h2 className='noReview recipeAuthor' style={{padding: "1rem",textAlign:"left" }}>
+            <h2 className='noReview recipeAuthor bg-light rounded-top mb-3 p-4'  style={{textAlign:"left" }}>
               View more from each category</h2>
             
             <HomeCategory/>
