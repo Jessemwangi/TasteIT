@@ -196,3 +196,6 @@
 	background: linear-gradient(0deg, #000000cb 60%, #0000006d 100%);
 	opacity: 0.8;
   }
+  .cheficon > img, cheficon > svg{
+	vertical-align: none;
+  }

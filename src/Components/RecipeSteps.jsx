@@ -16,8 +16,8 @@ const RecipeSteps = ({ getSteps, steps, removeStep, addSteps, stepsArray }) => {
   };
 
   return (
-    <div className='col'>
-      <h4 className="col_Bottom">Add Preparation Steps</h4>
+    <div className='col bg-light'>
+      <h4 className="col_Bottom noReview recipeAuthor">Add Preparation Steps</h4>
       {stepsArray.length > 0 ? (<Table striped hover responsive>
         <thead><tr>
           <th>##</th>
