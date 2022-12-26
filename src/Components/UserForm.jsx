@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Container } from "reactstrap";
 
 const UserForm = ({ handleSend, formChange, selectchange }) => {
   const [countryList, setCountryList] = useState([]);
@@ -23,8 +24,9 @@ const UserForm = ({ handleSend, formChange, selectchange }) => {
 
   return (
     <div>
+  
       <form id="cityForm" onSubmit={handleSend}>
-        <h2>Add Recipe </h2>
+        
         <div>
           <p>
             Hi <span className="wavehand">👋</span>. Welcome, start by adding a

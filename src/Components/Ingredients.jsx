@@ -43,6 +43,7 @@ const Ingredients = ({ categories,
               <td><Button
                 type="button"
                 id="rmvIngrid"
+                className="bg-danger"
                 onClick={(e) => removeIngridient(e, ingridient.ingredientId)}>
                 -
               </Button>    <UncontrolledTooltip placement="bottom"
@@ -90,7 +91,7 @@ const Ingredients = ({ categories,
         </div>
 
         <div className="MultipleEntryRight">
-          <Button size="lg" id="addIngrid" onClick={addIngridient}>+</Button>
+          <Button className="bg-danger lg" size="lg" id="addIngrid" onClick={addIngridient}>+</Button>
           <UncontrolledTooltip placement="bottom"
             target="addIngrid"  >Click to add filled ingredient</UncontrolledTooltip>
         </div>

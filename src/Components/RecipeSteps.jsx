@@ -33,6 +33,7 @@ const RecipeSteps = ({ getSteps, steps, removeStep, addSteps, stepsArray }) => {
               <td>{step.name}</td>
               <td>
                 <Button
+                className='bg-danger lg'
                   type="button"
                   id='removeStep'
                   onClick={(e) => removeStep(e, step.stepid)}>
@@ -74,7 +75,7 @@ const RecipeSteps = ({ getSteps, steps, removeStep, addSteps, stepsArray }) => {
         </div>
 
         <div className="MultipleEntryRight">
-          <Button size="lg" onClick={addSteps} id='addStep' >+</Button>
+          <Button className='bg-danger' size="lg" onClick={addSteps} id='addStep' >+</Button>
           <UncontrolledTooltip placement="bottom"
             target="addStep"  >Add the new step</UncontrolledTooltip>
         </div>

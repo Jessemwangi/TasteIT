@@ -14,7 +14,7 @@ const OneRecipeSteps = ({stepsArray}) => {
         <thead><tr>
           <th>##</th>
           <th>Preparation Time</th>
-          <th>Ingridient Description</th>
+          <th>Preparation Instructions</th>
           
         </tr></thead>
         <tbody>

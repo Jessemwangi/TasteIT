@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import uuid from "react-uuid";
-import { Button, UncontrolledTooltip } from "reactstrap";
+import { Button, Container, UncontrolledTooltip } from "reactstrap";
 
 import "./Component.css";
 import Ingredients from "./Ingredients";
@@ -148,7 +148,11 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
       });
   };
   return (
-    <>
+    <main>
+    <Container className="bg-light" fluid="fluid" >
+
+<h2 className='noReview recipeAuthor' style={{textAlign:"left" }}>Add Recipe </h2>
+</Container>
       <div className="Container">
         <UserForm {...{ handleSend, formChange, selectchange }} />
         <Ingredients
@@ -172,14 +176,13 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
             active
             block
             size="lg"
-            className="send"
+            className="send bg-danger p-2 btn-lg"
             onClick={postRecipe}
             id="saveIngid"
           >
             <span></span>
             <span></span>
-            <span></span>
-            <span></span>
+
             Save
           </Button>
           <UncontrolledTooltip placement="top" target="saveIngid">
@@ -191,7 +194,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
           notificationAct={notificationAct} handleCloseInfo={handleCloseInfo}
           infoTitle={`RECIPE ADDED SUCCESFULLY`} bodyMessage={bodyMessage} infoType={''} />
       </div>
-    </>
+    </main>
   );
 };
 

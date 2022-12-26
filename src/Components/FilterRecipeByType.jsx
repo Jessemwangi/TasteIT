@@ -62,7 +62,7 @@ const FilterRecipeByType = ({ getAll,filterType }) => {
                     ></Badge>
                   </Button>
                 ))}
-                <Button className="m-2 " onClick={getAll}>
+                <Button className="m-2 bg-danger" onClick={getAll}>
                   Load All Recipe
                 </Button>
               </>

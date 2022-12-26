@@ -202,7 +202,7 @@ const OneRecipeView = () => {
                 handleCloseInfo={handleCloseInfo} bodyMessage={bodyMessage}
                 infoTitle={infoTitle} ActionName={ActionName} infoType={infoType} />
 
-              <Button className="msgButton" variant="secondary" onClick={handleShow}>
+              <Button className="msgButton bg-danger"  onClick={handleShow}>
                 Add a Comment
               </Button>
             </Container>

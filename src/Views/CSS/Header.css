@@ -39,3 +39,12 @@ a.active{
     border: 3px white double;
     border-radius: 10px;
 }
+@media only screen and (max-width: 766px) {
+    .nav-item{
+      width: 100%;
+      margin: 0 auto;
+    }
+  
+    
+  }
+  
