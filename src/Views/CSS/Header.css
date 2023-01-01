@@ -19,7 +19,7 @@ li{
     line-height: 5;
     display: inline-block;
     margin-right: 1rem;
-    width: 15vw;
+    min-width: 12vw;
     height: 80px;
     text-decoration: none;
    

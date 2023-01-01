@@ -37,17 +37,24 @@
 
 .userbox input{
   min-width: 80%;
-  padding: 0 0 0 10vw;
+  height: 50px;
+  padding: 12px 0 0 10vw;
   font-size: 1.5vw;
   color: black;
   border: none;
   border-bottom: 1px solid #fff;
 border-radius: 3px;
 }
+
+.userbox textarea{
+  font-size: 1.5vw;
+  padding: 12px 0 0 0;
+}
+
 .Container input::placeholder {
   font-weight: bold;
   opacity: 0.5;
-  color: #ffffff;
+  color: #000000;
 }
 
 .userbox label {
@@ -66,6 +73,15 @@ border-radius: 3px;
   left: 0;
   color: #f32828;
   font-size: 16px;
+  border-radius: 5px;
+}
+
+.userbox input:not(:placeholder-shown) ~ label, .userbox textarea:not(:placeholder-shown) ~ label{
+  top: -8px;
+  left: 0;
+  background-color: #f9ebebee;
+  color:green;
+  border-radius: 5px;
 }
 select {
   font-size: 1.5vw;
