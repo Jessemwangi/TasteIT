@@ -65,6 +65,7 @@ const Ingredients = ({ categories,
             value={ingridients.quantity}
             name="quantity"
             required
+            placeholder="5L"
             onChange={getIngridients}
           />
           <label htmlFor="quantity">Quantity</label>
@@ -75,6 +76,7 @@ const Ingredients = ({ categories,
             style={style.textarea}
             value={ingridients.name}
             required
+            placeholder="eg. Pizza"
             onChange={getIngridients}>
           </textarea>
 

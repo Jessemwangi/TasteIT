@@ -58,8 +58,9 @@ const RecipeSteps = ({ getSteps, steps, removeStep, addSteps, stepsArray }) => {
             type="number" id="timer"
             value={steps.timers}
             name="timers" required
+            placeholder="eg 5"
             onChange={getSteps} style={style.input1} />
-          <label htmlFor="quantity">Timer</label>
+          <label htmlFor="quantity">Minutes</label>
         </div>
         <div className="userbox">
 
@@ -68,6 +69,7 @@ const RecipeSteps = ({ getSteps, steps, removeStep, addSteps, stepsArray }) => {
             name="name"
             value={steps.name}
             required
+            placeholder="e.g boil water"
             onChange={getSteps}>
           </textarea>
 

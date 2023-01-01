@@ -80,6 +80,8 @@
 ```
 ### Screen shot
 
+<img src="src/Assets/tasteIT.png" alt="TasteIt"/>
+
 ### Disclaimer
 
 <p>Image use and flag are both work of other end point, courtesy of</p> 

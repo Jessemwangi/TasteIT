@@ -40,7 +40,7 @@ const UserForm = ({ handleSend, formChange, selectchange }) => {
                 type="text"
                 name="name"
                 onChange={formChange}
-                placeholder="  eg. Fish Tako"
+                placeholder="eg. Fish Tako"
                 required
               />
               <label>Recipe name:</label>
@@ -50,8 +50,9 @@ const UserForm = ({ handleSend, formChange, selectchange }) => {
             <div className="userbox">
               <input
                 type="text"
+                id="author"
                 name="author"
-                placeholder="  eg. Jesse Mwangi"
+                placeholder="eg. Jesse Mwangi"
                 onChange={formChange}
                 required
               />
