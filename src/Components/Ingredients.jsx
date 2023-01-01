@@ -20,14 +20,16 @@ const Ingredients = ({ categories,
       maxHeight: "100%",
       resize: "both",
       paddingLeft: "70px",
+      color:"black",
     }
   };
 
 
   return (
-    <div className="col">
-      <h4 className="col_Bottom">Add ingredient here</h4>
-      {ingridientsList.length > 0 ? (<Table striped hover responsive>
+    <div className="col bg-light">
+      <h4 className="col_Bottom noReview recipeAuthor">Add list of ingredients</h4>
+      {ingridientsList.length > 0 ? (
+      <Table striped hover responsive>
         <thead><tr>
           <th>Quantity</th>
           <th>Ingridient Name</th>

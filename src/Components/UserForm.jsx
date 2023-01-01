@@ -23,16 +23,16 @@ const UserForm = ({ handleSend, formChange, selectchange }) => {
   }, []);
 
   return (
-    <div>
+    <>
   
-      <form id="cityForm" onSubmit={handleSend}>
+      <form id="cityForm" className="cityForm" onSubmit={handleSend}>
+        <Container className="border rounded bg-light" fluid="fluid">
         
-        <div>
-          <p>
+          <p className="noReview recipeAuthor bg-light">
             Hi <span className="wavehand">👋</span>. Welcome, start by adding a
             YUMMY! recipe
           </p>
-        </div>
+        </Container>
         <div className="inputdetails flexRow">
           <div className="valueinputside">
             <div className="userbox">
@@ -77,7 +77,7 @@ const UserForm = ({ handleSend, formChange, selectchange }) => {
         </div>
 <hr />
       </form>
-    </div>
+    </>
   );
 };
 

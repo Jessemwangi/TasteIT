@@ -1,13 +1,15 @@
 /* --__-------------------forms -_____________------------ */
-
+.cityForm{
+  width: 100%;
+}
 .Container {
-  background: linear-gradient(0deg, #000000d8 50%, #000000af 100%);
+  background: linear-gradient(0deg, #000000d8 50%, #000000af 100%); 
+  /* background-color: #040404; */
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   margin: 0.5rem auto 5rem auto;
-
   display: flex;
-  color: snow;
+   color: snow; 
   flex-direction: column;
   align-items: center;
 }
@@ -40,8 +42,7 @@
   color: black;
   border: none;
   border-bottom: 1px solid #fff;
-  outline: none;
-  background: transparent;
+border-radius: 3px;
 }
 .Container input::placeholder {
   font-weight: bold;
@@ -53,24 +54,24 @@
   position: absolute;
   top: 0;
   left: 0;
-  font-size: 1.5vw;
+  font-size: 20px;
   pointer-events: none;
   transition: 0.5s;
-  color:#ffffff ;
+  color:black ;
   
 }
 
 .userbox  input:focus ~ label, textarea:focus ~ label {
   top: -8px;
   left: 0;
-  color: white;
-  font-size: 12px;
+  color: #f32828;
+  font-size: 16px;
 }
 select {
   font-size: 1.5vw;
   padding: 1rem 1rem 1rem 1rem;
   border-radius: 4px;
-
+  border-radius: 3px;
 }
 
 h4 {
@@ -92,7 +93,8 @@ h4 {
   border-bottom: 2px white solid;
   border-left: 2px white solid;
   border-right: 2px white solid;
- 
+  border-radius: 3px;
+ /* color: black; */
 }
 
 
@@ -108,8 +110,6 @@ padding: 1rem;
 flex-wrap: wrap;
 
 }
-
-
 
 .sendbtn {
   position: relative;
@@ -195,4 +195,13 @@ button.send:hover {
 }
 .btn-secondary:hover{
 opacity: 0.8;
+}
+
+  
+@media only screen and (max-width: 700px) {
+  .row .col {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 }

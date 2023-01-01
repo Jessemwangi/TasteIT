@@ -5,7 +5,6 @@ import uuid from "react-uuid";
 import { useParams } from "react-router-dom";
 import { Col, Row, Container, Spinner, Button, Badge } from 'reactstrap';
 
-import RelatedIngridients from "./RelatedIngridients";
 import Comments from "./Comments";
 import RecipeComments from "../Components/RecipeComments";
 
@@ -98,18 +97,20 @@ const OneRecipeView = () => {
 
   }
 
-  const addToFeatured = async () => {
-
+  const addToFeatured = async (e) => {
+    let feature = e.target.value === "true" ? false : true
+console.log(feature)
     try {
       const { data } = await axios.put(`http://localhost:3001/recipe/${oneRecipeD.id}`,
-        { ...oneRecipeD, featured: true });
+        { ...oneRecipeD, featured: feature});
       console.log(data);
-      setInfoTitle('Recipe Added to Featured List');
+      await oneRecipe(oneRecipeD.id);
+      setInfoTitle(`Recipe featured status changed to ${feature}`);
       setShowInfo(true);
       setActionName('Back to Recipe');
       setInfoType('');
-      setBodyMessage(`Recipe name, ${data.name.toUpperCase()} by ${data.author.toUpperCase()} was succefully added to this week featured recipe`)
-
+      setBodyMessage(`Recipe name, ${data.name.toUpperCase()} by ${data.author.toUpperCase() }  
+       Recipe featured status was updated`)
     } catch (error) {
       console.log(error);
     }
@@ -133,16 +134,22 @@ const OneRecipeView = () => {
                       alt="" /> */}
                       {oneRecipeD.name}  </h2>
                     <p>
-                      <Button className="msgButton" variant="secondary" onClick={addToFeatured}>
-                        Add To featured
-                        <Badge
-                          className="m-2  bg-light pinned"
+                    
+                    <Button className="msgButton" variant="secondary" value={oneRecipeD.featured || false}  onClick={(e) =>addToFeatured (e)}>
+                    {oneRecipeD.featured ? 'Remove To featured ' : 'Add To featured '}
+                    <Badge
+                      className="m-2  bg-light pinned"
 
-                          children={<SlPin stroke="white" fill="red"
-                            strokeWidth="0" style={{ color: "red", fontSize: "28px", cursor: "pointer" }} />
+                      children={<SlPin stroke="white" fill="red"
+                        strokeWidth="0" style={{ color: "red", fontSize: "28px", cursor: "pointer" }} />
 
-                          }
-                        ></Badge></Button></p>
+                      }
+                    ></Badge></Button>
+                   
+                   
+                
+
+                        </p>
                   </div>
                 </div>
               </Row>
