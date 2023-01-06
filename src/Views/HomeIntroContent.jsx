@@ -25,15 +25,14 @@ const HomeIntroContent = () => {
                 <Col className='bg-light m-2 p-2 border' sm={4} md={4} 
                 style={{position:"relative",minHeight:"450px"}}>
                    
-                <div className='p-3 border' style={{zIndex:"1000",position:"absolute"}}>
+                <div className='p-3 border' style={{zIndex:"1000",position:"absolute", overflow:'hidden'}}>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officia repellendus nemo magnam corrupti qui illum dolores 
                 error omnis quia obcaecati, debitis mollitia id ex perferendis, veniam, asperiores ab natus.
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officia repellendus nemo magnam corrupti qui illum dolores 
                 error omnis quia obcaecati, debitis mollitia id ex perferendis, veniam, asperiores ab natus.
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officia repellendus nemo magnam corrupti qui illum dolores 
                 error omnis quia obcaecati, debitis mollitia id ex perferendis, veniam, asperiores ab natus.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officia repellendus nemo magnam corrupti qui illum dolores 
-                error omnis quia obcaecati, debitis mollitia id ex perferendis, veniam, asperiores ab natus.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                 </div>
                 <div className='cheficon' style={{position:"absolute",color:"#b393937b", fontSize:"280px",textAlign:"center",width:"100%"}}>
 

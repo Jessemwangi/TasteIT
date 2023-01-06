@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Col, Container, Row, Spinner } from 'reactstrap';
+import {  Spinner } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 
 const HomeCategory = () => {
