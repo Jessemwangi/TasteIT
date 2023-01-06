@@ -102,6 +102,7 @@ This project exposed me on the use of axios for getting data from API endpoints,
 
 </p>
 <p> Pass data using navigate and state
+
 ```Javascript
 navigation(`/viewRecipes/`, { state: { value: search.current.value || '' } });
 ```

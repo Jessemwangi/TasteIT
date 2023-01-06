@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link,  useLocation , useNavigate} from "react-router-dom";
+import { useLocation , useNavigate} from "react-router-dom";
 import axios from "axios";
 import { Button, Spinner } from "reactstrap";
 
@@ -85,8 +85,8 @@ const navigate = useNavigate();
  
   setIsloading(false);
       setRecipes(filteredRecipes);
-   
-  }, [search,type,location, recipes.length]);
+      
+  }, [search, type, location, recipes.length]);
 
 
   const refresh =(e) =>{

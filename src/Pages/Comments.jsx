@@ -13,7 +13,7 @@ const Comments = ({ RcpId }) => {
     useEffect(() => {
         const getComments = async () => {
             const { data } = await axios.get(`http://localhost:3001/comments`);
-            setComments(data.filter(item => item.recipeId == RcpId));
+            setComments(data.filter(item => item.recipeId === RcpId));
             setIsloading(false)
         }
         getComments();

@@ -40,7 +40,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
   const [steps, setSteps] = useState(StepsInit);
   const [stepsArray, setStepsArray] = useState([]);
 
-  const [submitMsg, setsubmitMsg] = useState("");
+  const [, setsubmitMsg] = useState("");
 
   const ingridientCategory = async () => {
     const { data } = await axios.get("http://localhost:3001/category");

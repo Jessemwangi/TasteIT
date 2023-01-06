@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -15,7 +15,6 @@ import RecipeSearch from "../Components/RecipeSearch";
 import "./CSS/Header.css";
 
 const Header = () => {
-  const args = { position: "sticky" };
   const [isOpen, setIsOpen] = useState(false);
 
 
