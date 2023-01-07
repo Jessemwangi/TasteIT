@@ -4,20 +4,23 @@ import { Container, Spinner } from 'reactstrap';
 import { RiStarFill } from 'react-icons/ri';
 
 import './Comments.css';
+import { useGet_one_recipe } from '../DataLayer/GetRecipe';
 
 const Comments = ({ RcpId }) => {
+    const {response} =useGet_one_recipe('comments','recipeId',RcpId);
 
     const [isloading, setIsloading] = useState(true);
-    const [comments, setComments] = useState([]);
+    const [comments, setComments] = useState(response);
+
 
     useEffect(() => {
-        const getComments = async () => {
-            const { data } = await axios.get(`http://localhost:3001/comments`);
-            setComments(data.filter(item => item.recipeId === RcpId));
-            setIsloading(false)
+        setIsloading(true);
+        if (response !== null && response.length > 0){
+            setIsloading(false);
+            setComments(response)
         }
-        getComments();
-    }, [RcpId])
+      }, [RcpId,response]);
+console.log(comments);
 
     const getRatings = (rates) => {
         let star = [];
@@ -62,16 +65,19 @@ const Comments = ({ RcpId }) => {
     };
 
     return (
+       
         isloading ? (
             <Spinner animation="grow" variant="light"></Spinner>
         )
             :
             (
+               
                 comments.length > 0 ?
+               
                     (
 
                         <div className="mainComment">
-
+ 
                             <div className="comments-container">
 
                                 <div className='ul'>

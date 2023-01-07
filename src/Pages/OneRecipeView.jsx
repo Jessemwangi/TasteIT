@@ -6,6 +6,10 @@ import { useParams } from "react-router-dom";
 import { Col, Row, Container, Spinner, Button, Badge } from 'reactstrap';
 import { SlPin } from "react-icons/sl";
 
+import {addDoc, collection} from "@firebase/firestore";
+import {db} from '../FireBaseInit';
+import {useGet_one_recipe} from "../DataLayer/GetRecipe";
+
 import Comments from "./Comments";
 import RecipeComments from "../Components/RecipeComments";
 
@@ -13,7 +17,6 @@ import './Pages.css';
 import Notification from "../Components/Notification";
 import OneRecipeSteps from "../Views/OneRecipeSteps";
 import OneRecipeIngridientsLists from "../Views/OneRecipeIngridientsLists";
-import {useGet_one_recipe} from "../DataLayer/GetRecipe";
 
 const OneRecipeView = () => {
 
@@ -25,7 +28,7 @@ const OneRecipeView = () => {
 
   const { id } = useParams();
   const {response} =useGet_one_recipe('recipe','id',id);
-  console.log(response);
+ 
   const [oneRecipeD, setOneRecipeD] = useState();
   const [isLoading, setIsLoading] = useState(true)
   const [inputs, setInputs] = useState(initData);
@@ -39,15 +42,16 @@ const OneRecipeView = () => {
   const [infoTitle, setInfoTitle] = useState();
   const [ActionName, setActionName] = useState();
   const [infoType, setInfoType] = useState();
+  const [response_, setResponse_] = useState(null);
 
   const handleCloseInfo = () => setShowInfo(false);
 
 
   useEffect(() => {
     setIsLoading(true);
-    if (response !== null){
+    if (response !== null && response.length > 0){
       setIsLoading(false);
-      setOneRecipeD(response)
+      setOneRecipeD(response[0])
     }
   }, [id, response]);
 
@@ -59,7 +63,26 @@ const OneRecipeView = () => {
     })
   }
 
-  const AddCommentHandler = (e) => {
+
+  const post_Data = async (collectionName,data,idColName) => {  //idColName the id column name, ed Id, transactionID
+
+       try {
+           // const dataRef = doc(ref, data?.[idColName]);
+           await addDoc(collection(db,collectionName), data)
+           .then(docRef => {
+             console.log("Document has been added successfully");
+             setResponse_("Document has been added successfully")
+         });
+   
+       } catch (error) {
+        setResponse_(`An error occured ... ${error}`);
+       }
+       setIsLoading(false);
+       return response_;
+   }
+
+
+  const AddCommentHandler = async (e) => {
     setIsLoading(true);
     e.preventDefault();
     if (inputs.rating && inputs.message && inputs.sendBy) {
@@ -71,18 +94,20 @@ const OneRecipeView = () => {
         recipeId: oneRecipeD.id
       };
       try {
-        axios
-          .post("http://localhost:3001/comments", { ...newComment })
-          .then((res) => {
-            setBodyMessage(res.data);
-            setIsLoading(false);
-            setInfoTitle('Comment Posted');
-            setShowInfo(true); setActionName('View Recipe');
-            setInfoType('comments');
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        const result = await   post_Data('comments',newComment,'id')
+        console.log(result);
+        // axios
+        //   .post("http://localhost:3001/comments", { ...newComment })
+        //   .then((res) => {
+        //     setBodyMessage(res.data);
+        //     setIsLoading(false);
+        //     setInfoTitle('Comment Posted');
+        //     setShowInfo(true); setActionName('View Recipe');
+        //     setInfoType('comments');
+        //   })
+        //   .catch((err) => {
+        //     console.log(err);
+        //   });
       } catch (error) {
         alert(`An error occured ${error}`)
       }

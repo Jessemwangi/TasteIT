@@ -66,9 +66,11 @@ const useGet_one_recipe = (colName, id, value) =>{
           querySnapshot.forEach((doc) => {
               items.push(doc.data());
           });
-          setResponse(items[0]);
+
           setLoading(false);
-          console.log(items[0]);
+          
+          setResponse(items);
+          console.log(items);
          
       });
       return () => {
