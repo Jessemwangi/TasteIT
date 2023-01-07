@@ -4,7 +4,6 @@
 }
 .Container {
   background: linear-gradient(0deg, #000000d8 50%, #000000af 100%); 
-  /* background-color: #040404; */
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   margin: 0.5rem auto 5rem auto;
@@ -17,7 +16,7 @@
   font-size: 32px;
 }
 .inputdetails {
-  margin: 0rem 3rem;
+  margin: 03rem;
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
@@ -95,7 +94,7 @@ h4 {
 }
 .col{
   margin-top: 3rem;
-  margin-bottom: 0rem;
+  margin-bottom: 0;
   border-top: 2px white solid;
   border-left: 2px white solid;
   border-right: 2px white solid;
@@ -104,7 +103,7 @@ h4 {
 }
 .col_Bottom{
   margin-top: 3rem;
-  margin-bottom: 0rem;
+  margin-bottom: 0;
   border-bottom: 2px white solid;
   border-left: 2px white solid;
   border-right: 2px white solid;
