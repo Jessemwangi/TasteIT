@@ -13,7 +13,7 @@ const Footer = () => {
           target="_blank" rel='noreferrer'>
           unsplash.
         </a></p>
-        Jesse mwangi 2022
+        Jesse mwangi 2023
       </div>
         </footer>
         </main>
