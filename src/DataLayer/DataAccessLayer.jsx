@@ -1,6 +1,6 @@
 // import { collection, getDocs } from '@firebase/firestore/lite';
 import {
-    getDoc,
+    getDoc,getFirestore,
     serverTimestamp, collection, getDocs, onSnapshot, where,
     doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
 } from "@firebase/firestore";
@@ -43,10 +43,11 @@ const useGetData = (collectionName) => {
 
 
 const useGetOneData = (collectionName, getId) => {
-
+    const db = getFirestore();
+console.log(collectionName, getId);
     const [response, setResponse] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
-    const docRef = doc(db,collectionName , getId);
+    const docRef = doc(db,collectionName , 'yjjMd8m56B0f6XPoDhXw');
 
     useEffect(() => {
 const fetchData = async () =>{
@@ -55,7 +56,6 @@ const fetchData = async () =>{
     try {
         const docSnap = await getDoc(docRef);
         if(docSnap.exists()) {
-            console.log(docSnap.data());
             setResponse(docSnap.data());
         } else {
             console.log("Document does not exist");
@@ -67,11 +67,11 @@ const fetchData = async () =>{
 
     }
     setIsLoading(false);
-    return response
 }
-        fetchData()
+fetchData()
 
-    }, [docRef, response]);
+}, []);
+return {response};
 }
 
 

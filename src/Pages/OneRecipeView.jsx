@@ -39,21 +39,21 @@ const OneRecipeView = () => {
   const [infoType, setInfoType] = useState();
 
   const handleCloseInfo = () => setShowInfo(false);
-  const { data } = useGetOneData('recipe',id);
+  const {response } = useGetOneData('recipe',id);
+  setOneRecipeD(response);
+console.log(response);
 
+  // const oneRecipe = async (id) => {
+  //   setIsLoading(true);
+  //   const { data } = await axios.get(`http://localhost:3001/recipe/${id}`);
+  //   setOneRecipeD(data);
 
+  //   setIsLoading(false);
+  // };
 
-  const oneRecipe = async (id) => {
-    setIsLoading(true);
-    const { data } = await axios.get(`http://localhost:3001/recipe/${id}`);
-    setOneRecipeD(data);
-
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    setOneRecipeD(data);
-  }, [data, id]);
+  // useEffect(() => {
+  //   setOneRecipeD(response);
+  // }, [response, id]);
 
   const commetEntry = (e) => {
 
@@ -108,7 +108,7 @@ console.log(feature)
       const { data } = await axios.put(`http://localhost:3001/recipe/${oneRecipeD.id}`,
         { ...oneRecipeD, featured: feature});
       console.log(data);
-      await oneRecipe(oneRecipeD.id);
+        // setOneRecipeD(response);// oneRecipe(oneRecipeD.id);
       setInfoTitle(`Recipe featured status changed to ${feature}`);
       setShowInfo(true);
       setActionName('Back to Recipe');
