@@ -68,7 +68,7 @@ border-radius: 3px;
   
 }
 
-.userbox  input:focus ~ label, textarea:focus ~ label {
+.userbox input:focus ~ label, textarea:focus ~ label {
   top: -8px;
   left: 0;
   color: #f32828;
@@ -86,7 +86,6 @@ border-radius: 3px;
 select {
   font-size: 1.5vw;
   padding: 1rem 1rem 1rem 1rem;
-  border-radius: 4px;
   border-radius: 3px;
 }
 
@@ -100,7 +99,7 @@ h4 {
   border-top: 2px white solid;
   border-left: 2px white solid;
   border-right: 2px white solid;
-  border-radius: 8px 8px 0px 0px;
+  border-radius: 8px 8px 0 0;
   width: 85%;
 }
 .col_Bottom{
@@ -121,7 +120,7 @@ h4 {
   align-items: center;
   gap:2rem;
   border-radius: 8px;
-background-color: #1d7dccbf;;
+background-color: #1d7dccbf;
 padding: 1rem;
 flex-wrap: wrap;
 
