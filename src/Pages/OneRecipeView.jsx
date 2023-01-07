@@ -4,6 +4,7 @@ import uuid from "react-uuid";
 
 import { useParams } from "react-router-dom";
 import { Col, Row, Container, Spinner, Button, Badge } from 'reactstrap';
+import { useGetOneData } from "../DataLayer/DataAccessLayer";
 
 import Comments from "./Comments";
 import RecipeComments from "../Components/RecipeComments";
@@ -38,6 +39,9 @@ const OneRecipeView = () => {
   const [infoType, setInfoType] = useState();
 
   const handleCloseInfo = () => setShowInfo(false);
+  const { data } = useGetOneData('recipe',id);
+
+
 
   const oneRecipe = async (id) => {
     setIsLoading(true);
@@ -48,8 +52,8 @@ const OneRecipeView = () => {
   };
 
   useEffect(() => {
-    oneRecipe(id);
-  }, [id]);
+    setOneRecipeD(data);
+  }, [data, id]);
 
   const commetEntry = (e) => {
 

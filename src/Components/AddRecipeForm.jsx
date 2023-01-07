@@ -3,12 +3,21 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import uuid from "react-uuid";
 import { Button, Container, UncontrolledTooltip } from "reactstrap";
+import {usePostData} from '../DataLayer/DataAccessLayer';
 
 import "./Component.css";
 import Ingredients from "./Ingredients";
 import RecipeSteps from "./RecipeSteps";
 import UserForm from "./UserForm";
 import Notification from "./Notification";
+
+import {
+  addDoc,
+  serverTimestamp, collection, getDocs, onSnapshot, where,
+  doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
+} from "@firebase/firestore";
+import {db} from '../FireBaseInit';
+
 
 const AddRecipeForm = ({ handleSend, filechange }) => {
   const [bodyMessage, setBodyMessage] = useState({});
@@ -41,6 +50,11 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
   const [stepsArray, setStepsArray] = useState([]);
 
   const [, setsubmitMsg] = useState("");
+
+
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const ingridientCategory = async () => {
     const { data } = await axios.get("http://localhost:3001/category");
@@ -128,7 +142,28 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
     setShowInfo(false);
     navigate("/viewRecipes");
   }
-  const postRecipe = (e) => {
+
+  // const postRecipe = (e) => {
+  //   e.preventDefault();
+  //   setsubmitMsg("Sending Data......");
+  //   const recipe = {
+  //     ...forminput,
+  //     ingredients: ingredientArray,
+  //     steps: stepsArray,
+  //   };
+  //   axios
+  //     .post("http://localhost:3001/recipe", { ...recipe })
+  //     .then((res) => {
+  //       setBodyMessage(res.data);
+  //       setShowInfo(true);
+  //     })
+  //     .catch((err) => {
+  //       setsubmitMsg("Sending Data......", { err });
+  //       console.log(err);
+  //     });
+  // };
+
+  const PostRecipe = async (e) => {
     e.preventDefault();
     setsubmitMsg("Sending Data......");
     const recipe = {
@@ -136,17 +171,36 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
       ingredients: ingredientArray,
       steps: stepsArray,
     };
-    axios
-      .post("http://localhost:3001/recipe", { ...recipe })
-      .then((res) => {
-        setBodyMessage(res.data);
-        setShowInfo(true);
-      })
-      .catch((err) => {
-        setsubmitMsg("Sending Data......", { err });
-        console.log(err);
-      });
+   const result = await   post_Data('recipe',recipe,'id')
+     console.log(result);
+   
   };
+
+
+
+
+  const post_Data = async (collectionName,data,idColName) => {  //idColName the id column name, ed Id, transactionID
+ const ref = collection(db, collectionName) 
+
+
+    try {
+        // const dataRef = doc(ref, data?.[idColName]);
+        await addDoc(collection(db,collectionName), data)
+        .then(docRef => {
+          console.log("Document has been added successfully");
+          setResponse("Document has been added successfully")
+      });
+
+    } catch (error) {
+      setResponse(`An error occured ... ${error}`);
+    }
+    setIsLoading(false);
+    return response;
+}
+
+
+
+
   return (
     <main>
     <Container className="bg-light" fluid="fluid" >
@@ -177,7 +231,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
             block
             size="lg"
             className="send bg-danger p-2 btn-lg"
-            onClick={postRecipe}
+            onClick={PostRecipe}
             id="saveIngid"
           >
             <span></span>

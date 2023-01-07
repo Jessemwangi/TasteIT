@@ -6,14 +6,36 @@ import FeaturedRecipe from '../Views/FeaturedRecipe';
 import HomeCategory from '../Views/HomeCategory';
 import HomeInfo from '../Views/HomeInfo';
 import HomeIntroContent from '../Views/HomeIntroContent';
+import {useGetData} from '../DataLayer/DataAccessLayer';
 
 const Home = () => {
+
+  
   const [isloading, setIsLoading] = useState(true);
   const [featured, setFeatured] = useState({});
+
+
+
+  const { response, error, isLoading } = useGetData('recipe');
+  console.log(response);
+  useEffect(() => {
+    if (isLoading) {
+       console.log(isLoading,' ......');
+     }
+      if (error) {
+       console.log('An error occurred:', error);
+     }
+      else if (response)
+    {
+   console.log(response);
+    }
+  },[error, isLoading, response])
+
 
   const getFeaturedRecipe = async () => {
     setIsLoading(true);
     try {
+      
       const { data } = await axios.get('http://localhost:3001/recipe/')
       setFeatured(data.filter(item => item.featured === true));
 
@@ -23,6 +45,7 @@ const Home = () => {
     }
   }
   useEffect(() => {
+
     getFeaturedRecipe()
   }, [])
 
@@ -40,9 +63,10 @@ const Home = () => {
           </>
         ) : (
           <>
+          {console.log(response)}
             <Container className="bg-dark border rounded-top homeContainer" fluid="fluid">
               <h1 className='noReview recipeAuthor' style={{ color: "snow", padding: "1rem" }}>this week featured Recipes</h1>
-              <FeaturedRecipe featuredRecipe={featured} />
+              {/* <FeaturedRecipe featuredRecipe={featured} /> */}
            <HomeIntroContent/>
             <HomeInfo/>
             <Container fluid="fluid" className='bg-light m-2 border rounded'>

@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useLocation , useNavigate} from "react-router-dom";
+import { Link,  useLocation , useNavigate} from "react-router-dom";
 import axios from "axios";
+import { collection, getDocs,
+} from "@firebase/firestore";
 import { Button, Spinner } from "reactstrap";
+import { db } from '../FireBaseInit';
 
 import FilterRecipeByType from "../Components/FilterRecipeByType";
 import { Container } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
 
 const RecipeViewCard = () => {
+  const [response, setResponse] = useState(null);
   let location = useLocation();
 const navigate = useNavigate();
 
@@ -22,10 +26,25 @@ const navigate = useNavigate();
 
   const getRecipes = async () => {
     setIsloading(true);
-    const { data } = await axios.get("http://localhost:3001/recipe");
-    setRecipes(data);
-    setIsloading(false);
-  };
+    // setIsloading(true);
+    // const { data } = await axios.get("http://localhost:3001/recipe");
+    // setRecipes(data);
+    // setIsloading(false);
+    try {
+      const coll_Name = collection(db, 'recipe');
+      const colle_Snapshot = await getDocs(coll_Name);
+      const colleList = colle_Snapshot.docs.map(doc => doc.data());
+
+      setResponse(colleList);
+      setRecipes(colleList);
+  } catch (err) {
+    setResponse(err);
+
+  }
+  setIsloading(false);
+}
+
+
 
   useEffect(() => {
     getRecipes();
@@ -85,8 +104,8 @@ const navigate = useNavigate();
  
   setIsloading(false);
       setRecipes(filteredRecipes);
-      
-  }, [search, type, location, recipes.length]);
+   
+  }, [search,type,location, recipes.length]);
 
 
   const refresh =(e) =>{
