@@ -48,7 +48,6 @@ const TestRealtimeFirebase = (colName) => {
 
         try {
             const dataRef = doc(ref, data?.transactionID);
-            console.log(data?.transactionID, data)
             await setDoc(dataRef, data);
             // if(doc was save) then sen email to the client of the scheduled trips 
         } catch (error) {
