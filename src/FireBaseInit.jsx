@@ -1,29 +1,22 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import {getFirestore} from "@firebase/firestore";
-// import {
-//   collection,
-//   getDocs,
-//   addDoc,
-//   updateDoc,
-//   doc,
-//   deleteDoc,
-// } from "@firebase/firestore";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAfwkzXrI_YXsi6vruhmzvBEWRc1kBiU7c",
-  authDomain: "api-project-32470662412.firebaseapp.com",
-  databaseURL: "https://api-project-32470662412-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "api-project-32470662412",
-  storageBucket: "api-project-32470662412.appspot.com",
-  messagingSenderId: "32470662412",
-  appId: "1:32470662412:web:0a60d34500d825dfe2dd29",
-  measurementId: "G-1LYLMRZ0P3"
+  apiKey: "AIzaSyDtJr7Mx-SzU7ZkQL5z3Zxo1uHeM5Zyyxs",
+  authDomain: "tasteit-c4bcd.firebaseapp.com",
+  projectId: "tasteit-c4bcd",
+  storageBucket: "tasteit-c4bcd.appspot.com",
+  messagingSenderId: "165103309255",
+  appId: "1:165103309255:web:508f601a8b278866b389e2"
 };
 
 // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
 export const app = initializeApp(firebaseConfig);
 //export const firestore = getFirestore(app);
 export const db = getFirestore(app);

@@ -13,6 +13,7 @@ import './Pages.css';
 import Notification from "../Components/Notification";
 import OneRecipeSteps from "../Views/OneRecipeSteps";
 import OneRecipeIngridientsLists from "../Views/OneRecipeIngridientsLists";
+import {useGet_one_recipe} from "../DataLayer/GetRecipe";
 
 const OneRecipeView = () => {
 
@@ -23,6 +24,8 @@ const OneRecipeView = () => {
   };
 
   const { id } = useParams();
+  const {response} =useGet_one_recipe('recipe','id',id);
+  console.log(response);
   const [oneRecipeD, setOneRecipeD] = useState();
   const [isLoading, setIsLoading] = useState(true)
   const [inputs, setInputs] = useState(initData);
@@ -39,17 +42,14 @@ const OneRecipeView = () => {
 
   const handleCloseInfo = () => setShowInfo(false);
 
-  const oneRecipe = async (id) => {
-    setIsLoading(true);
-    const { data } = await axios.get(`http://localhost:3001/recipe/${id}`);
-    setOneRecipeD(data);
-
-    setIsLoading(false);
-  };
 
   useEffect(() => {
-    oneRecipe(id);
-  }, [id]);
+    setIsLoading(true);
+    if (response !== null){
+      setIsLoading(false);
+      setOneRecipeD(response)
+    }
+  }, [id, response]);
 
   const commetEntry = (e) => {
 
@@ -104,7 +104,7 @@ console.log(feature)
       const { data } = await axios.put(`http://localhost:3001/recipe/${oneRecipeD.id}`,
         { ...oneRecipeD, featured: feature});
       console.log(data);
-      await oneRecipe(oneRecipeD.id);
+      await  setOneRecipeD(response);
       setInfoTitle(`Recipe featured status changed to ${feature}`);
       setShowInfo(true);
       setActionName('Back to Recipe');
