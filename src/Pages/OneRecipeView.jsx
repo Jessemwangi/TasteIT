@@ -4,6 +4,7 @@ import uuid from "react-uuid";
 
 import { useParams } from "react-router-dom";
 import { Col, Row, Container, Spinner, Button, Badge } from 'reactstrap';
+import { SlPin } from "react-icons/sl";
 
 import Comments from "./Comments";
 import RecipeComments from "../Components/RecipeComments";
@@ -12,7 +13,6 @@ import './Pages.css';
 import Notification from "../Components/Notification";
 import OneRecipeSteps from "../Views/OneRecipeSteps";
 import OneRecipeIngridientsLists from "../Views/OneRecipeIngridientsLists";
-import { SlPin } from "react-icons/sl";
 
 const OneRecipeView = () => {
 
