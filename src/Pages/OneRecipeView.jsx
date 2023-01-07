@@ -4,7 +4,6 @@ import uuid from "react-uuid";
 
 import { useParams } from "react-router-dom";
 import { Col, Row, Container, Spinner, Button, Badge } from 'reactstrap';
-import { useGetOneData } from "../DataLayer/DataAccessLayer";
 
 import Comments from "./Comments";
 import RecipeComments from "../Components/RecipeComments";
@@ -39,21 +38,18 @@ const OneRecipeView = () => {
   const [infoType, setInfoType] = useState();
 
   const handleCloseInfo = () => setShowInfo(false);
-  const {response } = useGetOneData('recipe',id);
-  setOneRecipeD(response);
-console.log(response);
 
-  // const oneRecipe = async (id) => {
-  //   setIsLoading(true);
-  //   const { data } = await axios.get(`http://localhost:3001/recipe/${id}`);
-  //   setOneRecipeD(data);
+  const oneRecipe = async (id) => {
+    setIsLoading(true);
+    const { data } = await axios.get(`http://localhost:3001/recipe/${id}`);
+    setOneRecipeD(data);
 
-  //   setIsLoading(false);
-  // };
+    setIsLoading(false);
+  };
 
-  // useEffect(() => {
-  //   setOneRecipeD(response);
-  // }, [response, id]);
+  useEffect(() => {
+    oneRecipe(id);
+  }, [id]);
 
   const commetEntry = (e) => {
 
@@ -108,7 +104,7 @@ console.log(feature)
       const { data } = await axios.put(`http://localhost:3001/recipe/${oneRecipeD.id}`,
         { ...oneRecipeD, featured: feature});
       console.log(data);
-        // setOneRecipeD(response);// oneRecipe(oneRecipeD.id);
+      await oneRecipe(oneRecipeD.id);
       setInfoTitle(`Recipe featured status changed to ${feature}`);
       setShowInfo(true);
       setActionName('Back to Recipe');
