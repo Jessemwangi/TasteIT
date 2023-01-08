@@ -2,12 +2,33 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {  Spinner } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
+import { useGetData } from '../DataLayer/DataAccessLayer';
 
 const HomeCategory = () => {
     const navigation = useNavigate();
 
     const [category, setCategory] = useState();
     const [isLoading, setIsLoading] = useState(true);
+
+    const { response, error, isLoading_ } = useGetData('category');
+    useEffect(() => {
+  
+  
+      if (isLoading_) {
+        setIsLoading(isLoading_);
+         console.log(isLoading_,' ......');
+       }
+        if (error) {
+          setIsLoading(isLoading_);
+         console.log('An error occurred:', error);
+       }
+        else if (response)
+      {
+        setIsLoading(isLoading_);
+        setCategory(response);
+     console.log(response);
+      }
+    },[error, isLoading_, response])
 
     useEffect(() => {
         const getIngridnients = async () => {

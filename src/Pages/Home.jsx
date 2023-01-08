@@ -9,26 +9,29 @@ import {useGetData} from '../DataLayer/DataAccessLayer';
 
 const Home = () => {
 
-  
   const [isloading, setIsLoading] = useState(true);
   const [featured, setFeatured] = useState({});
 
-
-
   const { response, error, isLoading } = useGetData('recipe');
-  console.log(response);
   useEffect(() => {
+
+
     if (isLoading) {
+      setIsLoading(true);
        console.log(isLoading,' ......');
      }
       if (error) {
+        setIsLoading(false);
        console.log('An error occurred:', error);
      }
       else if (response)
     {
+      setIsLoading(false);
    console.log(response);
     }
   },[error, isLoading, response])
+
+
 
 
   const getFeaturedRecipe = async () => {

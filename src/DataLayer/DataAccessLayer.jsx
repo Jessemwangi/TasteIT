@@ -1,10 +1,9 @@
 // import { collection, getDocs } from '@firebase/firestore/lite';
-import {
-    getDoc,getFirestore,
-    serverTimestamp, collection, getDocs, onSnapshot, where,
-    doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
-} from "@firebase/firestore";
 import { useEffect, useState } from 'react';
+import {
+    getDoc,getFirestore, collection, getDocs,
+    doc, setDoc, addDoc,
+} from "@firebase/firestore";
 import { db } from '../FireBaseInit';
 
 
@@ -14,7 +13,7 @@ const useGetData = (collectionName) => {
 
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading_, setIsLoading] = useState(true);
 
     useEffect(() => {
         async function fetchData() {
@@ -36,17 +35,17 @@ const useGetData = (collectionName) => {
         fetchData();
     }, [collectionName]);
 
-    console.log('response', response, 'error', error, 'isLoading', isLoading, '')
+    // console.log('response', response, 'error', error, 'isLoading', isLoading, '')
 
-    return { response, error, isLoading };
+    return { response, error, isLoading_ };
 }
 
 
 const useGetOneData = (collectionName, getId) => {
     const db = getFirestore();
-console.log(collectionName, getId);
+// console.log(collectionName, getId);
     const [response, setResponse] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading_, setIsLoading] = useState(true);
     const docRef = doc(db,collectionName , 'yjjMd8m56B0f6XPoDhXw');
 
     useEffect(() => {
@@ -89,20 +88,24 @@ const usePostData = async (collectionName, data, idColName) => {  //idColName th
         const postData = async () => {
 
             try {
-                const dataRef = doc(ref, data?.[idColName]);
-                await setDoc(dataRef, data);
-                // if(doc was save) then sen email to the client of the scheduled trips 
-                setResponse(data?.[idColName])
-            } catch (error) {
-                setError(`An error occured ... ${error}`);
+                await addDoc(collection(db, collectionName), data)
+                  .then(docRef => {
+                    console.log("Document has been added successfully");
+                    setResponse("Document has been added successfully")
+                  });
+          
+              } catch (error) {
+                setResponse(`An error occured ... ${error}`);
+              }
+              setIsLoading(false);
+              return response;
             }
-            setIsLoading(false);
-        }
+          
         postData();
 
-    }, [data, idColName, ref]);
+    }, []);
     console.log('response', response, 'error', error, 'isLoading', isLoading, '')
-    return { response, error, isLoading };
+    return { response };
 }
 
 export { usePostData, useGetData,useGetOneData };

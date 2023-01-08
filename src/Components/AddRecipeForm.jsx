@@ -3,7 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import uuid from "react-uuid";
 import { Button, Container, UncontrolledTooltip } from "reactstrap";
-import {usePostData} from '../DataLayer/DataAccessLayer';
 
 import "./Component.css";
 import Ingredients from "./Ingredients";
@@ -11,12 +10,8 @@ import RecipeSteps from "./RecipeSteps";
 import UserForm from "./UserForm";
 import Notification from "./Notification";
 
-import {
-  addDoc,
-  serverTimestamp, collection, getDocs, onSnapshot, where,
-  doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
-} from "@firebase/firestore";
-import {db} from '../FireBaseInit';
+import { addDoc, collection, } from "@firebase/firestore";
+import { db } from '../FireBaseInit';
 
 
 const AddRecipeForm = ({ handleSend, filechange }) => {
@@ -53,10 +48,10 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
 
 
   const [response, setResponse] = useState(null);
-  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const ingridientCategory = async () => {
+    setIsLoading(true)
     const { data } = await axios.get("http://localhost:3001/category");
     setCategory(data);
   };
@@ -143,25 +138,6 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
     navigate("/viewRecipes");
   }
 
-  // const postRecipe = (e) => {
-  //   e.preventDefault();
-  //   setsubmitMsg("Sending Data......");
-  //   const recipe = {
-  //     ...forminput,
-  //     ingredients: ingredientArray,
-  //     steps: stepsArray,
-  //   };
-  //   axios
-  //     .post("http://localhost:3001/recipe", { ...recipe })
-  //     .then((res) => {
-  //       setBodyMessage(res.data);
-  //       setShowInfo(true);
-  //     })
-  //     .catch((err) => {
-  //       setsubmitMsg("Sending Data......", { err });
-  //       console.log(err);
-  //     });
-  // };
 
   const PostRecipe = async (e) => {
     e.preventDefault();
@@ -171,42 +147,34 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
       ingredients: ingredientArray,
       steps: stepsArray,
     };
-   const result = await   post_Data('recipe',recipe,'id')
-     console.log(result);
-   
+    const result = await post_Data('recipe', recipe, 'id')
+    console.log(result);
+
   };
 
-
-
-
-  const post_Data = async (collectionName,data,idColName) => {  //idColName the id column name, ed Id, transactionID
- const ref = collection(db, collectionName) 
-
+  const post_Data = async (collectionName, data, idColName) => {  //idColName the id column name, ed Id, transactionID
 
     try {
-        // const dataRef = doc(ref, data?.[idColName]);
-        await addDoc(collection(db,collectionName), data)
+      await addDoc(collection(db, collectionName), data)
         .then(docRef => {
           console.log("Document has been added successfully");
           setResponse("Document has been added successfully")
-      });
+        });
 
     } catch (error) {
       setResponse(`An error occured ... ${error}`);
     }
     setIsLoading(false);
     return response;
-}
-
-
+  }
 
 
   return (
     <main>
-    <Container className="bg-light" fluid="fluid" >
+      <Container className="bg-light" fluid="fluid" >
 
-<h2 className='noReview recipeAuthor border rounded mt-1' style={{textAlign:"left" }}>Add Recipe </h2>
-</Container>
+        <h2 className='noReview recipeAuthor border rounded mt-1' style={{ textAlign: "left" }}>Add Recipe </h2>
+      </Container>
       <div className="Container">
         <UserForm {...{ handleSend, formChange, selectchange }} />
         <Ingredients

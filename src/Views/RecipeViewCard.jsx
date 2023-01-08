@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link,  useLocation , useNavigate} from "react-router-dom";
-import axios from "axios";
+import { useLocation , useNavigate} from "react-router-dom";
+
 import { collection, getDocs,
 } from "@firebase/firestore";
 import { Button, Spinner } from "reactstrap";
@@ -26,10 +26,6 @@ const navigate = useNavigate();
 
   const getRecipes = async () => {
     setIsloading(true);
-    // setIsloading(true);
-    // const { data } = await axios.get("http://localhost:3001/recipe");
-    // setRecipes(data);
-    // setIsloading(false);
     try {
       const coll_Name = collection(db, 'recipe');
       const colle_Snapshot = await getDocs(coll_Name);
@@ -37,11 +33,11 @@ const navigate = useNavigate();
 
       setResponse(colleList);
       setRecipes(colleList);
+      setIsloading(false);
   } catch (err) {
     setResponse(err);
 
   }
-  setIsloading(false);
 }
 
 

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Container, Spinner } from 'reactstrap';
 import { RiStarFill } from 'react-icons/ri';
 
