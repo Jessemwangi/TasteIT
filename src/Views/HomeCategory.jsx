@@ -28,7 +28,7 @@ const HomeCategory = () => {
 
             localStorage.setItem("category", JSON.stringify(response) );
         }
-    
+
       }
     },[error, isLoading_, response])
 
