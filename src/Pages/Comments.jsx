@@ -18,8 +18,12 @@ const Comments = ({ RcpId }) => {
             setIsloading(false);
             setComments(response)
         }
+        else{
+            setComments(null)
+            setIsloading(false);
+        }
+
       }, [RcpId,response]);
-console.log(comments);
 
     const getRatings = (rates) => {
         let star = [];
@@ -71,7 +75,7 @@ console.log(comments);
             :
             (
                
-                comments.length > 0 ?
+                 comments!==null ?
                
                     (
 
