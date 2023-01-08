@@ -15,7 +15,6 @@ const HomeCategory = () => {
   
       if (isLoading_) {
         setIsLoading(isLoading_);
-         console.log(isLoading_,' ......');
        }
         if (error) {
           setIsLoading(isLoading_);
@@ -29,7 +28,7 @@ const HomeCategory = () => {
 
             localStorage.setItem("category", JSON.stringify(response) );
         }
-     console.log(response);
+    
       }
     },[error, isLoading_, response])
 

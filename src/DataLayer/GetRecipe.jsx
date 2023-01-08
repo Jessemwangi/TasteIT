@@ -49,37 +49,39 @@ return {response};
 
 const useGet_one_recipe = (colName, id, value) =>{
   const [response, setResponse] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const[docId,setDocId]=useState();
   const ref = collection(db, colName)
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-      const q = query(
-          ref,
-          where(id, '==', value) 
-      );
-
-      setLoading(true);
-      const unsub = onSnapshot(q, (querySnapshot) => {  
-      // const unsub = onSnapshot(ref, (querySnapshot) => {
-        const items = [];
-        // console.log(querySnapshot);
-          querySnapshot.forEach((doc) => {
-            setDocId(doc.id);
-              items.push(doc.data());
-          });
-
-          setLoading(false);
-          
-          setResponse(items);
-         
-      });
-      return () => {
-          unsub();
-      };
+    try {
+	  const q = query(
+	          ref,
+	          where(id, '==', value) 
+	      );
+	
+	      setLoading(true);
+	      const unsub = onSnapshot(q, (querySnapshot) => {  
+	        const items = [];
+	          querySnapshot.forEach((doc) => {
+	            setDocId(doc.id);
+	              items.push(doc.data());
+	          });
+	
+	          setLoading(false);
+	          setResponse(items);
+	         
+	      });
+	      return () => {
+	          unsub();
+	      };
+} catch (error) {
+	setError(` Error occured ${error}`)
+}
 
   }, [id, value]);
-  return {response,docId};
+  return {response,docId,loading,error};
 }
 
 
