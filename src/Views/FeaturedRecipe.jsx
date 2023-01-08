@@ -30,7 +30,7 @@ const FeaturedRecipe = (featured) => {
     };
 
     const slides = items.map((item, index) => {
-        let caption = 
+        let caption =
             <div className='caCaption'>
                 <div className='crInfo'>
                     <h4>Summary</h4>

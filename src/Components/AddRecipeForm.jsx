@@ -131,11 +131,13 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
   const postRecipe = (e) => {
     e.preventDefault();
     setsubmitMsg("Sending Data......");
+    
     const recipe = {
       ...forminput,
       ingredients: ingredientArray,
       steps: stepsArray,
     };
+
     axios
       .post("http://localhost:3001/recipe", { ...recipe })
       .then((res) => {
@@ -149,10 +151,10 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
   };
   return (
     <main>
-    <Container className="bg-light" fluid="fluid" >
+      <Container className="bg-light" fluid="fluid" >
 
-<h2 className='noReview recipeAuthor border rounded mt-1' style={{textAlign:"left" }}>Add Recipe </h2>
-</Container>
+        <h2 className='noReview recipeAuthor border rounded mt-1' style={{ textAlign: "left" }}>Add Recipe </h2>
+      </Container>
       <div className="Container">
         <UserForm {...{ handleSend, formChange, selectchange }} />
         <Ingredients

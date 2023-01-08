@@ -11,7 +11,6 @@ ul{
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* height:10vh; */
 }
 
 li{
@@ -21,24 +20,27 @@ li{
     margin-right: 1rem;
     min-width: 12vw;
     height: 80px;
-    text-decoration: none;
-   
+    text-decoration: none;  
 }
+
 li > a{
     text-decoration: none;
     color:red;
     display: block;
 }
+
 li >  a:hover{
     border: 3px white double;
     opacity: 0.7;
     color:snow;
 }
+
 a.active{
     color: snow;
     border: 3px white double;
     border-radius: 10px;
 }
+
 @media only screen and (max-width: 766px) {
     .nav-item{
       width: 100%;

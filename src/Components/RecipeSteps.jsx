@@ -33,7 +33,7 @@ const RecipeSteps = ({ getSteps, steps, removeStep, addSteps, stepsArray }) => {
               <td>{step.name}</td>
               <td>
                 <Button
-                className='bg-danger lg'
+                  className='bg-danger lg'
                   type="button"
                   id='removeStep'
                   onClick={(e) => removeStep(e, step.stepid)}>

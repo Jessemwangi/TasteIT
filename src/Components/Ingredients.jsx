@@ -20,7 +20,7 @@ const Ingredients = ({ categories,
       maxHeight: "100%",
       resize: "both",
       paddingLeft: "70px",
-      color:"black",
+      color: "black",
     }
   };
 
@@ -29,32 +29,32 @@ const Ingredients = ({ categories,
     <div className="col bg-light">
       <h4 className="col_Bottom noReview recipeAuthor">Add list of ingredients</h4>
       {ingridientsList.length > 0 ? (
-      <Table striped hover responsive>
-        <thead><tr>
-          <th>Quantity</th>
-          <th>Ingridient Name</th>
-          <th>Type</th>
-          <th>Action</th>
-        </tr></thead>
-        <tbody>
-          {ingridientsList.map((ingridient) => (
-            <tr key={ingridient.ingredientId}>
-              <td>{ingridient.quantity}</td>
-              <td>{ingridient.name}</td>
-              <td>{ingridient.type}</td>
-              <td><Button
-                type="button"
-                id="rmvIngrid"
-                className="bg-danger"
-                onClick={(e) => removeIngridient(e, ingridient.ingredientId)}>
-                -
-              </Button>    <UncontrolledTooltip placement="bottom"
-                target="rmvIngrid" >Click to remove Entry</UncontrolledTooltip></td>
-            </tr>
-          ))
-          }
-        </tbody>
-      </Table>) : (<></>)}
+        <Table striped hover responsive>
+          <thead><tr>
+            <th>Quantity</th>
+            <th>Ingridient Name</th>
+            <th>Type</th>
+            <th>Action</th>
+          </tr></thead>
+          <tbody>
+            {ingridientsList.map((ingridient) => (
+              <tr key={ingridient.ingredientId}>
+                <td>{ingridient.quantity}</td>
+                <td>{ingridient.name}</td>
+                <td>{ingridient.type}</td>
+                <td><Button
+                  type="button"
+                  id="rmvIngrid"
+                  className="bg-danger"
+                  onClick={(e) => removeIngridient(e, ingridient.ingredientId)}>
+                  -
+                </Button>    <UncontrolledTooltip placement="bottom"
+                  target="rmvIngrid" >Click to remove Entry</UncontrolledTooltip></td>
+              </tr>
+            ))
+            }
+          </tbody>
+        </Table>) : (<></>)}
 
       <div className="ingredientContainer">
 
