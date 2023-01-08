@@ -11,7 +11,7 @@ import { Container } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
 
 const RecipeViewCard = () => {
-  const [response, setResponse] = useState(null);
+  const [, setResponse] = useState(null);
   let location = useLocation();
 const navigate = useNavigate();
 

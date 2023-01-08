@@ -1,9 +1,6 @@
 // import { collection, getDocs } from '@firebase/firestore/lite';
 import { db } from "../FireBaseInit";
-import {
-  addDoc,
-  serverTimestamp, collection, getDocs, onSnapshot, where,
-  doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
+import { collection,  onSnapshot, where, query
 } from "@firebase/firestore";
 
 import { useEffect, useState } from 'react';

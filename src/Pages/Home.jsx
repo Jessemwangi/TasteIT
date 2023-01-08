@@ -1,11 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Container, Spinner } from 'reactstrap';
 import HomeCategory from '../Views/HomeCategory';
 import HomeInfo from '../Views/HomeInfo';
 import HomeIntroContent from '../Views/HomeIntroContent';
-import { useGetData } from '../DataLayer/DataAccessLayer';
 import FeaturedRecipe from '../Views/FeaturedRecipe';
 import { useGet_one_recipe } from '../DataLayer/GetRecipe';
 

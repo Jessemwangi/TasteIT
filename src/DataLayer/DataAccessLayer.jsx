@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import {
     getDoc,getFirestore, collection, getDocs,
-    doc, setDoc, addDoc,
+    doc,  addDoc,
 } from "@firebase/firestore";
 import { db } from '../FireBaseInit';
 
@@ -46,10 +46,10 @@ const useGetOneData = (collectionName, getId) => {
 // console.log(collectionName, getId);
     const [response, setResponse] = useState(null);
     const [isLoading_, setIsLoading] = useState(true);
-    const docRef = doc(db,collectionName , 'yjjMd8m56B0f6XPoDhXw');
-
+    
     useEffect(() => {
-const fetchData = async () =>{
+        const fetchData = async () =>{
+    const docRef = doc(db,collectionName , 'yjjMd8m56B0f6XPoDhXw');
 
     setIsLoading(true);
     try {
@@ -69,8 +69,8 @@ const fetchData = async () =>{
 }
 fetchData()
 
-}, []);
-return {response};
+}, [collectionName]);
+return {response,isLoading_};
 }
 
 
@@ -83,9 +83,9 @@ const usePostData = async (collectionName, data, idColName) => {  //idColName th
     const [isLoading, setIsLoading] = useState(true);
 
 
-    const ref = collection(db, collectionName)
     useEffect(() => {
         const postData = async () => {
+            const ref = collection(db, collectionName)
 
             try {
                 await addDoc(collection(db, collectionName), data)
@@ -95,6 +95,7 @@ const usePostData = async (collectionName, data, idColName) => {  //idColName th
                   });
           
               } catch (error) {
+                setError(`An error occured ... ${error}`);
                 setResponse(`An error occured ... ${error}`);
               }
               setIsLoading(false);
@@ -103,9 +104,9 @@ const usePostData = async (collectionName, data, idColName) => {  //idColName th
           
         postData();
 
-    }, []);
+    }, [collectionName, data]);
     console.log('response', response, 'error', error, 'isLoading', isLoading, '')
-    return { response };
+    return { response,error,isLoading };
 }
 
 export { usePostData, useGetData,useGetOneData };
