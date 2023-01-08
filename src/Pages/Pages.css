@@ -60,8 +60,6 @@
   background: linear-gradient(0deg, #000000cd 50%, #00000034 100%);
 }
 
-
-
 .img_gif {
   width: 9%;
   border-radius: 30%;
@@ -93,7 +91,7 @@ button.msgButton {
   color: snow;
   display: flex;
   align-items: center;
-  gap: 1;
+  gap: 1px;
 }
 .caCaption > div > h4 {
   color: snow;

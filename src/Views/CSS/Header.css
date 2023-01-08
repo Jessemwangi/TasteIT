@@ -31,7 +31,7 @@ li > a{
 }
 li >  a:hover{
     border: 3px white double;
-    opacity: 0.7px;
+    opacity: 0.7;
     color:snow;
 }
 a.active{
