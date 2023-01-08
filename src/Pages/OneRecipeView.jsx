@@ -28,7 +28,6 @@ const OneRecipeView = () => {
   const { id } = useParams();
   const { response ,docId} = useGet_one_recipe('recipe', 'id', id);
 
-console.log(docId,response,id);
   const [oneRecipeD, setOneRecipeD] = useState();
   const [isLoading, setIsLoading] = useState(true)
   const [inputs, setInputs] = useState(initData);

@@ -11,9 +11,9 @@ const usePostToColle = (collectionName, idColName) => {
     const [isLoading, setIsLoading] = useState(true);
 
 
-    const ref = collection(db, collectionName)
     useEffect(() => {
         const postData = async () => {
+            const ref = collection(db, collectionName)
             const dataRef = doc(ref, collectionName?.[idColName]);
 
             try {
@@ -26,7 +26,7 @@ const usePostToColle = (collectionName, idColName) => {
         }
         postData();
 
-    }, []);
+    }, [collectionName, idColName]);
     console.log('response', response, 'error', error, 'isLoading', isLoading, '')
 
     return { response, error, isLoading };

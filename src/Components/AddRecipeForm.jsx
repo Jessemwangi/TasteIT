@@ -14,9 +14,10 @@ import { db } from '../FireBaseInit';
 
 
 const AddRecipeForm = ({ handleSend, filechange }) => {
-  const [bodyMessage, setBodyMessage] = useState({});
+  const [bodyMessage, setBodyMessage] = useState('');
   const [showInfo, setShowInfo] = useState(false);
   const navigate = useNavigate();
+
   const handleCloseInfo = () => {
     window.location.reload(false);
     setShowInfo(false)
@@ -92,6 +93,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
 
   const addIngridient = (e) => {
     if (ingridients.type === "") {
+      setBodyMessage("please select ingridient type");
       alert("please select ingridient type");
       return false;
     }
@@ -173,7 +175,14 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
 
 
   return (
+ 
+
     <main>
+         {isLoading ? 
+      (
+      <h2>Loading ......</h2>
+    ):(
+      <>
       <Container className="bg-light" fluid="fluid" >
 
         <h2 className='noReview recipeAuthor border rounded mt-1' style={{ textAlign: "left" }}>Add Recipe </h2>
@@ -219,6 +228,8 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
           notificationAct={notificationAct} handleCloseInfo={handleCloseInfo}
           infoTitle={submitMsg} bodyMessage={bodyMessage} infoType={''} />
       </div>
+      </>
+    )}
     </main>
   );
 };
