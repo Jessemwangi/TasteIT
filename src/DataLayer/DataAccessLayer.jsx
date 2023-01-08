@@ -85,6 +85,7 @@ const usePostData = async (collectionName, data, idColName) => {  //idColName th
 
     useEffect(() => {
         const postData = async () => {
+
             // const ref = collection(db, collectionName)
 
             try {
