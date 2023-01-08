@@ -26,24 +26,13 @@ const HomeCategory = () => {
       {
         setIsLoading(isLoading_);
         setCategory(response);
+        if (localStorage.getItem("category") === null){
+
+            localStorage.setItem("category", JSON.stringify(response) );
+        }
      console.log(response);
       }
     },[error, isLoading_, response])
-
-    useEffect(() => {
-        const getIngridnients = async () => {
-            setIsLoading(true);
-            try {
-                const { data } = await axios.get("http://localhost:3001/category");
-                setCategory(data)
-                setIsLoading(false);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        getIngridnients();
-    }, []);
 
     return (
    <>
