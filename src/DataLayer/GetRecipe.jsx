@@ -31,7 +31,6 @@ const useGet_Recipe = (colName, id, value) => {
           });
 
         });
-        console.log(items)
         setResponse(items);
 
       } catch (err) {
@@ -51,6 +50,7 @@ return {response};
 const useGet_one_recipe = (colName, id, value) =>{
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
+  const[docId,setDocId]=useState();
   const ref = collection(db, colName)
 
   useEffect(() => {
@@ -63,14 +63,15 @@ const useGet_one_recipe = (colName, id, value) =>{
       const unsub = onSnapshot(q, (querySnapshot) => {  
       // const unsub = onSnapshot(ref, (querySnapshot) => {
         const items = [];
+        // console.log(querySnapshot);
           querySnapshot.forEach((doc) => {
+            setDocId(doc.id);
               items.push(doc.data());
           });
 
           setLoading(false);
           
           setResponse(items);
-          console.log(items);
          
       });
       return () => {
@@ -78,7 +79,7 @@ const useGet_one_recipe = (colName, id, value) =>{
       };
 
   }, [id, value]);
-  return {response};
+  return {response,docId};
 }
 
 

@@ -6,9 +6,9 @@ import { useParams } from "react-router-dom";
 import { Col, Row, Container, Spinner, Button, Badge } from 'reactstrap';
 import { SlPin } from "react-icons/sl";
 
-import {addDoc, collection} from "@firebase/firestore";
-import {db} from '../FireBaseInit';
-import {useGet_one_recipe} from "../DataLayer/GetRecipe";
+import { addDoc, collection, updateDoc, doc } from "@firebase/firestore";
+import { db } from '../FireBaseInit';
+import { useGet_one_recipe } from "../DataLayer/GetRecipe";
 
 import Comments from "./Comments";
 import RecipeComments from "../Components/RecipeComments";
@@ -27,11 +27,13 @@ const OneRecipeView = () => {
   };
 
   const { id } = useParams();
-  const {response} =useGet_one_recipe('recipe','id',id);
- 
+  const { response ,docId} = useGet_one_recipe('recipe', 'id', id);
+
+console.log(docId,response,id);
   const [oneRecipeD, setOneRecipeD] = useState();
   const [isLoading, setIsLoading] = useState(true)
   const [inputs, setInputs] = useState(initData);
+  const [erro, setErro] = useState('')
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -49,7 +51,7 @@ const OneRecipeView = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    if (response !== null && response.length > 0){
+    if (response !== null && response.length > 0) {
       setIsLoading(false);
       setOneRecipeD(response[0])
     }
@@ -64,23 +66,22 @@ const OneRecipeView = () => {
   }
 
 
-  const post_Data = async (collectionName,data,idColName) => {  //idColName the id column name, ed Id, transactionID
+  const post_Data = async (collectionName, data, idColName) => {  //idColName the id column name, ed Id, transactionID
 
-       try {
-           // const dataRef = doc(ref, data?.[idColName]);
-           await addDoc(collection(db,collectionName), data)
-           .then(docRef => {
-             console.log("Document has been added successfully");
-             setResponse_("Document has been added successfully")
-         });
-   
-       } catch (error) {
-        setResponse_(`An error occured ... ${error}`);
-       }
-       setIsLoading(false);
-       return response_;
-   }
+    try {
 
+      await addDoc(collection(db, collectionName), data)
+        .then(docRef => {
+          setResponse_("Document has been added successfully")
+        });
+
+    } catch (error) {
+      setResponse_(`An error occured ... ${error}`);
+      setErro(erro + ` An error occured ... ${error}`)
+    }
+    setIsLoading(false);
+    return response_;
+  }
 
   const AddCommentHandler = async (e) => {
     setIsLoading(true);
@@ -94,22 +95,11 @@ const OneRecipeView = () => {
         recipeId: oneRecipeD.id
       };
       try {
-        const result = await   post_Data('comments',newComment,'id')
+        const result = await post_Data('comments', newComment, 'id')
         console.log(result);
-        // axios
-        //   .post("http://localhost:3001/comments", { ...newComment })
-        //   .then((res) => {
-        //     setBodyMessage(res.data);
-        //     setIsLoading(false);
-        //     setInfoTitle('Comment Posted');
-        //     setShowInfo(true); setActionName('View Recipe');
-        //     setInfoType('comments');
-        //   })
-        //   .catch((err) => {
-        //     console.log(err);
-        //   });
       } catch (error) {
-        alert(`An error occured ${error}`)
+        setErro(erro + ` An error occured ${error}`)
+
       }
       setInputs(initData);
       handleClose();
@@ -122,22 +112,47 @@ const OneRecipeView = () => {
 
   }
 
+  //update function
+  const updateData = async (collectionName,data, docId) => {
+    
+    const ref = collection(db, collectionName)
+    try {
+      const datalRef = doc(ref, docId);
+      updateDoc(datalRef, data)
+      .then(res =>{
+        console.log(res)
+      });
+      return 'updated'
+    } catch (error) {
+      console.error(error);
+      setErro(erro + error)
+      return error;
+    }
+
+  }
+
   const addToFeatured = async (e) => {
     let feature = e.target.value === "true" ? false : true
-console.log(feature)
+
+    const update ={ ...oneRecipeD, featured: feature }
     try {
-      const { data } = await axios.put(`http://localhost:3001/recipe/${oneRecipeD.id}`,
-        { ...oneRecipeD, featured: feature});
-      console.log(data);
-      await  setOneRecipeD(response);
-      setInfoTitle(`Recipe featured status changed to ${feature}`);
-      setShowInfo(true);
-      setActionName('Back to Recipe');
-      setInfoType('');
-      setBodyMessage(`Recipe name, ${data.name.toUpperCase()} by ${data.author.toUpperCase() }  
+      const data = await updateData('recipe',update, docId)
+      if (data === 'updated') {
+        console.log(data);
+        await setOneRecipeD(response[0]);
+        setInfoTitle(`Recipe featured status changed to ${feature}`);
+        setShowInfo(true);
+        setActionName('Back to Recipe');
+        setInfoType('');
+        setBodyMessage(`Recipe name, ${data.name.toUpperCase()} by ${data.author.toUpperCase()}  
        Recipe featured status was updated`)
+      }
+      else {
+        setErro(erro + data)
+      }
     } catch (error) {
       console.log(error);
+      setErro(erro + error)
     }
 
   }
@@ -159,22 +174,18 @@ console.log(feature)
                       alt="" /> */}
                       {oneRecipeD.name}  </h2>
                     <p>
-                    
-                    <Button className="msgButton" variant="secondary" value={oneRecipeD.featured || false}  onClick={(e) =>addToFeatured (e)}>
-                    {oneRecipeD.featured ? 'Remove To featured ' : 'Add To featured '}
-                    <Badge
-                      className="m-2  bg-light pinned"
 
-                      children={<SlPin stroke="white" fill="red"
-                        strokeWidth="0" style={{ color: "red", fontSize: "28px", cursor: "pointer" }} />
+                      <Button className="msgButton" variant="secondary" value={oneRecipeD.featured || false} onClick={(e) => addToFeatured(e)}>
+                        {oneRecipeD.featured ? 'Remove To featured ' : 'Add To featured '}
+                        <Badge
+                          className="m-2  bg-light pinned"
 
-                      }
-                    ></Badge></Button>
-                   
-                   
-                
+                          children={<SlPin stroke="white" fill="red"
+                            strokeWidth="0" style={{ color: "red", fontSize: "28px", cursor: "pointer" }} />
 
-                        </p>
+                          }
+                        ></Badge></Button>
+                    </p>
                   </div>
                 </div>
               </Row>
@@ -185,30 +196,30 @@ console.log(feature)
               </Row>
 
               <div className="mt-2 p-3 oneRecipeMid">
-                <div className="one__image">  
-                <img
-                  src={`https://source.unsplash.com/900x450/?${oneRecipeD.name} `}
-                  alt={oneRecipeD.name}
-                  
-                />
+                <div className="one__image">
+                  <img
+                    src={`https://source.unsplash.com/900x450/?${oneRecipeD.name} `}
+                    alt={oneRecipeD.name}
+
+                  />
                 </div>
-                <div  className="two__image">
+                <div className="two__image">
                   <img className="img_abs"
                     src={`https://source.unsplash.com/450x400/?${oneRecipeD.name} `}
-                    alt={oneRecipeD.name}/>
+                    alt={oneRecipeD.name} />
 
-                    <div className="img_abs one_recip_prep">
-                      <div className="border p-1"> <span className="recipeAuthor"> 🥘
-                    <span> Ingridients : </span> {oneRecipeD.ingredients.length}</span></div>
-                      <div className="border p-1"> <span className="recipeAuthor"><span>Preparation Steps : </span> {oneRecipeD.steps.length}</span></div>
-                      <div className="border p-1">                  <span className="recipeAuthor">⏱️
-                    <span>Minutes : </span>{oneRecipeD.steps.reduce((a, b) => a + parseInt(b.timers), 0)}</span>
+                  <div className="img_abs one_recip_prep">
+                    <div className="border p-1"> <span className="recipeAuthor"> 🥘
+                      <span> Ingridients : </span> {oneRecipeD.ingredients.length}</span></div>
+                    <div className="border p-1"> <span className="recipeAuthor"><span>Preparation Steps : </span> {oneRecipeD.steps.length}</span></div>
+                    <div className="border p-1">                  <span className="recipeAuthor">⏱️
+                      <span>Minutes : </span>{oneRecipeD.steps.reduce((a, b) => a + parseInt(b.timers), 0)}</span>
                     </div>
                     <div className="border p-1">
-                    <span className="recipeAuthor"> <span> {oneRecipeD.country.name} : </span></span>
-                    <img src={oneRecipeD.country.flagUrl} alt={oneRecipeD.country.name} className='SmFlag' />
-                  </div>
+                      <span className="recipeAuthor"> <span> {oneRecipeD.country.name} : </span></span>
+                      <img src={oneRecipeD.country.flagUrl} alt={oneRecipeD.country.name} className='SmFlag' />
                     </div>
+                  </div>
                 </div>
 
               </div>
@@ -234,7 +245,7 @@ console.log(feature)
                 handleCloseInfo={handleCloseInfo} bodyMessage={bodyMessage}
                 infoTitle={infoTitle} ActionName={ActionName} infoType={infoType} />
 
-              <Button className="msgButton bg-danger"  onClick={handleShow}>
+              <Button className="msgButton bg-danger" onClick={handleShow}>
                 Add a Comment
               </Button>
             </Container>
@@ -243,6 +254,7 @@ console.log(feature)
             </Container>
 
           </div>)}
+      {erro}
     </main>
   );
 };
