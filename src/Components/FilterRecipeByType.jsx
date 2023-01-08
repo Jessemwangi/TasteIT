@@ -45,7 +45,6 @@ const FilterRecipeByType = ({ getAll,filterType }) => {
      ingridientCategory();
   }, []);
 
- console.log(categories);
   useEffect(() => {
     const getIngridnients = async () => {
       setIsloading(false);

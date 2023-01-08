@@ -69,7 +69,7 @@ const useGetOneData = (collectionName, getId) => {
 }
 fetchData()
 
-}, [collectionName]);
+}, [collectionName, db]);
 return {response,isLoading_};
 }
 
@@ -85,7 +85,8 @@ const usePostData = async (collectionName, data, idColName) => {  //idColName th
 
     useEffect(() => {
         const postData = async () => {
-            const ref = collection(db, collectionName)
+
+            // const ref = collection(db, collectionName)
 
             try {
                 await addDoc(collection(db, collectionName), data)

@@ -22,7 +22,7 @@ const useGet_Recipe = (colName, id, value) => {
         const items = [];
         const q = query(
           ref, where(value, '==', id));
-        const unsub = onSnapshot(q, (querySnapshot) => { 
+         onSnapshot(q, (querySnapshot) => { 
           querySnapshot.forEach((doc) => {
             items.push(doc.data());
           });
@@ -31,6 +31,7 @@ const useGet_Recipe = (colName, id, value) => {
         setResponse(items);
 
       } catch (err) {
+        setError(`An error occurred: ${err.message}`);
         setResponse(`An error occurred: ${err.message}` );
       }
 
@@ -41,7 +42,7 @@ const useGet_Recipe = (colName, id, value) => {
       fetchData();
    
   }, [colName, id, value]);
-return {response};
+return {response,error,isLoading};
 }
 
 const useGet_one_recipe = (colName, id, value) =>{
