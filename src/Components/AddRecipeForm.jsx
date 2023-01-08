@@ -44,16 +44,20 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
   const [steps, setSteps] = useState(StepsInit);
   const [stepsArray, setStepsArray] = useState([]);
 
-  const [, setsubmitMsg] = useState("");
+  const [submitMsg, setsubmitMsg] = useState("");
 
 
   const [response, setResponse] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const ingridientCategory = async () => {
-    setIsLoading(true)
-    const { data } = await axios.get("http://localhost:3001/category");
-    setCategory(data);
+    setIsLoading(true);
+    if (localStorage.getItem('category') !== null){
+      const  data = await JSON.parse(localStorage.getItem('category'));
+      setCategory(data);
+      
+    }
+    setIsLoading(false);
   };
 
   const formChange = (e) => {
@@ -148,6 +152,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
       steps: stepsArray,
     };
     const result = await post_Data('recipe', recipe, 'id')
+    setsubmitMsg(result);
     console.log(result);
 
   };
@@ -157,7 +162,6 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
     try {
       await addDoc(collection(db, collectionName), data)
         .then(docRef => {
-          console.log("Document has been added successfully");
           setResponse("Document has been added successfully")
         });
 
@@ -212,9 +216,9 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
           </UncontrolledTooltip>
 
         </div>
-        <Notification showInfo={showInfo} ActionName={`View All Recipes`}
+        <Notification showInfo={showInfo} ActionName={`New Recipe...`}
           notificationAct={notificationAct} handleCloseInfo={handleCloseInfo}
-          infoTitle={`RECIPE ADDED SUCCESFULLY`} bodyMessage={bodyMessage} infoType={''} />
+          infoTitle={submitMsg} bodyMessage={bodyMessage} infoType={''} />
       </div>
     </main>
   );

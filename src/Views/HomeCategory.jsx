@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import {  Spinner } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 import { useGetData } from '../DataLayer/DataAccessLayer';

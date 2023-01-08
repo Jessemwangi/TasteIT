@@ -40,8 +40,6 @@ const navigate = useNavigate();
   }
 }
 
-
-
   useEffect(() => {
     getRecipes();
   }, [search]);
