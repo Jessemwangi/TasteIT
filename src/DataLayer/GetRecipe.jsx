@@ -1,9 +1,6 @@
 // import { collection, getDocs } from '@firebase/firestore/lite';
 import { db } from "../FireBaseInit";
-import {
-  addDoc,
-  serverTimestamp, collection, getDocs, onSnapshot, where,
-  doc, query, orderBy, limit, deleteDoc, setDoc, updateDoc
+import { collection,  onSnapshot, where, query
 } from "@firebase/firestore";
 
 import { useEffect, useState } from 'react';
@@ -31,7 +28,6 @@ const useGet_Recipe = (colName, id, value) => {
           });
 
         });
-        console.log(items)
         setResponse(items);
 
       } catch (err) {
@@ -50,35 +46,39 @@ return {response};
 
 const useGet_one_recipe = (colName, id, value) =>{
   const [response, setResponse] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const[docId,setDocId]=useState();
   const ref = collection(db, colName)
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-      const q = query(
-          ref,
-          where(id, '==', value) 
-      );
-
-      setLoading(true);
-      const unsub = onSnapshot(q, (querySnapshot) => {  
-      // const unsub = onSnapshot(ref, (querySnapshot) => {
-        const items = [];
-          querySnapshot.forEach((doc) => {
-              items.push(doc.data());
-          });
-
-          setLoading(false);
-          
-          setResponse(items);
-          console.log(items);
-         
-      });
-      return () => {
-          unsub();
-      };
+    try {
+	  const q = query(
+	          ref,
+	          where(id, '==', value) 
+	      );
+	
+	      setLoading(true);
+	      const unsub = onSnapshot(q, (querySnapshot) => {  
+	        const items = [];
+	          querySnapshot.forEach((doc) => {
+	            setDocId(doc.id);
+	              items.push(doc.data());
+	          });
+	
+	          setLoading(false);
+	          setResponse(items);
+	         
+	      });
+	      return () => {
+	          unsub();
+	      };
+} catch (error) {
+	setError(` Error occured ${error}`)
+}
 
   }, [id, value]);
-  return {response};
+  return {response,docId,loading,error};
 }
 
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-    collection, doc, setDoc, addDoc,
+    collection, doc, setDoc, 
 } from "@firebase/firestore";
 import { db } from '../FireBaseInit';
 
