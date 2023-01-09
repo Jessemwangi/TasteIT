@@ -11,12 +11,19 @@ import Notification from "./Notification";
 
 import { addDoc, collection, } from "@firebase/firestore";
 import { db } from '../FireBaseInit';
+import PopUpNotification from "../Views/PopUpNotification";
 
 
 const AddRecipeForm = ({ handleSend, filechange }) => {
   const [bodyMessage, setBodyMessage] = useState('');
   const [showInfo, setShowInfo] = useState(false);
   const navigate = useNavigate();
+
+  const [showNotification,setShowNotification] = useState(false);
+  const[notificationTitle,setNotificationTitle] =useState('Notification');
+  const [notificationMsg,setnotificationMsg]=useState('Transaction has occured...')
+  
+
 
   const handleCloseInfo = () => {
     window.location.reload(false);
@@ -49,6 +56,12 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
 
   const [response, setResponse] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() =>{
+    if (showNotification) {
+        setTimeout(() => setShowNotification(false), 3000);
+      }
+},[showNotification])
 
   const ingridientCategory = async () => {
     setIsLoading(true);
@@ -113,6 +126,9 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
     e.preventDefault();
     const newarray = ingredientArray.filter((item) => item.ingredientId !== id);
     setIngredientArray(newarray);
+    setnotificationMsg(`Document removed`)
+setNotificationTitle('Document Removed')
+setShowNotification(true)
     localStorage.setItem("ingredients", JSON.stringify(ingredientArray));
   };
 
@@ -123,7 +139,14 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
     });
   };
 
-  const removeStep = (e) => { };
+  const removeStep = (e,stepId) => {
+e.preventDefault();
+const stepsList = stepsArray.filter(step => step.stepid !== stepId);
+setStepsArray(stepsList);
+setnotificationMsg(`Document removed`)
+setNotificationTitle('Document Removed')
+setShowNotification(true)
+   };
 
   const addSteps = (e) => {
     e.preventDefault();
@@ -164,10 +187,16 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
       await addDoc(collection(db, collectionName), data)
         .then(docRef => {
           setResponse("Document has been added successfully")
+          setnotificationMsg("Document has been added successfully")
+          setNotificationTitle('Transaction Completed')
+          setShowNotification(true)
         });
 
     } catch (error) {
       setResponse(`An error occured ... ${error}`);
+      setnotificationMsg(`An error occured ... ${error}`);
+      setNotificationTitle('Transaction Failed');
+      setShowNotification(true)
     }
     setIsLoading(false);
     return response;
@@ -230,6 +259,9 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
       </div>
       </>
     )}
+                <PopUpNotification notificationTitle ={notificationTitle}
+            notificationMsg ={notificationMsg}
+            showNotification ={showNotification}/>
     </main>
   );
 };
