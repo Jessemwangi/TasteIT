@@ -202,17 +202,16 @@
 /* __________________pop up notification start ------------ */
 .popNotification{
 	color:"snow";
-	background-color: black;
+	background-color: red;
 	width: fit-content;
 	height: fit-content;
    border-radius: 8px;
 	position: fixed;
-	top: 0;
+	top: 8%;
 	left: 50%;
 	z-index: 2000;
 	color: snow;
-	display: flex;
-	flex-direction: column;
+
   }
   .popNotification_title{
 	width: 100%;
@@ -224,9 +223,13 @@
 	font-weight: 700;
   }
   .popNotification_text{
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	font-style: oblique;
-	padding: 0.3rem;
-	font-size: 12px;
+	padding: 1rem;
+	font-size: 14px;
+	
 	text-align: justify !important;
   }
 

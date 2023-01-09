@@ -126,7 +126,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
     e.preventDefault();
     const newarray = ingredientArray.filter((item) => item.ingredientId !== id);
     setIngredientArray(newarray);
-    setnotificationMsg(`Document with refference : ${id} removed`)
+    setnotificationMsg(`Document removed`)
 setNotificationTitle('Document Removed')
 setShowNotification(true)
     localStorage.setItem("ingredients", JSON.stringify(ingredientArray));
@@ -141,9 +141,9 @@ setShowNotification(true)
 
   const removeStep = (e,stepId) => {
 e.preventDefault();
-const stepsList = stepsArray.filter(step => step.id !== stepId);
+const stepsList = stepsArray.filter(step => step.stepid !== stepId);
 setStepsArray(stepsList);
-setnotificationMsg(`Document with refference : ${stepId} removed`)
+setnotificationMsg(`Document removed`)
 setNotificationTitle('Document Removed')
 setShowNotification(true)
    };
@@ -259,8 +259,8 @@ setShowNotification(true)
       </div>
       </>
     )}
-                <PopUpNotification notificationTitle ={'sample notification'}
-            notificationMsg ={'hi jesse succes in notification'}
+                <PopUpNotification notificationTitle ={notificationTitle}
+            notificationMsg ={notificationMsg}
             showNotification ={showNotification}/>
     </main>
   );

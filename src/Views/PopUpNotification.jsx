@@ -26,7 +26,7 @@ if (showNotification){
         <div>
             {showNotification_ && 
           <div className='popNotification' >
-          <h1 className='popNotification_title'>{notificationTitle}</h1>
+          {/* <h1 className='popNotification_title'>{notificationTitle}</h1> */}
           <p className='popNotification_text'>{notificationMsg}</p>
         </div>
         }
