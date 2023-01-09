@@ -206,7 +206,7 @@
 	width: fit-content;
 	height: fit-content;
    border-radius: 8px;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 50%;
 	z-index: 2000;

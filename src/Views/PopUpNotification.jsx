@@ -15,7 +15,7 @@ if (showNotification){
         const notification = () => {
 
           if (showNotification_) {
-            setTimeout(() => setShowNotification_(false), 10000);
+            setTimeout(() => setShowNotification_(false), 2000);
           }
     
         }
