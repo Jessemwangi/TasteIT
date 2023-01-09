@@ -199,3 +199,35 @@
   .cheficon > img, cheficon > svg{
 	vertical-align: none;
   }
+/* __________________pop up notification start ------------ */
+.popNotification{
+	color:"snow";
+	background-color: black;
+	width: fit-content;
+	height: fit-content;
+   border-radius: 8px;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	z-index: 2000;
+	color: snow;
+	display: flex;
+	flex-direction: column;
+  }
+  .popNotification_title{
+	width: 100%;
+	padding: 1rem;
+	border-bottom: 2px silver solid;
+	text-align: left;
+	font-size: 18px;
+	font-family: sans-serif;
+	font-weight: 700;
+  }
+  .popNotification_text{
+	font-style: oblique;
+	padding: 0.3rem;
+	font-size: 12px;
+	text-align: justify !important;
+  }
+
+  /* __________________pop up notification ends ------------ */
