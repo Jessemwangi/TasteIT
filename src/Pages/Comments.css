@@ -202,5 +202,10 @@
     .reply-list .comment-box {
       width: 320px;
     }
+    .home_row {
+      display: grid;
+      grid-template-columns: auto auto;
+    }
+
   }
   
