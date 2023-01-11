@@ -24,10 +24,10 @@ const UserForm = ({ handleSend, formChange, selectchange }) => {
 
   return (
     <>
-  
+
       <form id="cityForm" className="cityForm" onSubmit={handleSend}>
         <Container className="border rounded bg-light" fluid="fluid">
-        
+
           <p className="noReview recipeAuthor bg-light">
             Hi <span className="wavehand">👋</span>. Welcome, start by adding a
             YUMMY! recipe
@@ -76,7 +76,7 @@ const UserForm = ({ handleSend, formChange, selectchange }) => {
             </select>
           </div>
         </div>
-<hr />
+        <hr />
       </form>
     </>
   );

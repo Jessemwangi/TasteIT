@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {  NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -16,7 +16,6 @@ import "./CSS/Header.css";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-
 
   const toggle = () => setIsOpen(!isOpen);
   return (
@@ -46,7 +45,7 @@ const Header = () => {
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="me-auto" navbar>
-            <NavItem>
+              <NavItem>
                 <NavLink to="/">Home</NavLink>
               </NavItem>
               <NavItem>

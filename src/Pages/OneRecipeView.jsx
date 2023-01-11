@@ -99,17 +99,17 @@ const OneRecipeView = () => {
 
   const addToFeatured = async (e) => {
     let feature = e.target.value === "true" ? false : true
-console.log(feature)
+    
     try {
       const { data } = await axios.put(`http://localhost:3001/recipe/${oneRecipeD.id}`,
-        { ...oneRecipeD, featured: feature});
-      console.log(data);
+        { ...oneRecipeD, featured: feature });
+      
       await oneRecipe(oneRecipeD.id);
       setInfoTitle(`Recipe featured status changed to ${feature}`);
       setShowInfo(true);
       setActionName('Back to Recipe');
       setInfoType('');
-      setBodyMessage(`Recipe name, ${data.name.toUpperCase()} by ${data.author.toUpperCase() }  
+      setBodyMessage(`Recipe name, ${data.name.toUpperCase()} by ${data.author.toUpperCase()}  
        Recipe featured status was updated`)
     } catch (error) {
       console.log(error);
@@ -128,28 +128,24 @@ console.log(feature)
                 <div className="p-2 banner_img">
                   <div className="oneRecipeintro">
                     <h2 className="recipeAuthor"><span>Recipe </span>
-                      {/* <img className="img_gif" 
-                    src="https://acegif.com/wp-content
-                    /uploads/2022/fzk5d/taco-acegif-7-making-taco.gif"
-                      alt="" /> */}
+
                       {oneRecipeD.name}  </h2>
                     <p>
-                    
-                    <Button className="msgButton" variant="secondary" value={oneRecipeD.featured || false}  onClick={(e) =>addToFeatured (e)}>
-                    {oneRecipeD.featured ? 'Remove To featured ' : 'Add To featured '}
-                    <Badge
-                      className="m-2  bg-light pinned"
+                      <Button className="msgButton" variant="secondary" value={oneRecipeD.featured || false} onClick={(e) => addToFeatured(e)}>
+                        {oneRecipeD.featured ? 'Remove To featured ' : 'Add To featured '}
+                        <Badge
+                          className="m-2  bg-light pinned"
 
-                      children={<SlPin stroke="white" fill="red"
-                        strokeWidth="0" style={{ color: "red", fontSize: "28px", cursor: "pointer" }} />
+                          children={<SlPin stroke="white" fill="red"
+                            strokeWidth="0" style={{ color: "red", fontSize: "28px", cursor: "pointer" }} />
 
-                      }
-                    ></Badge></Button>
-                   
-                   
-                
+                          }
+                        ></Badge></Button>
 
-                        </p>
+
+
+
+                    </p>
                   </div>
                 </div>
               </Row>
@@ -160,30 +156,30 @@ console.log(feature)
               </Row>
 
               <div className="mt-2 p-3 oneRecipeMid">
-                <div className="one__image">  
-                <img
-                  src={`https://source.unsplash.com/900x450/?${oneRecipeD.name} `}
-                  alt={oneRecipeD.name}
-                  
-                />
+                <div className="one__image">
+                  <img
+                    src={`https://source.unsplash.com/900x450/?${oneRecipeD.name} `}
+                    alt={oneRecipeD.name}
+
+                  />
                 </div>
-                <div  className="two__image">
+                <div className="two__image">
                   <img className="img_abs"
                     src={`https://source.unsplash.com/450x400/?${oneRecipeD.name} `}
-                    alt={oneRecipeD.name}/>
+                    alt={oneRecipeD.name} />
 
-                    <div className="img_abs one_recip_prep">
-                      <div className="border p-1"> <span className="recipeAuthor"> 🥘
-                    <span> Ingridients : </span> {oneRecipeD.ingredients.length}</span></div>
-                      <div className="border p-1"> <span className="recipeAuthor"><span>Preparation Steps : </span> {oneRecipeD.steps.length}</span></div>
-                      <div className="border p-1">                  <span className="recipeAuthor">⏱️
-                    <span>Minutes : </span>{oneRecipeD.steps.reduce((a, b) => a + parseInt(b.timers), 0)}</span>
+                  <div className="img_abs one_recip_prep">
+                    <div className="border p-1"> <span className="recipeAuthor"> 🥘
+                      <span> Ingridients : </span> {oneRecipeD.ingredients.length}</span></div>
+                    <div className="border p-1"> <span className="recipeAuthor"><span>Preparation Steps : </span> {oneRecipeD.steps.length}</span></div>
+                    <div className="border p-1">                  <span className="recipeAuthor">⏱️
+                      <span>Minutes : </span>{oneRecipeD.steps.reduce((a, b) => a + parseInt(b.timers), 0)}</span>
                     </div>
                     <div className="border p-1">
-                    <span className="recipeAuthor"> <span> {oneRecipeD.country.name} : </span></span>
-                    <img src={oneRecipeD.country.flagUrl} alt={oneRecipeD.country.name} className='SmFlag' />
-                  </div>
+                      <span className="recipeAuthor"> <span> {oneRecipeD.country.name} : </span></span>
+                      <img src={oneRecipeD.country.flagUrl} alt={oneRecipeD.country.name} className='SmFlag' />
                     </div>
+                  </div>
                 </div>
 
               </div>
@@ -209,7 +205,7 @@ console.log(feature)
                 handleCloseInfo={handleCloseInfo} bodyMessage={bodyMessage}
                 infoTitle={infoTitle} ActionName={ActionName} infoType={infoType} />
 
-              <Button className="msgButton bg-danger"  onClick={handleShow}>
+              <Button className="msgButton bg-danger" onClick={handleShow}>
                 Add a Comment
               </Button>
             </Container>

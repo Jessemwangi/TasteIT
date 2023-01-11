@@ -29,7 +29,7 @@ const Home = () => {
   return (
     <main>
       <Container className="bg-light border" fluid="fluid">
-        <h1 className='noReview recipeAuthor' style={{textAlign:"left" }}>Home</h1>
+        <h1 className='noReview recipeAuthor' style={{ textAlign: "left" }}>Home</h1>
       </Container>
       {
         isloading ? (
@@ -43,14 +43,14 @@ const Home = () => {
             <Container className="bg-dark border rounded-top homeContainer" fluid="fluid">
               <h1 className='noReview recipeAuthor' style={{ color: "snow", padding: "1rem" }}>this week featured Recipes</h1>
               <FeaturedRecipe featuredRecipe={featured} />
-           <HomeIntroContent/>
-            <HomeInfo/>
-            <Container fluid="fluid" className='bg-light m-2 border rounded'>
-            <h2 className='noReview recipeAuthor bg-light rounded-top mb-3 p-4'  style={{textAlign:"left" }}>
-              View more from each category</h2>
-            
-            <HomeCategory/>
-            </Container>
+              <HomeIntroContent />
+              <HomeInfo />
+              <Container fluid="fluid" className='bg-light m-2 border rounded'>
+                <h2 className='noReview recipeAuthor bg-light rounded-top mb-3 p-4' style={{ textAlign: "left" }}>
+                  View more from each category</h2>
+
+                <HomeCategory />
+              </Container>
             </Container>
           </>
         )
