@@ -2,6 +2,7 @@ import React from 'react';
 import './CSS/Views.css';
 
 const Footer = () => {
+
   return (
     <main>
       <footer className='footer'>
@@ -18,6 +19,7 @@ const Footer = () => {
       </footer>
     </main>
   );
+
 };
 
 export default Footer;
