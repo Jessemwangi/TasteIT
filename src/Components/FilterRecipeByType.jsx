@@ -40,7 +40,7 @@ const FilterRecipeByType = ({ getAll,filterType }) => {
     setIsloading(false);
     
   };
-// console.log(localStorage.getItem('category'));
+
   useEffect(() => {
      ingridientCategory();
   }, []);

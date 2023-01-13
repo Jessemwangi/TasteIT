@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import uuid from "react-uuid";
 
 import { useParams } from "react-router-dom";
-import { Col, Row, Container, Spinner, Button, Badge } from 'reactstrap';
+import { Col, Row, Container, Spinner, Button, Badge, Alert } from 'reactstrap';
 import { SlPin } from "react-icons/sl";
 
 import { addDoc, collection, updateDoc, doc } from "@firebase/firestore";
@@ -118,11 +118,13 @@ const OneRecipeView = () => {
       const datalRef = doc(ref, docId);
       updateDoc(datalRef, data)
       .then(res =>{
-        console.log(res)
+        <Alert variant="light">
+        Data updated {res.id} sucessfuly
+      </Alert>
       });
       return 'updated'
     } catch (error) {
-      console.error(error);
+     
       setErro(erro + error)
       return error;
     }
@@ -136,7 +138,7 @@ const OneRecipeView = () => {
     try {
       const data = await updateData('recipe',update, docId)
       if (data === 'updated') {
-        console.log(data);
+        
         await setOneRecipeD(response[0]);
         setInfoTitle(`Recipe featured status changed to ${feature}`);
         setShowInfo(true);
@@ -149,7 +151,6 @@ const OneRecipeView = () => {
         setErro(erro + data)
       }
     } catch (error) {
-      console.log(error);
       setErro(erro + error)
     }
 
