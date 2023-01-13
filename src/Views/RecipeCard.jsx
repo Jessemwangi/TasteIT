@@ -5,8 +5,7 @@ const RecipeCard = ({recipes}) => {
     return (
         <>
         { recipes.map((recipe) => (
-         <Link
-        to={`/viewRecipe/${recipe.id}`}>
+
             <div className="card" key={recipe.id}>
               <figure className="card__thumb">
                 <div className="toptop">
@@ -53,7 +52,7 @@ const RecipeCard = ({recipes}) => {
                 </figcaption>
               </figure>
             </div>
-        </Link>
+
 ))
 }
         </>
