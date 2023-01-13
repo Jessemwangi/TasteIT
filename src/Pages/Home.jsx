@@ -1,11 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Container, Spinner } from 'reactstrap';
-import HomeCategory from '../Views/HomeCategory';
+// import HomeCategory from '../Views/HomeCategory';
 import HomeInfo from '../Views/HomeInfo';
 import HomeIntroContent from '../Views/HomeIntroContent';
 import FeaturedRecipe from '../Views/FeaturedRecipe';
 import { useGet_one_recipe } from '../DataLayer/GetRecipe';
+// import HomeCatMui from '../Views/HomeCatMui';
 
 const Home = () => {
 
@@ -72,8 +73,9 @@ const Home = () => {
                 <h2 className='noReview recipeAuthor bg-light rounded-top mb-3 p-4' style={{ textAlign: "left" }}>
                   View more from each category</h2>
 
-                <HomeCategory />
+                {/* <HomeCategory /> */}
               </Container>
+              {/* <HomeCatMui/> */}
             </Container>
           </>
         )

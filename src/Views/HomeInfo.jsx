@@ -2,12 +2,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
+import HomeCatMui from './HomeCatMui';
 
 const HomeInfo = () => {
     return (
         <div>
             
-            <Container className='bg-light m-2 p-2 rounded' fluid="fluid">
+            <Container className='bg-light p-2 rounded' fluid="fluid">
                 <Row className='bg-light m-2 p-2 infoRow'>
                     <Col className='bg-light m-2 border border-danger disrelative d-grid'>
                     <h2 className=' noReview recipeAuthor ml-0 bg-secondary rounded-top mb-3 p-4 disrelative' style={{color:"snow",textAlign:"left"}}>
@@ -18,7 +19,10 @@ const HomeInfo = () => {
                 <br />
                 <Link to={'/viewRecipes'} className ="btn btn-danger mt-3 mb-3 p-2 btn-lg" role="button">View Recipes</Link>
                 </Col>
-                <Col className='bg-light m-2 p-2 border border-danger d-grid'>
+                <Col>
+                <HomeCatMui/>
+                </Col>
+                {/* <Col className='bg-light m-2 p-2 border border-danger d-grid'>
                 <h2 className='noReview recipeAuthor bg-secondary rounded-top mb-3 p-4 ' style={{color:"snow" ,textAlign:"left"}}>
                     leave a Review</h2>
                 Analyse recipes, see how different chefs use various ingridients to prepare meals that are tasty and unique, the nutrition  value it contains, each meal has the option to 
@@ -39,7 +43,7 @@ const HomeInfo = () => {
                 Get more from a diverse culture, prepare meals not only from local comunity but also get to see what other continents are
                  cooking, gain knowledge, appreciate culture and share yours too. click link bellow to view posted recipe by various chefs
                 <Link to={'/'} className ="btn btn-danger mt-3 mb-3 p-2 btn-lg" role="button">View Recipes</Link>
-                </Col>
+                </Col> */}
                 </Row>
 
 
