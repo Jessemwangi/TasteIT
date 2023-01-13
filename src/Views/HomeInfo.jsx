@@ -8,7 +8,7 @@ const HomeInfo = () => {
         <div>
             
             <Container className='bg-light m-2 p-2 rounded' fluid="fluid">
-                <Row className='bg-light m-2 p-2'>
+                <Row className='bg-light m-2 p-2 infoRow'>
                     <Col className='bg-light m-2 border border-danger disrelative d-grid'>
                     <h2 className=' noReview recipeAuthor ml-0 bg-secondary rounded-top mb-3 p-4 disrelative' style={{color:"snow",textAlign:"left"}}>
                         View Recipes</h2>

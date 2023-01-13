@@ -7,7 +7,7 @@ const HomeIntroContent = () => {
         <div>
            
             <Container className='bg-light m-2 p-2 rounded' fluid="fluid" >
-                <Row className='bg-light m-2 p-2 rounded' style={{alignItems: "flex-start",justifyContent: "space-evenly",}}>
+                <Row className='bg-light m-2 p-2 rounded infoRow' style={{alignItems: "flex-start",justifyContent: "space-evenly",}}>
                     <Col className='bg-light m-2 p-2 border' sm={7} md={7} >
                         <div>
                         <h2 className=' noReview recipeAuthor bg-secondary rounded-top mb-3 p-4' style={{color:"snow"}}>
