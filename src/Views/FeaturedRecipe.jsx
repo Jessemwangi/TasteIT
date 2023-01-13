@@ -65,7 +65,7 @@ const FeaturedRecipe = (featured) => {
         );
     });
     return (
-        <div>
+        <>
             <style>
                 {`.custom-tag {
                       max-width: 100%;
@@ -74,7 +74,7 @@ const FeaturedRecipe = (featured) => {
                     }`}
             </style>
 
-            <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+            <Carousel activeIndex={activeIndex} next={next} previous={previous} className='mb-3'>
                 <CarouselIndicators
                     items={items}
                     activeIndex={activeIndex}
@@ -92,7 +92,7 @@ const FeaturedRecipe = (featured) => {
                     onClickHandler={next}
                 />
             </Carousel>
-        </div>
+        </>
     );
 };
 

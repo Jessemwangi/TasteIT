@@ -8,7 +8,7 @@ const HomeInfo = () => {
     return (
         <div>
             
-            <Container className='bg-light p-2 rounded' fluid="fluid">
+            <Container className='bg-light p-2 rounded-bottom' fluid="fluid">
                 <Row className='bg-light m-2 p-2 infoRow'>
                     <Col className='bg-light m-2 border border-danger disrelative d-grid'>
                     <h2 className=' noReview recipeAuthor ml-0 bg-secondary rounded-top mb-3 p-4 disrelative' style={{color:"snow",textAlign:"left"}}>
@@ -20,6 +20,7 @@ const HomeInfo = () => {
                 <Link to={'/viewRecipes'} className ="btn btn-danger mt-3 mb-3 p-2 btn-lg" role="button">View Recipes</Link>
                 </Col>
                 <Col>
+                <h4 className=' noReview recipeAuthor '>Categories</h4>
                 <HomeCatMui/>
                 </Col>
                 {/* <Col className='bg-light m-2 p-2 border border-danger d-grid'>

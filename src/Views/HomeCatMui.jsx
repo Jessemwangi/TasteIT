@@ -49,13 +49,8 @@ const HomeCatMui = () => {
   
         }
       },[error, isLoading_, response])
-
-
-
-
-
-
-    return ( <>
+      
+      return ( <>
         {isLoading ?
         (
             <Spinner animation="grow" variant="light"></Spinner>
