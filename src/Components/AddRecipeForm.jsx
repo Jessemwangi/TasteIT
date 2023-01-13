@@ -109,7 +109,11 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
     });
   };
 
-  const removeStep = (e) => { };
+  const removeStep = (e,stepId) => {
+    e.preventDefault();
+const stepsList = stepsArray.filter(step => step.stepid !== stepId);
+setStepsArray(stepsList);
+   };
 
   const addSteps = (e) => {
     e.preventDefault();
