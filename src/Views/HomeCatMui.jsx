@@ -18,15 +18,43 @@ const HomeCatMui = () => {
         };
       }
 
-
+      const sxValues={
+        width: 650,
+        height: 450,
+        // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
+        transform: 'translateZ(0)',
+      }
 
 
       const navigation = useNavigate();
 
       const [category, setCategory] = useState();
       const [isLoading, setIsLoading] = useState(true);
+      const [isMobile, setIsMobile] = useState(false);
+      const [sx,setSx] = useState(sxValues)
   
       const { response, error, isLoading_ } = useGetData('category');
+
+      useEffect(() => {
+        const handleResize = () => {
+          if (window.innerWidth < 766) {
+            setIsMobile(true);
+            setSx({height: 180,transform: 'translateZ(0)',})
+            console.log(window.innerWidth);
+          } else {
+            setIsMobile(false);
+            setSx({width: 650,height: 450,transform: 'translateZ(0)',})
+          }
+        };
+    
+        handleResize();
+        window.addEventListener("resize", handleResize);
+        return () => {
+          window.removeEventListener("resize", handleResize);
+        };
+      }, []);
+
+
       useEffect(() => {
     
     
@@ -56,13 +84,8 @@ const HomeCatMui = () => {
             <Spinner animation="grow" variant="light"></Spinner>
         ) : (
         <ImageList
-        sx={{
-          width: 650,
-          height: 450,
-          // Promote the list into its own layer in Chrome. This costs memory, but helps keeping high FPS.
-          transform: 'translateZ(0)',
-        }}
-        rowHeight={200}
+          sx={sx}
+        rowHeight={sx.height - 120}
         gap={1}
       >
 
@@ -71,7 +94,7 @@ const HomeCatMui = () => {
         const rows = [0,5].includes(index)  ? 2 : 1;
 
         return (
-          <ImageListItem key={item.img} cols={cols} rows={rows} onClick={() => navigation(`/viewRecipes/`, { state: { value: item.value } })} 
+          <ImageListItem key={item.text} cols={cols} rows={rows} onClick={() => navigation(`/viewRecipes/`, { state: { value: item.value } })} 
           style={{cursor:"pointer"}}>
             <img
               {...srcset(
