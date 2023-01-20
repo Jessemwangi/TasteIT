@@ -11,15 +11,11 @@ const Ingredients = ({ categories,
   const ingridientsList = ingredientArray;
 
   const style = {
-    input1: {
-      width: "200px"
-      , paddingLeft: "120px",
-    },
+
     textarea: {
       maxWidth: "100% ",
       maxHeight: "100%",
       resize: "both",
-      paddingLeft: "70px",
       color:"black",
     }
   };
@@ -59,7 +55,7 @@ const Ingredients = ({ categories,
       <div className="ingredientContainer">
 
         <div className="userbox">
-          <input style={style.input1}
+          <input 
             type="text"
             id="quantity"
             value={ingridients.quantity}
@@ -72,7 +68,7 @@ const Ingredients = ({ categories,
         </div>
 
         <div className="userbox">
-          <textarea id="name" name="name" rows="2" cols="40"
+          <textarea id="name" name="name" rows="5" cols="30"
             style={style.textarea}
             value={ingridients.name}
             required

@@ -58,7 +58,7 @@ const HomeCategory = () => {
                              <div className='catCaption'> {cat.text}</div>  
                             </div>
                         )}
-
+                          
                     </div>
                 )
             }

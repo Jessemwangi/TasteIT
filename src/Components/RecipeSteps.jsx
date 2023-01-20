@@ -3,15 +3,11 @@ import { Table, Button, UncontrolledTooltip } from 'reactstrap';
 
 const RecipeSteps = ({ getSteps, steps, removeStep, addSteps, stepsArray }) => {
   const style = {
-    input1: {
-      width: "200px"
-      , paddingLeft: "120px",
-    },
+
     textarea: {
       maxWidth: "100% ",
       maxHeight: "100%",
       resize: "both",
-      paddingLeft: "70px",
     }
   };
 
@@ -59,12 +55,12 @@ const RecipeSteps = ({ getSteps, steps, removeStep, addSteps, stepsArray }) => {
             value={steps.timers}
             name="timers" required
             placeholder="eg 5"
-            onChange={getSteps} style={style.input1} />
+            onChange={getSteps} />
           <label htmlFor="quantity">Minutes</label>
         </div>
         <div className="userbox">
 
-          <textarea id="name" rows="2" cols="60"
+          <textarea id="name" rows="8" cols="60"
             style={style.textarea}
             name="name"
             value={steps.name}
