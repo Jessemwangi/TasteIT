@@ -55,20 +55,19 @@ const UserForm = ({ handleSend, formChange, selectchange }) => {
             <label>Author Name:</label>
           </div>
           <div className="userbox">
-            
-          <select id="" onChange={selectchange}>
-            <option value="">Select Country</option>
+            <select id="" onChange={selectchange}>
+              <option value="">Select Country</option>
 
-            {countryList.map((country) => (
-              <option
-                key={country.Name}
-                value={[country.Name.replace(",", " "), country.Flag]}
-              >
-                {country.Name} {country.flagicon}
-              </option>
-            ))}
-          </select>
-            </div>
+              {countryList.map((country) => (
+                <option
+                  key={country.Name}
+                  value={[country.Name.replace(",", " "), country.Flag]}
+                >
+                  {country.Name} {country.flagicon}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
         <hr />
       </form>

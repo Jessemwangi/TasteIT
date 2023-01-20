@@ -21,20 +21,17 @@
   font-size: 32px;
 }
 .inputdetails {
-  margin: 0rem 3rem;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  align-items: center;
-  width: 99%;
+  width: 85%;
   padding: 2rem;
   display: flex;
-  gap: 1rem;
-  background: red;
-  /* margin: 0rem 3rem; */
+  gap: 2rem;
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
+  background-color:#5D9BD8;
+  border-radius: 8px;
+ 
 }
 .flexRow {
   display: flex;
@@ -53,8 +50,7 @@
   font-size: 1.5vw;
   color: black;
   border: none;
-  border-bottom: 1px solid #fff;
-  border-radius: 3px;
+  border-radius: 6px;
   width: 100%;
   text-align: center;
 }
@@ -75,10 +71,10 @@
 
 .userbox label {
   position: absolute;
-  padding-left: 2px;
+  padding:  2px 0 0 3px;
   top: 0;
   left: 0;
-  font-size: 20px;
+  font-size: 16px;
   pointer-events: none;
   transition: 0.5s;
   color:black ;
@@ -90,7 +86,7 @@
   padding-top: 1px;
   left: 0;
   color: #f32828;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 5px;
 }
 
@@ -102,8 +98,8 @@
   border-radius: 5px;
 }
 select {
-  font-size: 1.5vw;
   padding: 1rem 1rem 1rem 1rem;
+  height: 55px;
 }
 
 
@@ -151,7 +147,12 @@ flex-wrap: wrap;
   justify-content: space-evenly;
   width: 50%;
 }
-
+.saveBtn{
+  width: 85%;
+}
+button.saveBtn{
+  width: 100%;
+}
 button.send {
   margin: 2rem;
   position: relative;
