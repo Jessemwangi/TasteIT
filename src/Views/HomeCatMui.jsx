@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import { useGetData } from '../DataLayer/DataAccessLayer';
 import { useNavigate } from 'react-router-dom';
 import { Spinner } from 'reactstrap';
+import PopUpNotification from './PopUpNotification';
 // import StarBorderIcon from '@m' '@mui/icons-material/StarBorder';
 
 const HomeCatMui = () => {
@@ -32,7 +33,10 @@ const HomeCatMui = () => {
       const [isLoading, setIsLoading] = useState(true);
       const [isMobile, setIsMobile] = useState(false);
       const [sx,setSx] = useState(sxValues)
-  
+      const [notificationMsg , setNotificationMsg] = useState('')
+const [showNotification,setShowNotification] = useState(false)
+
+
       const { response, error, isLoading_ } = useGetData('category');
 
       useEffect(() => {
@@ -40,7 +44,7 @@ const HomeCatMui = () => {
           if (window.innerWidth < 766) {
             setIsMobile(true);
             setSx({height: 180,transform: 'translateZ(0)',})
-            console.log(window.innerWidth);
+          
           } else {
             setIsMobile(false);
             setSx({width: 650,height: 450,transform: 'translateZ(0)',})
@@ -63,8 +67,9 @@ const HomeCatMui = () => {
          }
           if (error) {
             setIsLoading(isLoading_);
+            setNotificationMsg(`The following error ocured. ${error}` )
+            setShowNotification(true);
             
-           console.log('An error occurred:', error);
          }
           else if (response)
         {
@@ -126,7 +131,10 @@ const HomeCatMui = () => {
       })}
     </ImageList>
         )
-     } </>
+     }
+                     <PopUpNotification notificationTitle ={'notification Title'}
+            notificationMsg ={notificationMsg}
+            showNotification ={showNotification} timer={4000}/> </>
     );
 };
 
