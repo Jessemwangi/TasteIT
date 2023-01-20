@@ -1,12 +1,13 @@
 import React from "react";
 import { Table, Button, UncontrolledTooltip } from "reactstrap";
+import AddIcon from '@mui/icons-material/Add';
 
 const RecipeSteps = ({ getSteps, steps, removeStep, addSteps, stepsArray }) => {
   const style = {
     textarea: {
       maxWidth: "100% ",
       maxHeight: "100%",
-      resize: "both",
+      resize: "height",
     },
   };
 
@@ -81,14 +82,15 @@ const RecipeSteps = ({ getSteps, steps, removeStep, addSteps, stepsArray }) => {
           <label htmlFor="name">Description: </label>
         </div>
 
-        <div className="saveBtn">
+        <div className="saveBtnDiv">
           <Button
-            className="bg-danger"
+            className="bg-danger saveBtn"
             size="lg"
             onClick={addSteps}
             id="addStep"
           >
-            +
+            <AddIcon/>
+            
           </Button>
           <UncontrolledTooltip placement="bottom" target="addStep">
             Add the new step

@@ -1,5 +1,6 @@
 import React from "react";
 import { Table, Button, UncontrolledTooltip } from "reactstrap";
+import AddIcon from '@mui/icons-material/Add';
 
 const Ingredients = ({
   categories,
@@ -15,7 +16,7 @@ const Ingredients = ({
     textarea: {
       maxWidth: "100% ",
       maxHeight: "100%",
-      resize: "both",
+      resize: "height",
       color: "black",
     },
   };
@@ -82,7 +83,7 @@ const Ingredients = ({
           <textarea
             id="name"
             name="name"
-            rows="5"
+            rows="2"
             cols="30"
             style={style.textarea}
             value={ingridients.name}
@@ -107,14 +108,14 @@ const Ingredients = ({
           </select>
         </div>
 
-        <div className="saveBtn">
+        <div className="saveBtnDiv">
           <Button
-            className="bg-danger"
+            className="bg-danger saveBtn"
             size="lg"
             id="addIngrid"
             onClick={addIngridient}
           >
-            +
+            <AddIcon/>
           </Button>
           <UncontrolledTooltip placement="bottom" target="addIngrid">
             Click to add filled ingredient

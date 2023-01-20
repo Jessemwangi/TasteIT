@@ -147,11 +147,11 @@ flex-wrap: wrap;
   justify-content: space-evenly;
   width: 50%;
 }
-.saveBtn{
+.saveBtnDiv{
   width: 85%;
 }
 button.saveBtn{
-  width: 100%;
+  width: 50%;
 }
 button.send {
   margin: 2rem;
