@@ -90,7 +90,7 @@ const OneRecipeView = () => {
         setnotificationMsg(result.message.toString());
         setNotificationTitle("Transaction Completed with code :", result.responseCode);
         setShowNotification(true);
-        setsubmitMsg(result.message);
+        // setsubmitMsg(result.message);
         setNotifTimer(4000)
 
 
