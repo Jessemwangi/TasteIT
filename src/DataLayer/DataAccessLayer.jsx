@@ -73,6 +73,40 @@ fetchData()
 return {response,isLoading_};
 }
 
+const post_Data = async (collectionName, data) => {
+    let response
+    //idColName the id column name, ed Id, transactionID
+
+    try {
+        
+      await addDoc(collection(db, collectionName), data).then((docRef) => {
+        // setResponse("Document has been added successfully");
+        // setnotificationMsg("Document has been added successfully");
+        // setNotificationTitle("Transaction Completed");
+        // setShowNotification(true);
+
+         response = {
+            message:"Document has been added successfully",
+            responseCode:200,
+            ref:docRef.id
+        }
+      });
+    } catch (error) {
+    //   setResponse(`An error occured ... ${error}`);
+    //   setnotificationMsg(`An error occured ... ${error}`);
+    //   setNotificationTitle("Transaction Failed");
+    //   setShowNotification(true);
+
+      response = {
+        // message:Error ("An error occured...", { cause: error } ),
+        message:Error (`An error occured...", ${ error }` ),
+        responseCode:500,
+        ref:0
+    }
+    }
+    
+    return response;
+  };
 
 
 
@@ -110,4 +144,4 @@ const usePostData = async (collectionName, data, idColName) => {  //idColName th
     return { response,error,isLoading };
 }
 
-export { usePostData, useGetData,useGetOneData };
+export { usePostData, useGetData,useGetOneData ,post_Data};

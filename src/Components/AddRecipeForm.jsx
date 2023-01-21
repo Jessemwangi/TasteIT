@@ -12,6 +12,7 @@ import Notification from "./Notification";
 import { addDoc, collection } from "@firebase/firestore";
 import { db } from "../FireBaseInit";
 import PopUpNotification from "../Views/PopUpNotification";
+import { post_Data } from "../DataLayer/DataAccessLayer";
 
 const AddRecipeForm = ({ handleSend, filechange }) => {
   const [bodyMessage, setBodyMessage] = useState("");
@@ -54,6 +55,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
 
   const [response, setResponse] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [notifTimer,setNotifTimer] =useState(2000)
 
   useEffect(() => {
     if (showNotification) {
@@ -171,30 +173,17 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
       ingredients: ingredientArray,
       steps: stepsArray,
     };
-    const result = await post_Data("recipe", recipe, "id");
-    setsubmitMsg(result);
-    console.log(result);
+
+    const result = await post_Data("recipe", 'recipe', "id");  
+     setResponse(result.message);
+     setnotificationMsg(result.message.toString());
+     setNotificationTitle("Transaction Completed with code :", result.responseCode);
+     setShowNotification(true);
+     setsubmitMsg(result.message);
+     setNotifTimer(4000)
   };
 
-  const post_Data = async (collectionName, data, idColName) => {
-    //idColName the id column name, ed Id, transactionID
 
-    try {
-      await addDoc(collection(db, collectionName), data).then((docRef) => {
-        setResponse("Document has been added successfully");
-        setnotificationMsg("Document has been added successfully");
-        setNotificationTitle("Transaction Completed");
-        setShowNotification(true);
-      });
-    } catch (error) {
-      setResponse(`An error occured ... ${error}`);
-      setnotificationMsg(`An error occured ... ${error}`);
-      setNotificationTitle("Transaction Failed");
-      setShowNotification(true);
-    }
-    setIsLoading(false);
-    return response;
-  };
 
   return (
     <main>
@@ -261,6 +250,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
         notificationTitle={notificationTitle}
         notificationMsg={notificationMsg}
         showNotification={showNotification}
+        timer = {notifTimer}
       />
     </main>
   );
