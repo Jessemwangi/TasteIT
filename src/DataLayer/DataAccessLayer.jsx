@@ -74,16 +74,12 @@ return {response,isLoading_};
 }
 
 const post_Data = async (collectionName, data) => {
-    let response
+    let response ;
     //idColName the id column name, ed Id, transactionID
 
     try {
         
       await addDoc(collection(db, collectionName), data).then((docRef) => {
-        // setResponse("Document has been added successfully");
-        // setnotificationMsg("Document has been added successfully");
-        // setNotificationTitle("Transaction Completed");
-        // setShowNotification(true);
 
          response = {
             message:"Document has been added successfully",
@@ -92,10 +88,6 @@ const post_Data = async (collectionName, data) => {
         }
       });
     } catch (error) {
-    //   setResponse(`An error occured ... ${error}`);
-    //   setnotificationMsg(`An error occured ... ${error}`);
-    //   setNotificationTitle("Transaction Failed");
-    //   setShowNotification(true);
 
       response = {
         // message:Error ("An error occured...", { cause: error } ),

@@ -16,6 +16,8 @@ import './Pages.css';
 import Notification from "../Components/Notification";
 import OneRecipeSteps from "../Views/OneRecipeSteps";
 import OneRecipeIngridientsLists from "../Views/OneRecipeIngridientsLists";
+import { post_Data } from "../DataLayer/DataAccessLayer";
+import PopUpNotification from "../Views/PopUpNotification";
 
 const OneRecipeView = () => {
 
@@ -43,6 +45,12 @@ const OneRecipeView = () => {
   const [ActionName, setActionName] = useState();
   const [infoType, setInfoType] = useState();
   const [response_, setResponse_] = useState(null);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationTitle, setNotificationTitle] = useState("Notification");
+  const [notifTimer,setNotifTimer] =useState(2000)
+  const [notificationMsg, setnotificationMsg] = useState(
+    "Transaction has occured..."
+  );
 
   const handleCloseInfo = () => setShowInfo(false);
 
@@ -64,23 +72,6 @@ const OneRecipeView = () => {
   }
 
 
-  const post_Data = async (collectionName, data, idColName) => {  //idColName the id column name, ed Id, transactionID
-
-    try {
-
-      await addDoc(collection(db, collectionName), data)
-        .then(docRef => {
-          setResponse_("Document has been added successfully")
-        });
-
-    } catch (error) {
-      setResponse_(`An error occured ... ${error}`);
-      setErro(erro + ` An error occured ... ${error}`)
-    }
-    setIsLoading(false);
-    return response_;
-  }
-
   const AddCommentHandler = async (e) => {
     setIsLoading(true);
     e.preventDefault();
@@ -93,7 +84,17 @@ const OneRecipeView = () => {
         recipeId: oneRecipeD.id
       };
       try {
-        const result = await post_Data('comments', newComment, 'id')
+
+        const result = await post_Data('comments', newComment, 'id') 
+        setResponse_(result.ref);
+        setnotificationMsg(result.message.toString());
+        setNotificationTitle("Transaction Completed with code :", result.responseCode);
+        setShowNotification(true);
+        setsubmitMsg(result.message);
+        setNotifTimer(4000)
+
+
+       
         console.log(result);
       } catch (error) {
         setErro(erro + ` An error occured ${error}`)
@@ -251,7 +252,12 @@ const OneRecipeView = () => {
             <Container className="bg-light border" fluid="fluid">
               <Comments RcpId={oneRecipeD.id}></Comments>
             </Container>
-
+            <PopUpNotification
+        notificationTitle={notificationTitle}
+        notificationMsg={notificationMsg}
+        showNotification={showNotification}
+        timer = {notifTimer}
+      />
           </div>)}
       {erro}
     </main>

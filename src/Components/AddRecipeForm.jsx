@@ -9,8 +9,6 @@ import RecipeSteps from "./RecipeSteps";
 import UserForm from "./UserForm";
 import Notification from "./Notification";
 
-import { addDoc, collection } from "@firebase/firestore";
-import { db } from "../FireBaseInit";
 import PopUpNotification from "../Views/PopUpNotification";
 import { post_Data } from "../DataLayer/DataAccessLayer";
 
@@ -174,13 +172,18 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
       steps: stepsArray,
     };
 
-    const result = await post_Data("recipe", 'recipe', "id");  
-     setResponse(result.message);
-     setnotificationMsg(result.message.toString());
-     setNotificationTitle("Transaction Completed with code :", result.responseCode);
+    const result = await post_Data("recipe", recipe, "id");  
+    const {message,responseCode,docRef} = result
+     setResponse(message);
+     setnotificationMsg(message.toString());
+     setNotificationTitle("Transaction Completed with code :", responseCode);
      setShowNotification(true);
-     setsubmitMsg(result.message);
+     setsubmitMsg(message);
      setNotifTimer(4000)
+    
+     if(responseCode === 200){
+      navigate(`/viewRecipe/${recipe.id}`)
+     }
   };
 
 
