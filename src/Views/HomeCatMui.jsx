@@ -94,20 +94,24 @@ const [showNotification,setShowNotification] = useState(false)
         gap={1}
       >
 
+
       {category.map((item, index) => {
         const cols = [0,5].includes(index) ? 2 : 1;
         const rows = [0,5].includes(index)  ? 2 : 1;
-
         return (
           <ImageListItem key={item.text} cols={cols} rows={rows} onClick={() => navigation(`/viewRecipes/`, { state: { value: item.value } })} 
           style={{cursor:"pointer"}}>
             <img
               {...srcset(
-                 `https://source.unsplash.com/250x200/?${item.text==='Others' ? 'meal' : item.text.substring(0,item.text.indexOf(' '))})`
+                 `https://source.unsplash.com/250x200/?${item.text}`
                 , 250, 200, rows, cols)}
               alt={item.text}
               loading="lazy"
             />
+           {
+
+           console.log(item.text, `https://source.unsplash.com/250x200/?${item.text==='Others' ? 'meal' : item.text.substring(0,item.text.indexOf(', '))})`)
+           } 
             <ImageListItemBar
               sx={{
                 background:

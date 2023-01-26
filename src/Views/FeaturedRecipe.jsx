@@ -31,22 +31,22 @@ const FeaturedRecipe = (featured) => {
 
     const slides = items.map((item, index) => {
         let caption = 
-            <div className='caCaption'>
-                <div className='crInfo'>
-                    <h4>Summary</h4>
-                    <p>- Author : {item.author},</p>
-                    <p>- Country : {item.country?.name}</p>
-                    <p>- Total  Ingridients : {item.ingredients.length} ,</p>
-                    <p>- Total Steps : {item.steps.length}</p>
-                </div>
-                <div className='ingridContents'>
-                    <h4>Ingridients</h4>
-                    <div className='ingridList'><ol>
+            <span className='caCaption'>
+                <span className='crInfo'>
+                    <span>Summary</span>
+                    <span>- Author : {item.author},</span>
+                    <span>- Country : {item.country?.name}</span>
+                    <span>- Total  Ingridients : {item.ingredients.length} ,</span>
+                    <span>- Total Steps : {item.steps.length}</span>
+                </span>
+                <span className='ingridContents'>
+                    <span>Ingridients</span>
+                    <span className='ingridList'><ol>
                         {item.ingredients.map(ingrid => <li key={ingrid.ingredientId}>{ingrid.name}</li>)}
                     </ol>
-                    </div>
-                </div>
-            </div>
+                    </span>
+                </span>
+            </span>
         return (
             <CarouselItem
                 className="custom-tag"

@@ -103,6 +103,7 @@ button.msgButton {
   flex-direction: column;
   border: green 1px solid;
   padding: 0.5rem;
+  text-align: left;
 }
 .crInfo > p {
   padding: 0;

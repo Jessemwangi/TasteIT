@@ -173,7 +173,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
     };
 
     const result = await post_Data("recipe", recipe, "id");  
-    const {message,responseCode,docRef} = result
+    const {message,responseCode} = result
      setResponse(message);
      setnotificationMsg(message.toString());
      setNotificationTitle("Transaction Completed with code :", responseCode);

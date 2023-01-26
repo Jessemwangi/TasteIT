@@ -6,9 +6,6 @@ import {
 } from "@firebase/firestore";
 import { db } from '../FireBaseInit';
 
-
-
-
 const useGetData = (collectionName) => {
 
     const [response, setResponse] = useState(null);

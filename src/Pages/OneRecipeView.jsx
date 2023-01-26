@@ -92,8 +92,6 @@ const OneRecipeView = () => {
         setShowNotification(true);
         // setsubmitMsg(result.message);
         setNotifTimer(4000)
-
-
        
         console.log(result);
       } catch (error) {
