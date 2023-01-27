@@ -77,7 +77,11 @@
     }
     ]
 }
+
+
 ```
+
+storage location firebase
 ### Screen shot
 
 <img src="src/Assets/tasteIT.png" alt="TasteIt"/>
@@ -89,23 +93,13 @@
     -   Country and flags 
 
 ### Intake taken
-<p>
-This project exposed me on the use of axios for getting data from API endpoints, as compared to 'Fetch'
-    , axios is simple and converts to json automatically, and when used with async function you only write one line of 
-    code. another thing is axios errors are self explanatory.
-    </p>
+
 <p> Used the latest way to create navigation using 'createBrowserRouter'
 
 ```Javascript
     createBrowserRouter(createRoutesFromElements(<Route path="/" element={<Name />}>));
 ```
 
-</p>
-<p> Pass data using navigate and state
-
-```Javascript
-navigation(`/viewRecipes/`, { state: { value: search.current.value || '' } });
-```
 
 <p> Organize data into the right structure, the json database had to be in an organized for quick access
 and CRUD operation. comments had to be added, receipt needed to be placed in the featured (PUT action), 
