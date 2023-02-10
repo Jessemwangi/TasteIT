@@ -9,7 +9,6 @@
   width: 100%;
   left: 0;
   color: snow;
-  /* background: url(); */
 }
 .one_recip_prep {
   height: 450px;
@@ -136,14 +135,7 @@ button.msgButton {
 .disrelative{
   position: relative;
 }
-/* .infoRow{
-  background-color: red;
-  padding: 8rem;
-  --bs-gutter-x: 1.5rem;
-  --bs-gutter-y: 0;
-  display: flex;
-  flex-wrap: wrap;
-} */
+
 @media only screen and (max-width: 766px) {
   .row.infoRow{
     display: grid;

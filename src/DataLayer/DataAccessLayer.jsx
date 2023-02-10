@@ -1,4 +1,4 @@
-// import { collection, getDocs } from '@firebase/firestore/lite';
+
 import { useEffect, useState } from 'react';
 import {
     getDoc,getFirestore, collection, getDocs,
@@ -32,7 +32,7 @@ const useGetData = (collectionName) => {
         fetchData();
     }, [collectionName]);
 
-    // console.log('response', response, 'error', error, 'isLoading', isLoading, '')
+
 
     return { response, error, isLoading_ };
 }
@@ -40,7 +40,7 @@ const useGetData = (collectionName) => {
 
 const useGetOneData = (collectionName, getId) => {
     const db = getFirestore();
-// console.log(collectionName, getId);
+
     const [response, setResponse] = useState(null);
     const [isLoading_, setIsLoading] = useState(true);
     
@@ -54,7 +54,7 @@ const useGetOneData = (collectionName, getId) => {
         if(docSnap.exists()) {
             setResponse(docSnap.data());
         } else {
-            // console.log("Document does not exist");
+          
             setResponse("Document does not exist");
         }
         
@@ -72,7 +72,6 @@ return {response,isLoading_};
 
 const post_Data = async (collectionName, data) => {
     let response ;
-    //idColName the id column name, ed Id, transactionID
 
     try {
         
@@ -87,7 +86,6 @@ const post_Data = async (collectionName, data) => {
     } catch (error) {
 
       response = {
-        // message:Error ("An error occured...", { cause: error } ),
         message:Error (`An error occured...", ${ error }` ),
         responseCode:500,
         ref:0
@@ -109,12 +107,10 @@ const usePostData = async (collectionName, data, idColName) => {  //idColName th
     useEffect(() => {
         const postData = async () => {
 
-            // const ref = collection(db, collectionName)
-
             try {
                 await addDoc(collection(db, collectionName), data)
                   .then(docRef => {
-                    // console.log("Document has been added successfully");
+                 
                     setResponse("Document has been added successfully")
                   });
           
@@ -129,7 +125,7 @@ const usePostData = async (collectionName, data, idColName) => {  //idColName th
         postData();
 
     }, [collectionName, data]);
-    // console.log('response', response, 'error', error, 'isLoading', isLoading, '')
+  
     return { response,error,isLoading };
 }
 

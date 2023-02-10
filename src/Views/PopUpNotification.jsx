@@ -4,7 +4,6 @@ import { useState } from 'react';
 const PopUpNotification = ({notificationTitle,notificationMsg,showNotification,timer}) => {
     const [showNotification_,setShowNotification_]=useState(false);
 let delay =2000;
-    // console.log('notificationTitle',notificationTitle,'notificationMsg',notificationMsg,'showNotification',showNotification)
     if (timer > 1)
     {
       delay = timer
@@ -31,7 +30,6 @@ if (showNotification){
         <div>
             {showNotification_ && 
           <div className='popNotification' >
-          {/* <h1 className='popNotification_title'>{notificationTitle}</h1> */}
           <p className='popNotification_text'>{notificationMsg}</p>
         </div>
         }

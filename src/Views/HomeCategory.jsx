@@ -16,8 +16,6 @@ const HomeCategory = () => {
     }
     if (error) {
       setIsLoading(isLoading_);
-
-      // console.log("An error occurred:", error);
     } else if (response) {
       setIsLoading(isLoading_);
       setCategory(response);
@@ -47,7 +45,6 @@ const HomeCategory = () => {
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
               }}
-              // style={{backGround:`url(https://source.unsplash.com/100x100/?${cat.value} )`}}
               onClick={() =>
                 navigation(`/viewRecipes/`, { state: { value: cat.value } })
               }

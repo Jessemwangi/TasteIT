@@ -1,12 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Container, Spinner } from 'reactstrap';
-// import HomeCategory from '../Views/HomeCategory';
 import HomeInfo from '../Views/HomeInfo';
 import HomeIntroContent from '../Views/HomeIntroContent';
 import FeaturedRecipe from '../Views/FeaturedRecipe';
 import { useGet_one_recipe } from '../DataLayer/GetRecipe';
-// import HomeCatMui from '../Views/HomeCatMui';
+
 
 const Home = () => {
 
@@ -15,7 +14,6 @@ const Home = () => {
   const [recipeList, setRecipeList] = useState([])
   const [erro, setErro] = useState(null)
 
-  // const { response, error, isLoading } = useGetData('recipe');
   const { response, loading, error } = useGet_one_recipe('recipe', 'featured', true);
   useEffect(() => {
 
@@ -68,14 +66,6 @@ const Home = () => {
               <h1 className='noReview recipeAuthor' style={{ color: "snow", padding: "1rem" }}>this week featured Recipes</h1>
               <FeaturedRecipe featuredRecipe={featured} />
               <HomeIntroContent />
-              <HomeInfo />
-              {/* <Container fluid="fluid" className='bg-light m-2 border rounded'> */}
-                {/* <h2 className='noReview recipeAuthor bg-light rounded-top mb-3 p-4' style={{ textAlign: "left" }}>
-                  View more from each category</h2> */}
-
-                {/* <HomeCategory /> */}
-              {/* </Container> */}
-              {/* <HomeCatMui/> */}
             </Container>
           </>
         )

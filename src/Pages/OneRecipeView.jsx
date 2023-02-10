@@ -90,10 +90,8 @@ const OneRecipeView = () => {
         setnotificationMsg(result.message.toString());
         setNotificationTitle("Transaction Completed with code :", result.responseCode);
         setShowNotification(true);
-        // setsubmitMsg(result.message);
         setNotifTimer(4000)
-       
-        console.log(result);
+
       } catch (error) {
         setErro(erro + ` An error occured ${error}`)
 
@@ -166,10 +164,7 @@ const OneRecipeView = () => {
                 <div className="p-2 banner_img">
                   <div className="oneRecipeintro">
                     <h2 className="recipeAuthor"><span>Recipe </span>
-                      {/* <img className="img_gif" 
-                    src="https://acegif.com/wp-content
-                    /uploads/2022/fzk5d/taco-acegif-7-making-taco.gif"
-                      alt="" /> */}
+
                       {oneRecipeD.name}  </h2>
                     <p>
 

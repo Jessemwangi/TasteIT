@@ -27,7 +27,6 @@ const usePostToColle = (collectionName, idColName) => {
         postData();
 
     }, [collectionName, idColName]);
-    // console.log('response', response, 'error', error, 'isLoading', isLoading, '')
 
     return { response, error, isLoading };
 };
