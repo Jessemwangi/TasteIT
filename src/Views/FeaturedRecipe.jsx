@@ -41,9 +41,9 @@ const FeaturedRecipe = (featured) => {
                 </span>
                 <span className='ingridContents'>
                     <span>Ingridients</span>
-                    <span className='ingridList'><ol>
+                    <span className='ingridList'><span>
                         {item.ingredients.map(ingrid => <li key={ingrid.ingredientId}>{ingrid.name}</li>)}
-                    </ol>
+                    </span>
                     </span>
                 </span>
             </span>

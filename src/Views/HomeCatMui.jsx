@@ -31,7 +31,6 @@ const HomeCatMui = () => {
 
       const [category, setCategory] = useState();
       const [isLoading, setIsLoading] = useState(true);
-      const [isMobile, setIsMobile] = useState(false);
       const [sx,setSx] = useState(sxValues)
       const [notificationMsg , setNotificationMsg] = useState('')
 const [showNotification,setShowNotification] = useState(false)
@@ -42,11 +41,9 @@ const [showNotification,setShowNotification] = useState(false)
       useEffect(() => {
         const handleResize = () => {
           if (window.innerWidth < 766) {
-            setIsMobile(true);
             setSx({height: 180,transform: 'translateZ(0)',})
           
           } else {
-            setIsMobile(false);
             setSx({width: 650,height: 450,transform: 'translateZ(0)',})
           }
         };

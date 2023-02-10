@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { Col, Row, Container, Spinner, Button, Badge, Alert } from 'reactstrap';
 import { SlPin } from "react-icons/sl";
 
-import { addDoc, collection, updateDoc, doc } from "@firebase/firestore";
+import {  collection, updateDoc, doc } from "@firebase/firestore";
 import { db } from '../FireBaseInit';
 import { useGet_one_recipe } from "../DataLayer/GetRecipe";
 
