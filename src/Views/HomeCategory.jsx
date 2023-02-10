@@ -17,7 +17,7 @@ const HomeCategory = () => {
     if (error) {
       setIsLoading(isLoading_);
 
-      console.log("An error occurred:", error);
+      // console.log("An error occurred:", error);
     } else if (response) {
       setIsLoading(isLoading_);
       setCategory(response);

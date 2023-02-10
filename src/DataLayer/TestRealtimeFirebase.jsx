@@ -34,7 +34,7 @@ const TestRealtimeFirebase = (colName) => {
             });
            
             setLoading(false);
-            console.log(items);
+            // console.log(items);
             return items;
         });
         return () => {

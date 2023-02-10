@@ -39,6 +39,9 @@ const router = createBrowserRouter(
       <Route path="/comments" element={<Comments />}>
         Comments
       </Route>
+      <Route path="userForm" element={<NotFound />}>
+        Not Found
+      </Route>
       <Route path="*" element={<NotFound />}>
         Not Found
       </Route>

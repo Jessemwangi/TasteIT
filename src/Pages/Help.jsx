@@ -7,7 +7,7 @@ const Help = () => {
     const [showNotification,setShowNotification] = useState(false);
 
     const seton = () =>{
-    console.log(showNotification);
+    // console.log(showNotification);
     setShowNotification(true);
     
 }
@@ -24,7 +24,7 @@ useEffect(() =>{
             <PopUpNotification notificationTitle ={'sample notification'}
             notificationMsg ={'hi jesse succes in notification'}
             showNotification ={showNotification}/>
-            {console.log(showNotification)}
+            {/* {console.log(showNotification)} */}
         </main>
     );
 };

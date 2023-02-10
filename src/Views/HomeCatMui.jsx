@@ -109,9 +109,7 @@ const [showNotification,setShowNotification] = useState(false)
               loading="lazy"
             />
            {
-
-           console.log(item.text, `https://source.unsplash.com/250x200/?${item.text==='Others' ? 'meal' : item.text.substring(0,item.text.indexOf(', '))})`)
-           } 
+ } 
             <ImageListItemBar
               sx={{
                 background:
