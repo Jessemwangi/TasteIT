@@ -31,23 +31,41 @@ jest.mock('./DataLayer/DataAccessLayer', () => ({
 }));
 
 describe('MyComponent', () => {
-  test('renders the list of items', async () => {
+
+    test('renders the loading before data is fetch', async () => {
+        const data = [
+            { id: 1, name: 'Item 1' },
+            { id: 2, name: 'Item 2' },
+            { id: 3, name: 'Item 3' },
+          ];
+
+        useGetData.mockReturnValue({
+          response: data,
+          error: null,
+          isLoading_: true,
+        });
+    
+        render(<MyComponent />);
+    
+      expect(screen.getByText('Loading...')).toBeInTheDocument();
+        expect(screen.queryByText('Error:')).not.toBeInTheDocument();
+      });
+
+    test('renders the list of items', async () => {
     const data = [
       { id: 1, name: 'Item 1' },
       { id: 2, name: 'Item 2' },
       { id: 3, name: 'Item 3' },
     ];
-  
-
     useGetData.mockReturnValue({
       response: data,
       error: null,
-      isLoading_: false,
+      isLoading_: true,
     });
 
     render(<MyComponent />);
 
-//   expect(screen.getByText('Loading...')).toBeInTheDocument();
+  expect(screen.getBy('Loading...')).not.toBeInTheDocument();
 
     await waitFor(() => {
       expect(screen.getByText('Item 1')).toBeInTheDocument();
@@ -56,7 +74,6 @@ describe('MyComponent', () => {
     });
 
     expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
-    expect(screen.queryByText('Error:')).not.toBeInTheDocument();
   });
 
   test('renders the error message', async () => {
@@ -65,12 +82,12 @@ describe('MyComponent', () => {
     useGetData.mockReturnValue({
       response: null,
       error: errorMessage,
-      isLoading_: false,
+      isLoading_: true,
     });
 
     render(<MyComponent />);
 
-    // expect(screen.getByText('Loading...')).toBeInTheDocument();
+    expect(screen.getByText('Loading...')).toBeInTheDocument();
 
     await waitFor(() => {
       expect(screen.getByText(`Error: ${errorMessage}`)).toBeInTheDocument();
