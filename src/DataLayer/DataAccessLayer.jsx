@@ -23,7 +23,8 @@ const useGetData = (collectionName) => {
                 setResponse(colleList);
 
             } catch (err) {
-                setError(err);
+                setError(err.message);
+                setIsLoading(false);
 
             }
             setIsLoading(false);

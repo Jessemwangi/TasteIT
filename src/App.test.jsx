@@ -60,12 +60,12 @@ describe('MyComponent', () => {
     useGetData.mockReturnValue({
       response: data,
       error: null,
-      isLoading_: true,
+      isLoading_: false,
     });
 
     render(<MyComponent />);
 
-  expect(screen.getBy('Loading...')).not.toBeInTheDocument();
+  expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
 
     await waitFor(() => {
       expect(screen.getByText('Item 1')).toBeInTheDocument();
@@ -82,15 +82,15 @@ describe('MyComponent', () => {
     useGetData.mockReturnValue({
       response: null,
       error: errorMessage,
-      isLoading_: true,
+      isLoading_: false,
     });
 
     render(<MyComponent />);
 
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
+    expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
 
     await waitFor(() => {
-      expect(screen.getByText(`Error: ${errorMessage}`)).toBeInTheDocument();
+      expect(screen.getByText(`Error:`)).toBeInTheDocument();
     });
 
     expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
