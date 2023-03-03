@@ -46,4 +46,7 @@ describe("UserForm component", () => {
     expect(formChange).toHaveBeenCalledTimes(1);
     expect(recipeNameInput).toHaveValue("New Recipe Name");
   });
+  afterEach(() => {
+    // Clean up any resources used by the tests here
+  });
 });
