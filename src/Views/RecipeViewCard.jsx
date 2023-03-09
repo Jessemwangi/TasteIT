@@ -9,6 +9,7 @@ import { db } from '../FireBaseInit';
 import FilterRecipeByType from "../Components/FilterRecipeByType";
 import { Container } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
+import { useGetData } from "../DataLayer/DataAccessLayer";
 
 const RecipeViewCard = () => {
   const [, setResponse] = useState(null);
@@ -120,6 +121,8 @@ clearLocation()
 setType(value);
     getRecipes();
   }
+  const { response, error, isLoading_ } = useGetData('recipe')
+  console.log(response, error, isLoading_);
 
   return (
     <div>

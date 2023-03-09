@@ -4,7 +4,7 @@ import UserForm from "./Components/UserForm";
 import '@testing-library/jest-dom/extend-expect';
 
 describe("UserForm component", () => {
-  it("renders correctly", () => {
+  it("renders correctly and takes snapShot", () => {
     const handleSend = jest.fn();
     const formChange = jest.fn();
     const selectchange = jest.fn();

@@ -32,7 +32,7 @@ jest.mock('./DataLayer/DataAccessLayer', () => ({
 
 describe('MyComponent', () => {
 
-    test('renders the loading before data is fetch', async () => {
+    test('renders the loading message before data is fetch, expect loading', async () => {
         const data = [
             { id: 1, name: 'Item 1' },
             { id: 2, name: 'Item 2' },
@@ -51,7 +51,7 @@ describe('MyComponent', () => {
         expect(screen.queryByText('Error:')).not.toBeInTheDocument();
       });
 
-    test('renders the list of items', async () => {
+    test('renders the list of items and expectes the objects to be in the component', async () => {
     const data = [
       { id: 1, name: 'Item 1' },
       { id: 2, name: 'Item 2' },
