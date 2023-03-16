@@ -1,6 +1,6 @@
 import React from "react";
 import {fireEvent, render, screen } from "@testing-library/react";
-import UserForm from "./Components/UserForm";
+import UserForm from "../Components/UserForm";
 import '@testing-library/jest-dom/extend-expect';
 
 describe("UserForm component", () => {

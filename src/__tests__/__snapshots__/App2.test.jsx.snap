@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UserForm component renders correctly 1`] = `
+exports[`UserForm component renders correctly and takes snapShot 1`] = `
 Object {
   "debug": [Function],
   "findAllByAltText": [Function],
