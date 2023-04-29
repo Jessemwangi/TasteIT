@@ -5,13 +5,22 @@ import {getFirestore} from "@firebase/firestore";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
+const apiKey = process.env.REACT_APP_API_KEY;
+const authDomain = process.env.REACT_APP_AUTH_DOMAIN
+const projectId = process.env.REACT_APP_PROJECT_ID
+const storageBucket = process.env.REACT_APP_STORAGE_BUCKET
+const messagingSenderId = process.env.REACT_APP_MESSAGING_SENDER_ID
+const appId = process.env.REACT_APP_APP_ID
+
+
 const firebaseConfig = {
-  apiKey: "AIzaSyDtJr7Mx-SzU7ZkQL5z3Zxo1uHeM5Zyyxs",
-  authDomain: "tasteit-c4bcd.firebaseapp.com",
-  projectId: "tasteit-c4bcd",
-  storageBucket: "tasteit-c4bcd.appspot.com",
-  messagingSenderId: "165103309255",
-  appId: "1:165103309255:web:508f601a8b278866b389e2"
+  apiKey,
+  authDomain,
+  projectId,
+  storageBucket,
+  messagingSenderId,
+  appId
 };
 
 // Initialize Firebase
