@@ -1,9 +1,14 @@
 /* --__-------------------forms -_____________------------ */
 .cityForm{
   width: 100%;
+  gap:1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .Container {
   background: linear-gradient(0deg, #000000d8 50%, #000000af 100%); 
+
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   border-radius: 10px;
   margin: 0.5rem auto 5rem auto;
@@ -16,10 +21,17 @@
   font-size: 32px;
 }
 .inputdetails {
-  margin: 03rem;
+  width: 85%;
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
   flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
+  flex-direction: column;
+  background-color:#5D9BD8;
+  border-radius: 8px;
+ 
 }
 .flexRow {
   display: flex;
@@ -27,27 +39,28 @@
   flex-wrap: wrap;
 }
 
-.valueinputside {
-  padding: 2rem 2rem 0.5rem 2rem;
-}
 .userbox {
   position: relative;
+  width: 90%;
 }
 
-.userbox input{
-  min-width: 80%;
+.userbox input  , select{
   height: 50px;
-  padding: 12px 0 0 10vw;
+  padding: 12px 0 0 5px;
   font-size: 1.5vw;
   color: black;
   border: none;
-  border-bottom: 1px solid #fff;
-border-radius: 3px;
+  border-radius: 6px;
+  width: 100%;
+  text-align: center;
 }
+
+
 
 .userbox textarea{
   font-size: 1.5vw;
-  padding: 12px 0 0 0;
+  padding: 20px 0 0 5px;
+  width: 100%;
 }
 
 .Container input::placeholder {
@@ -58,20 +71,22 @@ border-radius: 3px;
 
 .userbox label {
   position: absolute;
+  padding:  2px 0 0 3px;
   top: 0;
   left: 0;
-  font-size: 20px;
+  font-size: 16px;
   pointer-events: none;
   transition: 0.5s;
   color:black ;
   
 }
 
-.userbox input:focus ~ label, textarea:focus ~ label {
-  top: -8px;
+.userbox  input:focus ~ label, textarea:focus ~ label {
+  top: -6px;
+  padding-top: 1px;
   left: 0;
   color: #f32828;
-  font-size: 16px;
+  font-size: 14px;
   border-radius: 5px;
 }
 
@@ -83,10 +98,10 @@ border-radius: 3px;
   border-radius: 5px;
 }
 select {
-  font-size: 1.5vw;
   padding: 1rem 1rem 1rem 1rem;
-  border-radius: 3px;
+  height: 55px;
 }
+
 
 h4 {
   padding: 1rem;
@@ -108,13 +123,13 @@ h4 {
   border-left: 2px white solid;
   border-right: 2px white solid;
   border-radius: 3px;
- /* color: black; */
+
 }
 
 
 .ingredientContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   gap:2rem;
@@ -132,7 +147,12 @@ flex-wrap: wrap;
   justify-content: space-evenly;
   width: 50%;
 }
-
+.saveBtnDiv{
+  width: 85%;
+}
+button.saveBtn{
+  width: 50%;
+}
 button.send {
   margin: 2rem;
   position: relative;
@@ -217,5 +237,27 @@ opacity: 0.8;
     display: flex;
     flex-direction: column;
     width: 100%;
+  }
+}
+@media only screen and (max-width:766px){
+  .userbox input{
+    font-size: 12px;
+  }
+
+  .userbox label{
+
+    font-size: 12px;
+  }
+  select{
+    font-size: 3vw;
+  }
+  .recipeAuthor, .noReview {
+    font-size: 14px;
+  }
+  .ingredientContainer {
+    flex-direction: column;
+  }
+  .flexRow{
+    flex-direction: column;
   }
 }

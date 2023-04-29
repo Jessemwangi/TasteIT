@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from 'axios';
 import { Container } from "reactstrap";
 
 const UserForm = ({ handleSend, formChange, selectchange }) => {
@@ -24,44 +24,37 @@ const UserForm = ({ handleSend, formChange, selectchange }) => {
 
   return (
     <>
-
       <form id="cityForm" className="cityForm" onSubmit={handleSend}>
         <Container className="border rounded bg-light" fluid="fluid">
-
           <p className="noReview recipeAuthor bg-light">
             Hi <span className="wavehand">👋</span>. Welcome, start by adding a
             YUMMY! recipe
           </p>
         </Container>
-        <div className="inputdetails flexRow">
-          <div className="valueinputside">
-            <div className="userbox">
-              <input
-                type="text"
-                name="name"
-                onChange={formChange}
-                placeholder="eg. Fish Tako"
-                required
-              />
-              <label>Recipe name:</label>
-            </div>
+        <div className="inputdetails">
+          <div className="userbox">
+            <input
+              type="text"
+              name="name"
+              onChange={formChange}
+              placeholder="eg. Fish Tako"
+              required
+            />
+            <label>Recipe name:</label>
           </div>
-          <div className="valueinputside">
-            <div className="userbox">
-              <input
-                type="text"
-                id="author"
-                name="author"
-                placeholder="eg. Jesse Mwangi"
-                onChange={formChange}
-                required
-              />
-              <label>Author Name:</label>
-            </div>
+
+          <div className="userbox">
+            <input
+              type="text"
+              id="author"
+              name="author"
+              placeholder="eg. Jesse Mwangi"
+              onChange={formChange}
+              required
+            />
+            <label>Author Name:</label>
           </div>
-        </div>
-        <div className="inputdetails flexRow">
-          <div className="valueinputside">
+          <div className="userbox">
             <select id="" onChange={selectchange}>
               <option value="">Select Country</option>
 

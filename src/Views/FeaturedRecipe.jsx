@@ -30,8 +30,23 @@ const FeaturedRecipe = (featured) => {
     };
 
     const slides = items.map((item, index) => {
-        let caption = `Posted By ${item.author} :  Total  Ingridients : ${item.ingredients.length}, with Total Steps : ${item.steps.length}`
-       
+        let caption = 
+            <span className='caCaption'>
+                <span className='crInfo'>
+                    <span>Summary</span>
+                    <span>- Author : {item.author},</span>
+                    <span>- Country : {item.country?.name}</span>
+                    <span>- Total  Ingridients : {item.ingredients.length} ,</span>
+                    <span>- Total Steps : {item.steps.length}</span>
+                </span>
+                <span className='ingridContents'>
+                    <span>Ingridients</span>
+                    <span className='ingridList'><span>
+                        {item.ingredients.map(ingrid => <li key={ingrid.ingredientId}>{ingrid.name}</li>)}
+                    </span>
+                    </span>
+                </span>
+            </span>
         return (
             <CarouselItem
                 className="custom-tag"
@@ -50,7 +65,7 @@ const FeaturedRecipe = (featured) => {
         );
     });
     return (
-        <div>
+        <>
             <style>
                 {`.custom-tag {
                       max-width: 100%;
@@ -59,7 +74,7 @@ const FeaturedRecipe = (featured) => {
                     }`}
             </style>
 
-            <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+            <Carousel activeIndex={activeIndex} next={next} previous={previous} className='mb-3'>
                 <CarouselIndicators
                     items={items}
                     activeIndex={activeIndex}
@@ -77,7 +92,7 @@ const FeaturedRecipe = (featured) => {
                     onClickHandler={next}
                 />
             </Carousel>
-        </div>
+        </>
     );
 };
 

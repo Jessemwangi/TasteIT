@@ -1,43 +1,71 @@
 import React, { useState, useEffect } from "react";
 import { Badge, Container, Row, Col, Button, Spinner } from "reactstrap";
-import axios from "axios";
+import { useGetData } from '../DataLayer/DataAccessLayer';
+
 
 const FilterRecipeByType = ({ getAll,filterType }) => {
   const [categories, setCategory] = useState([]);
   const [type, setType] = useState([]);
   const [isloading, setIsloading] = useState(true);
+  const[recipe,setRecipe] =useState([]);
+  const [erro,setErro] =useState();
+
+  const { response, error, isLoading_ } = useGetData('recipe');
+  console.log( response, error, isLoading_ );
+  useEffect(() => {
+
+
+    if (isLoading_) {
+      setIsloading(isLoading_);
+      
+     }
+      if (error) {
+        setIsloading(isLoading_);
+        setErro('An error occurred:', error);
+     }
+      else if (response)
+    {
+      setIsloading(isLoading_);
+      setRecipe(response);
+    }
+  },[error, isLoading_, response]);
+
+
 
   const ingridientCategory = async () => {
     setIsloading(true);
-    const { data } = await axios.get("http://localhost:3001/category");
-    setCategory(data);
+    if (localStorage.getItem('category') !== null){
+      const  data = await JSON.parse(localStorage.getItem('category'));
+      setCategory(data);
+    }
     setIsloading(false);
+    
   };
 
   useEffect(() => {
-    ingridientCategory();
+     ingridientCategory();
   }, []);
 
   useEffect(() => {
     const getIngridnients = async () => {
-      setIsloading(true);
+      setIsloading(false);
       let ingridientsData = [];
       let type = [];
       try {
-        const { data } = await axios.get("http://localhost:3001/recipe");
+        const  data  = await recipe;
         data.map((item) => ingridientsData.push(item.ingredients));
         ingridientsData.map((ingredient) =>
           ingredient.map((item) => type.push(item.type))
         );
         setIsloading(false);
       } catch (error) {
-        console.log(error);
+        setErro('An error occurred:', error);
       }
       setType(type);
     };
 
     getIngridnients();
-  }, []);
+  }, [recipe]);
 
   return (
     <main>
@@ -49,16 +77,16 @@ const FilterRecipeByType = ({ getAll,filterType }) => {
               <Spinner animation="grow" variant="light"></Spinner>
             ) : (
               <>
-                {categories.map((cat) => (
+                {categories.length >0 && categories.map((cat) => (
                   <Button color="primary" outline className="m-2" key={cat.id} onClick={(e)=>filterType(e,cat.value)}>
                     {cat.value}
-                    
                     <Badge
                       className="m-1"
                       color="primary"
-                      children={
+                      children=
+                       {
                         type.filter((item) => item === cat.value).length
-                      }
+                       }
                     ></Badge>
                   </Button>
                 ))}
@@ -70,6 +98,7 @@ const FilterRecipeByType = ({ getAll,filterType }) => {
           </Col>
         </Row>
       </Container>
+      {erro};
     </main>
   );
 };

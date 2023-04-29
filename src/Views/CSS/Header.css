@@ -1,6 +1,6 @@
 header{
 text-align: center;
-background-color: #1d7dccbf;
+background-color: #252627bf;
 width: 85%;
 margin: 0 auto;
 }
@@ -13,7 +13,7 @@ ul{
     align-items: center;
 }
 
-li{
+ul > li{
     
     line-height: 5;
     display: inline-block;

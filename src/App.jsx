@@ -17,6 +17,7 @@ import Help from "./Pages/Help";
 import NotFound from "./Pages/NotFound";
 import Comments from "./Pages/Comments";
 import Layout from "./Pages/Layout";
+import PostToColle from "./DataLayer/PostToColle";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="/addRecipe" element={<AddRecipeForm />}>
         New Recipe
       </Route>
+      <Route path="/test" element={<PostToColle/>}></Route>
       <Route path="/viewRecipes" element={<RecipeViewCard />}>
         View Recipes
       </Route>
@@ -36,6 +38,9 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/comments" element={<Comments />}>
         Comments
+      </Route>
+      <Route path="userForm" element={<NotFound />}>
+        Not Found
       </Route>
       <Route path="*" element={<NotFound />}>
         Not Found

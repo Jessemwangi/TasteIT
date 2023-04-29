@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import uuid from "react-uuid";
 
 import { useParams } from "react-router-dom";
-import { Col, Row, Container, Spinner, Button, Badge } from 'reactstrap';
+import { Col, Row, Container, Spinner, Button, Badge, Alert } from 'reactstrap';
+import { SlPin } from "react-icons/sl";
+
+import {  collection, updateDoc, doc } from "@firebase/firestore";
+import { db } from '../FireBaseInit';
+import { useGet_one_recipe } from "../DataLayer/GetRecipe";
 
 import Comments from "./Comments";
 import RecipeComments from "../Components/RecipeComments";
@@ -12,7 +16,8 @@ import './Pages.css';
 import Notification from "../Components/Notification";
 import OneRecipeSteps from "../Views/OneRecipeSteps";
 import OneRecipeIngridientsLists from "../Views/OneRecipeIngridientsLists";
-import { SlPin } from "react-icons/sl";
+import { post_Data } from "../DataLayer/DataAccessLayer";
+import PopUpNotification from "../Views/PopUpNotification";
 
 const OneRecipeView = () => {
 
@@ -23,9 +28,12 @@ const OneRecipeView = () => {
   };
 
   const { id } = useParams();
+  const { response ,docId} = useGet_one_recipe('recipe', 'id', id);
+
   const [oneRecipeD, setOneRecipeD] = useState();
   const [isLoading, setIsLoading] = useState(true)
   const [inputs, setInputs] = useState(initData);
+  const [erro, setErro] = useState('')
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -36,20 +44,24 @@ const OneRecipeView = () => {
   const [infoTitle, setInfoTitle] = useState();
   const [ActionName, setActionName] = useState();
   const [infoType, setInfoType] = useState();
+  const [response_, setResponse_] = useState(null);
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationTitle, setNotificationTitle] = useState("Notification");
+  const [notifTimer,setNotifTimer] =useState(2000)
+  const [notificationMsg, setnotificationMsg] = useState(
+    "Transaction has occured..."
+  );
 
   const handleCloseInfo = () => setShowInfo(false);
 
-  const oneRecipe = async (id) => {
-    setIsLoading(true);
-    const { data } = await axios.get(`http://localhost:3001/recipe/${id}`);
-    setOneRecipeD(data);
-
-    setIsLoading(false);
-  };
 
   useEffect(() => {
-    oneRecipe(id);
-  }, [id]);
+    setIsLoading(true);
+    if (response !== null && response.length > 0) {
+      setIsLoading(false);
+      setOneRecipeD(response[0])
+    }
+  }, [id, response]);
 
   const commetEntry = (e) => {
 
@@ -59,7 +71,8 @@ const OneRecipeView = () => {
     })
   }
 
-  const AddCommentHandler = (e) => {
+
+  const AddCommentHandler = async (e) => {
     setIsLoading(true);
     e.preventDefault();
     if (inputs.rating && inputs.message && inputs.sendBy) {
@@ -71,20 +84,17 @@ const OneRecipeView = () => {
         recipeId: oneRecipeD.id
       };
       try {
-        axios
-          .post("http://localhost:3001/comments", { ...newComment })
-          .then((res) => {
-            setBodyMessage(res.data);
-            setIsLoading(false);
-            setInfoTitle('Comment Posted');
-            setShowInfo(true); setActionName('View Recipe');
-            setInfoType('comments');
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+
+        const result = await post_Data('comments', newComment, 'id') 
+        setResponse_(result.ref);
+        setnotificationMsg(result.message.toString());
+        setNotificationTitle("Transaction Completed with code :", result.responseCode);
+        setShowNotification(true);
+        setNotifTimer(4000)
+
       } catch (error) {
-        alert(`An error occured ${error}`)
+        setErro(erro + ` An error occured ${error}`)
+
       }
       setInputs(initData);
       handleClose();
@@ -97,22 +107,48 @@ const OneRecipeView = () => {
 
   }
 
+  //update function
+  const updateData = async (collectionName,data, docId) => {
+    
+    const ref = collection(db, collectionName)
+    try {
+      const datalRef = doc(ref, docId);
+      updateDoc(datalRef, data)
+      .then(res =>{
+        <Alert variant="light">
+        Data updated {res.id} sucessfuly
+      </Alert>
+      });
+      return 'updated'
+    } catch (error) {
+     
+      setErro(erro + error)
+      return error;
+    }
+
+  }
+
   const addToFeatured = async (e) => {
     let feature = e.target.value === "true" ? false : true
-    
+
+    const update ={ ...oneRecipeD, featured: feature }
     try {
-      const { data } = await axios.put(`http://localhost:3001/recipe/${oneRecipeD.id}`,
-        { ...oneRecipeD, featured: feature });
-      
-      await oneRecipe(oneRecipeD.id);
-      setInfoTitle(`Recipe featured status changed to ${feature}`);
-      setShowInfo(true);
-      setActionName('Back to Recipe');
-      setInfoType('');
-      setBodyMessage(`Recipe name, ${data.name.toUpperCase()} by ${data.author.toUpperCase()}  
+      const data = await updateData('recipe',update, docId)
+      if (data === 'updated') {
+        
+        await setOneRecipeD(response[0]);
+        setInfoTitle(`Recipe featured status changed to ${feature}`);
+        setShowInfo(true);
+        setActionName('Back to Recipe');
+        setInfoType('');
+        setBodyMessage(`Recipe name, ${data.name.toUpperCase()} by ${data.author.toUpperCase()}  
        Recipe featured status was updated`)
+      }
+      else {
+        setErro(erro + data)
+      }
     } catch (error) {
-      console.log(error);
+      setErro(erro + error)
     }
 
   }
@@ -131,6 +167,7 @@ const OneRecipeView = () => {
 
                       {oneRecipeD.name}  </h2>
                     <p>
+
                       <Button className="msgButton" variant="secondary" value={oneRecipeD.featured || false} onClick={(e) => addToFeatured(e)}>
                         {oneRecipeD.featured ? 'Remove To featured ' : 'Add To featured '}
                         <Badge
@@ -141,10 +178,6 @@ const OneRecipeView = () => {
 
                           }
                         ></Badge></Button>
-
-
-
-
                     </p>
                   </div>
                 </div>
@@ -212,8 +245,14 @@ const OneRecipeView = () => {
             <Container className="bg-light border" fluid="fluid">
               <Comments RcpId={oneRecipeD.id}></Comments>
             </Container>
-
+            <PopUpNotification
+        notificationTitle={notificationTitle}
+        notificationMsg={notificationMsg}
+        showNotification={showNotification}
+        timer = {notifTimer}
+      />
           </div>)}
+      {erro}
     </main>
   );
 };

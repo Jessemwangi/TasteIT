@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useLocation , useNavigate} from "react-router-dom";
-import axios from "axios";
+
+import { collection, getDocs,
+} from "@firebase/firestore";
 import { Button, Spinner } from "reactstrap";
+import { db } from '../FireBaseInit';
 
 import FilterRecipeByType from "../Components/FilterRecipeByType";
 import { Container } from "react-bootstrap";
 import RecipeCard from "./RecipeCard";
+import { useGetData } from "../DataLayer/DataAccessLayer";
 
 const RecipeViewCard = () => {
+  const [, setResponse] = useState(null);
   let location = useLocation();
 const navigate = useNavigate();
 
@@ -22,10 +27,19 @@ const navigate = useNavigate();
 
   const getRecipes = async () => {
     setIsloading(true);
-    const { data } = await axios.get("http://localhost:3001/recipe");
-    setRecipes(data);
-    setIsloading(false);
-  };
+    try {
+      const coll_Name = collection(db, 'recipe');
+      const colle_Snapshot = await getDocs(coll_Name);
+      const colleList = colle_Snapshot.docs.map(doc => doc.data());
+
+      setResponse(colleList);
+      setRecipes(colleList);
+      setIsloading(false);
+  } catch (err) {
+    setResponse(err);
+
+  }
+}
 
   useEffect(() => {
     getRecipes();
@@ -107,6 +121,8 @@ clearLocation()
 setType(value);
     getRecipes();
   }
+  const { response, error, isLoading_ } = useGetData('recipe')
+  console.log(response, error, isLoading_);
 
   return (
     <div>

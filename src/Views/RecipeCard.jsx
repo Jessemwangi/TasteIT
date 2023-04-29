@@ -5,7 +5,7 @@ const RecipeCard = ({recipes}) => {
     return (
         <>
         { recipes.map((recipe) => (
-      
+
             <div className="card" key={recipe.id}>
               <figure className="card__thumb">
                 <div className="toptop">
@@ -25,9 +25,9 @@ const RecipeCard = ({recipes}) => {
                   <small>By</small>
                   <h3 className="card__title">👨‍🍳 {recipe.author}</h3>
                   <p className="card__snippet">
-                    Total ingredients : <b>{recipe.ingredients.length}</b>
+                    Total ingredients : <b>{recipe?.ingredients.length || 0}</b>
                     <br />
-                    Steps: <b>{recipe.steps.length}</b> <br />
+                    Steps: <b>{recipe.steps?.length || ''}</b> <br />
                     <span className="emojis">⏱️</span> Time :
                     <b>
                       {recipe.steps.reduce((a, b) => a + parseInt(b.timers), 0)}
@@ -52,7 +52,7 @@ const RecipeCard = ({recipes}) => {
                 </figcaption>
               </figure>
             </div>
-   
+
 ))
 }
         </>
