@@ -29,18 +29,18 @@ const Header = () => {
               alt="logo"
               src={require('../Assets/Logo.png')}
               style={{
-                height: 40,
-                width: 40,
+                height: 90,
+                width: 90,
                 marginRight: "0.4rem",
               }}
             />
             <span
               style={{
-                marginRight: "2rem",
+                marginRight: "2rem",color:"#ffe"
               }}
             >
               {" "}
-              Chef Zone
+              CHEF
             </span>
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
