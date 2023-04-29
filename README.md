@@ -1,6 +1,6 @@
 <h2>Recipe Website</h2>
 
-<p>Recipe Website, was develope as part of the school program, the main purpose of this project is to learn coordination of react with inbuild json server, install extension neccessary and ensure that a fully fledged website that can offer information of recipe from diverse community can be stored, accessed and even rated.
+This full-stack React application was developed during my training at Business College Helsinki. The app allows users to enter their favorite recipes and share them with others. Users can also review and rate recipes entered by others, as well as leave comments on recipes they have tried. The app is built using a full-stack approach, with a backend server and database implemented using technologies such as Node.js and MongoDB. The frontend is built using React, allowing for a smooth and responsive user experience. Overall, this app demonstrates my skills as a full-stack developer and my ability to create a functional and user-friendly application..
 
 ### Technologies used
 
