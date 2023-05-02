@@ -10,6 +10,8 @@ This full-stack React application was developed during my training at Business C
     -   CSS
     -   Bootstrap 
     -   HTML
+    -   MUI
+    -   Firebase
 
 ### Database Schems
 ```json
