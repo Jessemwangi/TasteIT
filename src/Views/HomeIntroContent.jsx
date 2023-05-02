@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Col, Container, Row } from 'reactstrap';
-import {SiCodechef} from 'react-icons/si';
+import { SiCodechef } from 'react-icons/si';
 
 const HomeIntroContent = () => {
     return (
@@ -24,8 +24,8 @@ const HomeIntroContent = () => {
                 </Col>
                     <Col className='bg-light m-2 p-2 border' sm={7} md={7} >
                         <div>
-                        <h2 className=' noReview recipeAuthor bg-secondary rounded-top mb-3 p-4' style={{color:"snow"}}>
-                            Add a Yummy Recipe Today
+                            <h2 className=' noReview recipeAuthor bg-secondary rounded-top mb-3 p-4' style={{ color: "snow" }}>
+                                Add a Yummy Recipe Today
                             </h2>
                         <p>Whats a Recipe : The earliest known written recipes date to 1730 BC.
                            <br /> A recipe is a set of instructions that describes how to prepare or make something, especially a dish of 

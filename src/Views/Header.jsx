@@ -17,7 +17,6 @@ import "./CSS/Header.css";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-
   const toggle = () => setIsOpen(!isOpen);
   return (
     <header className="sticky-top">
@@ -46,7 +45,7 @@ const Header = () => {
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="me-auto" navbar>
-            <NavItem>
+              <NavItem>
                 <NavLink to="/">Home</NavLink>
               </NavItem>
               <NavItem>

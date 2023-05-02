@@ -30,6 +30,7 @@ const Comments = ({ RcpId }) => {
         for (let i = 0; i < rates; i++) {
             star.push(<RiStarFill key={Math.random()} />)
         }
+        
         return star;
     }
 
@@ -112,7 +113,7 @@ const Comments = ({ RcpId }) => {
                             </div>
                         </div>
                     )
-                    : 
+                    :
                     (
                         <Container className='bg-light p-3' fluid="fluid">
                             <span className='noReview'>No Review have been left for this Recipe; be the first to leave a Review</span>
