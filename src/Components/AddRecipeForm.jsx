@@ -49,7 +49,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
   const [steps, setSteps] = useState(StepsInit);
   const [stepsArray, setStepsArray] = useState([]);
 
-  const [, setsubmitMsg] = useState("");
+  const [submitMsg, setsubmitMsg] = useState("");
 
   const [response, setResponse] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -166,7 +166,6 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
   const PostRecipe = async (e) => {
     e.preventDefault();
     setsubmitMsg("Sending Data......");
-    
     const recipe = {
       ...forminput,
       ingredients: ingredientArray,

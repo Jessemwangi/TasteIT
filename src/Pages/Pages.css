@@ -10,7 +10,6 @@
   left: 0;
   color: snow;
 }
-
 .one_recip_prep {
   height: 450px;
   padding: 2rem 0.5rem 1rem 0.5rem;
@@ -21,11 +20,9 @@
   flex-wrap: wrap;
   background: linear-gradient(0deg, #000000cd 50%, #00000034 100%);
 }
-
-.one_recip_prep > div > .recipeAuthor {
+.one_recip_prep > div > .recipeAuthor{
   margin-left: 1rem;
 }
-
 .recipeAuthor,
 .noReview {
   font-family: "Pacifico", cursive;
@@ -40,20 +37,19 @@
   color: #03658c;
 }
 
+
 .oneRecipeMid {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   position: relative;
 }
-
 .one__image {
   object-fit: contain;
   overflow: hidden;
   width: 70%;
   background-color: black;
 }
-
 .two__image {
   object-fit: contain;
   position: relative;
@@ -63,11 +59,12 @@
   background: linear-gradient(0deg, #000000cd 50%, #00000034 100%);
 }
 
+
+
 .img_gif {
   width: 9%;
   border-radius: 30%;
 }
-
 .darkish {
   background: gray;
 }
@@ -76,7 +73,6 @@
   align-items: center;
   background: gray;
 }
-
 .SmFlag {
   width: 100px;
 }
@@ -86,7 +82,6 @@ button.msgButton {
   color: #fff;
   padding: 1rem 4rem;
 }
-
 .caCaption {
   background: linear-gradient(0deg, #000000bc 50%, #2c2c2c34 100%);
   box-shadow: 3px 3px 6px black;
@@ -97,13 +92,11 @@ button.msgButton {
   color: snow;
   display: flex;
   align-items: center;
-  gap: 1px;
+  gap: 1;
 }
-
 .caCaption > div > h4 {
   color: snow;
 }
-
 .crInfo {
   display: flex;
   flex-direction: column;
@@ -111,7 +104,6 @@ button.msgButton {
   padding: 0.5rem;
   text-align: left;
 }
-
 .crInfo > p {
   padding: 0;
   text-align: left;
@@ -121,14 +113,12 @@ button.msgButton {
 .ingridContents {
   border: green 1px solid;
 }
-
 .ingridList > ol {
   list-style: square;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-
 .ingridList > ol > li {
   text-align: left;
   line-height: normal;
@@ -137,14 +127,12 @@ button.msgButton {
   display: list-item;
   height: auto;
 }
-
 .pinned {
   background-color: #03658c;
 
   font-size: 36px;
 }
-
-.disrelative {
+.disrelative{
   position: relative;
 }
 

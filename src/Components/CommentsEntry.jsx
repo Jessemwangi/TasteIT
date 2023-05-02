@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'reactstrap';
 
 const CommentsEntry = ({ AddCommentHandler, commetEntry, inputs }) => {
 
