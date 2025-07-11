@@ -12,10 +12,10 @@ const HomeIntroContent = () => {
                 style={{position:"relative",minHeight:"450px"}}>
                    
                 <div className='p-3 border' style={{zIndex:"1000",position:"absolute", overflow:'hidden'}}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officia repellendus nemo magnam corrupti qui illum dolores 
-                error omnis quia obcaecati, debitis mollitia id ex perferendis, veniam, asperiores ab natus.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore officia repellendus nemo magnam corrupti qui illum dolores 
-                error omnis quia obcaecati, debitis mollitia id ex perferendis, veniam, asperiores ab natus.
+                "Cooking is one of the greatest joys I know, and sharing it makes it even more meaningful. These are the ingredients I use to bring this dish to life—each chosen with care to create something flavorful and comforting. Whether you're a seasoned cook or just starting out,
+                 feel free to follow it as is or add your own twist. Great food is all about creativity and connection! yet flavorful. Whether you're a seasoned cook or just starting out, feel free to follow it as is or add your own twist. Great food is all about creativity and connection!.
+                 A recipe is a set of instructions that describes how to prepare or make something, especially a dish of prepared food. A sub-recipe or subrecipe is a recipe for an ingredient that will be called for in the instructions for the main recipe.
+                 "
                 </div>
                 <div className='cheficon' style={{position:"absolute",color:"#b393937b", fontSize:"280px",textAlign:"center",width:"100%"}}>
 

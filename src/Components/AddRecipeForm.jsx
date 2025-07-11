@@ -10,7 +10,7 @@ import UserForm from "./UserForm";
 import Notification from "./Notification";
 
 import PopUpNotification from "../Views/PopUpNotification";
-import { post_Data } from "../DataLayer/DataAccessLayer";
+import { post_Data, useGetData } from "../DataLayer/DataAccessLayer";
 
 const AddRecipeForm = ({ handleSend, filechange }) => {
   const [bodyMessage, setBodyMessage] = useState("");
@@ -22,7 +22,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
   const [notificationMsg, setnotificationMsg] = useState(
     "Transaction has occured..."
   );
-
+  const { response:catResponse, error, isLoading_ } = useGetData('category');
   const handleCloseInfo = () => {
     window.location.reload(false);
     setShowInfo(false);
@@ -61,14 +61,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
     }
   }, [showNotification]);
 
-  const ingridientCategory = async () => {
-    setIsLoading(true);
-    if (localStorage.getItem("category") !== null) {
-      const data = await JSON.parse(localStorage.getItem("category"));
-      setCategory(data);
-    }
-    setIsLoading(false);
-  };
+ 
 
   const formChange = (e) => {
     setFormInput({
@@ -91,8 +84,33 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
   };
 
   useEffect(() => {
+     const ingridientCategory = async () => {
+    setIsLoading(true);
+    if (localStorage.getItem("category") !== null) {
+      const data = await JSON.parse(localStorage.getItem("category"));
+      setCategory(data);
+    }
+    else {
+      // const { response, error, isLoading_ } = useGetData("category"); 
+      if (isLoading_) {
+        setIsLoading(isLoading_); 
+      }
+      if (error) {
+        setIsLoading(isLoading_);
+        setNotificationTitle("Error fetching categories");
+        setnotificationMsg(`The following error occurred: ${error}`);
+        setShowNotification(true);
+      }
+      else if (catResponse) {
+        setIsLoading(isLoading_); 
+        setCategory(catResponse);
+        localStorage.setItem("category", JSON.stringify(catResponse)); 
+      }
+    }
+    setIsLoading(false);
+  };
     ingridientCategory();
-  }, []);
+  }, [catResponse, error, isLoading_]);
 
   const getIngridients = (e) => {
     setIngridients({

@@ -4,13 +4,6 @@ import AddIcon from '@mui/icons-material/Add';
 import { Col, Form, Row } from "react-bootstrap";
 
 const RecipeSteps = ({ getSteps, steps, removeStep, addSteps, stepsArray }) => {
-  const style = {
-    textarea: {
-      maxWidth: "100% ",
-      maxHeight: "100%",
-      resize: "height",
-    },
-  };
 
   return (
     <div className="p-4 bg-white rounded shadow-sm mb-4">

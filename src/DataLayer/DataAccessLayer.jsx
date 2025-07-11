@@ -125,7 +125,7 @@ const usePostData = async (collectionName, data, idColName) => {  //idColName th
           
         postData();
 
-    }, [collectionName, data]);
+    }, [collectionName, data, response]);
   
     return { response,error,isLoading };
 }

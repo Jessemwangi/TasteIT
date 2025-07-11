@@ -13,15 +13,6 @@ const Ingredients = ({
 }) => {
   const ingridientsList = ingredientArray;
 
-  const style = {
-    textarea: {
-      maxWidth: "100% ",
-      maxHeight: "100%",
-      resize: "height",
-      color: "black",
-    },
-  };
-
   return (
   <div className="p-4 bg-white rounded shadow-sm mb-4">
   <h4 className="mb-4">Add List of Ingredients</h4>
