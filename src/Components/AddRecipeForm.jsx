@@ -204,8 +204,6 @@ const {user} =UserAuth()
      }
   };
 
-
-console.log('forminput', forminput, 'ingredientArray', ingredientArray, 'stepsArray', stepsArray);
   return (
    <main className="py-4 bg-light min-vh-100">
   {isLoading ? (
