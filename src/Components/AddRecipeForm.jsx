@@ -189,73 +189,67 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
 
 
   return (
-    <main>
-      {isLoading ? (
-        <h2>Loading ......</h2>
-      ) : (
-        <>
-          <Container className="bg-light" fluid="fluid">
-            <h2
-              className="noReview recipeAuthor border rounded mt-1"
-              style={{ textAlign: "left" }}
-            >
-              Add Recipe{" "}
-            </h2>
-          </Container>
-          <div className="Container">
-            <UserForm {...{ handleSend, formChange, selectchange }} />
-            <Ingredients
-              addIngridient={addIngridient}
-              removeIngridient={removeIngridient}
-              getIngridients={getIngridients}
-              ingridients={ingridients}
-              ingredientArray={ingredientArray}
-              categories={categories}
-            />
-            <RecipeSteps
-              removeStep={removeStep}
-              steps={steps}
-              getSteps={getSteps}
-              addSteps={addSteps}
-              stepsArray={stepsArray}
-            />
+   <main className="py-4 bg-light min-vh-100">
+  {isLoading ? (
+    <h2 className="text-center">Loading ......</h2>
+  ) : (
+    <>
+      <Container fluid className="bg-white p-4 rounded shadow-sm mb-4">
+        <h2 className="text-start recipeAuthor border-bottom pb-2">Add Recipe</h2>
+      </Container>
 
-            <div className="sendbtn">
-              <Button
-                active
-                block
-                size="lg"
-                className="send bg-danger p-2 btn-lg"
-                onClick={PostRecipe}
-                id="saveIngid"
-              >
-                <span></span>
-                <span></span>
-                Save
-              </Button>
-              <UncontrolledTooltip placement="top" target="saveIngid">
-                Submit your Recipe
-              </UncontrolledTooltip>
-            </div>
-            <Notification
-              showInfo={showInfo}
-              ActionName={`New Recipe...`}
-              notificationAct={notificationAct}
-              handleCloseInfo={handleCloseInfo}
-              infoTitle={submitMsg}
-              bodyMessage={bodyMessage}
-              infoType={""}
-            />
-          </div>
-        </>
-      )}
-      <PopUpNotification
-        notificationTitle={notificationTitle}
-        notificationMsg={notificationMsg}
-        showNotification={showNotification}
-        timer = {notifTimer}
-      />
-    </main>
+      <Container>
+        <UserForm {...{ handleSend, formChange, selectchange }} />
+        <Ingredients
+          addIngridient={addIngridient}
+          removeIngridient={removeIngridient}
+          getIngridients={getIngridients}
+          ingridients={ingridients}
+          ingredientArray={ingredientArray}
+          categories={categories}
+        />
+        <RecipeSteps
+          removeStep={removeStep}
+          steps={steps}
+          getSteps={getSteps}
+          addSteps={addSteps}
+          stepsArray={stepsArray}
+        />
+
+        <div className="text-center mt-4">
+          <Button
+            block
+            size="lg"
+            className="btn-danger"
+            onClick={PostRecipe}
+            id="saveIngid"
+          >
+            Save
+          </Button>
+          <UncontrolledTooltip placement="top" target="saveIngid">
+            Submit your Recipe
+          </UncontrolledTooltip>
+        </div>
+
+        <Notification
+          showInfo={showInfo}
+          ActionName={`New Recipe...`}
+          notificationAct={notificationAct}
+          handleCloseInfo={handleCloseInfo}
+          infoTitle={submitMsg}
+          bodyMessage={bodyMessage}
+          infoType={""}
+        />
+      </Container>
+    </>
+  )}
+  <PopUpNotification
+    notificationTitle={notificationTitle}
+    notificationMsg={notificationMsg}
+    showNotification={showNotification}
+    timer={notifTimer}
+  />
+</main>
   );
 };
 

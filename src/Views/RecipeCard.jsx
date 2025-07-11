@@ -41,7 +41,7 @@ const RecipeCard = ({recipes}) => {
                       alt="india"
                     />
                     <br />
-                    {recipe.country.name.toUpperCase()}
+                    {recipe?.country?.name && recipe?.country?.name.toUpperCase()}
                   </p>
                   <Link
                     to={`/viewRecipe/${recipe.id}`}

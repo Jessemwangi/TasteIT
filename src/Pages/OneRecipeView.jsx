@@ -141,8 +141,8 @@ const OneRecipeView = () => {
         setShowInfo(true);
         setActionName('Back to Recipe');
         setInfoType('');
-        setBodyMessage(`Recipe name, ${data.name.toUpperCase()} by ${data.author.toUpperCase()}  
-       Recipe featured status was updated`)
+       setBodyMessage(
+  `Recipe name: ${data.name.toUpperCase()} by ${data.author.toUpperCase()} — Recipe featured status was updated.`);
       }
       else {
         setErro(erro + data)

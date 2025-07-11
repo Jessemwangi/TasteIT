@@ -42,6 +42,7 @@
 .userbox {
   position: relative;
   width: 90%;
+  margin-bottom: 1rem;
 }
 
 .userbox input  , select{
@@ -186,6 +187,29 @@ button.send:hover {
   background: linear-gradient(90deg, transparent, #03e9f4);
   animation: btn-anim1 1s linear infinite;
 }
+.recipeAuthor {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+.wavehand {
+  animation: wave 2s infinite;
+}
+
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(14deg); }
+  40% { transform: rotate(-8deg); }
+  60% { transform: rotate(14deg); }
+  80% { transform: rotate(-4deg); }
+  100% { transform: rotate(0deg); }
+}
+
 
 @keyframes btn-anim1 {
   0% {
