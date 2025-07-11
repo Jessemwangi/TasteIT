@@ -11,24 +11,9 @@ import Notification from "./Notification";
 
 import PopUpNotification from "../Views/PopUpNotification";
 import { post_Data, useGetData } from "../DataLayer/DataAccessLayer";
+import { UserAuth } from "../DataLayer/Context/Context";
 
-const AddRecipeForm = ({ handleSend, filechange }) => {
-  const [bodyMessage, setBodyMessage] = useState("");
-  const [showInfo, setShowInfo] = useState(false);
-  const navigate = useNavigate();
-
-  const [showNotification, setShowNotification] = useState(false);
-  const [notificationTitle, setNotificationTitle] = useState("Notification");
-  const [notificationMsg, setnotificationMsg] = useState(
-    "Transaction has occured..."
-  );
-  const { response:catResponse, error, isLoading_ } = useGetData('category');
-  const handleCloseInfo = () => {
-    window.location.reload(false);
-    setShowInfo(false);
-  };
-
-  const innitilaState = {
+ const innitilaState = {
     ingredientId: "",
     quantity: "",
     name: "",
@@ -41,7 +26,25 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
     timers: "",
   };
 
-  const [forminput, setFormInput] = useState({});
+const AddRecipeForm = ({ handleSend, filechange }) => {
+  const [bodyMessage, setBodyMessage] = useState("");
+  const [showInfo, setShowInfo] = useState(false);
+  const navigate = useNavigate();
+const {user} =UserAuth()
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationTitle, setNotificationTitle] = useState("Notification");
+  const [notificationMsg, setnotificationMsg] = useState(
+    "Transaction has occured..."
+  );
+  const { response:catResponse, error, isLoading_ } = useGetData('category');
+  const handleCloseInfo = () => {
+    window.location.reload(false);
+    setShowInfo(false);
+  };
+  const [forminput, setFormInput] = useState({
+    userId: (user && user.uid) ? user.uid : "guest",
+  });
+  
   const [ingridients, setIngridients] = useState(innitilaState);
   const [ingredientArray, setIngredientArray] = useState([]);
   const [categories, setCategory] = useState([]);
@@ -51,7 +54,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
 
   const [submitMsg, setsubmitMsg] = useState("");
 
-  const [response, setResponse] = useState(null);
+  const [ setResponse] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [notifTimer,setNotifTimer] =useState(2000)
 
@@ -59,9 +62,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
     if (showNotification) {
       setTimeout(() => setShowNotification(false), 3000);
     }
-  }, [showNotification]);
-
- 
+  }, [showNotification]); 
 
   const formChange = (e) => {
     setFormInput({
@@ -71,15 +72,14 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
     });
   };
 
-  const selectchange = (e) => {
-    let countryArray = e.target.value.split(",");
+  const handleCountrySelect  = ({ countryName, flagUrl }) => {
 
     setFormInput({
       ...forminput,
       country: {
-        name: countryArray[0],
-        flagUrl: countryArray[1],
-      },
+      name: countryName,
+      flagUrl: flagUrl,
+    },
     });
   };
 
@@ -205,7 +205,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
   };
 
 
-
+console.log('forminput', forminput, 'ingredientArray', ingredientArray, 'stepsArray', stepsArray);
   return (
    <main className="py-4 bg-light min-vh-100">
   {isLoading ? (
@@ -217,7 +217,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
       </Container>
 
       <Container>
-        <UserForm {...{ handleSend, formChange, selectchange }} />
+        <UserForm {...{ handleSend, formChange, handleCountrySelect }} />
         <Ingredients
           addIngridient={addIngridient}
           removeIngridient={removeIngridient}

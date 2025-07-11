@@ -191,14 +191,15 @@ const OneRecipeView = () => {
               <div className="mt-2 p-3 oneRecipeMid">
                 <div className="one__image">
                   <img
-                    src={`https://source.unsplash.com/900x450/?${oneRecipeD.name} `}
+                   src={`https://picsum.photos/seed/${encodeURIComponent(oneRecipeD.name)}/900/450`}
+                    
                     alt={oneRecipeD.name}
 
                   />
                 </div>
                 <div className="two__image">
                   <img className="img_abs"
-                    src={`https://source.unsplash.com/450x400/?${oneRecipeD.name} `}
+                   src={`https://picsum.photos/seed/${encodeURIComponent(oneRecipeD.name)}/450/400`}
                     alt={oneRecipeD.name} />
 
                   <div className="img_abs one_recip_prep">

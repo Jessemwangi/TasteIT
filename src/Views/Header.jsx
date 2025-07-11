@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {  NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   Collapse,
   Navbar,
@@ -13,10 +13,11 @@ import {
 import RecipeSearch from "../Components/RecipeSearch";
 
 import "./CSS/Header.css";
+import { UserAuth } from "../DataLayer/Context/Context";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { user } = UserAuth();
 
   const toggle = () => setIsOpen(!isOpen);
   return (
@@ -24,10 +25,9 @@ const Header = () => {
       <Container className="border" fluid="sm">
         <Navbar container="lg" expand="lg" className="navContainer">
           <NavbarBrand href="/">
-
             <img
               alt="logo"
-              src={require('../Assets/Logo.png')}
+              src={require("../Assets/Logo.png")}
               style={{
                 height: 90,
                 width: 90,
@@ -36,7 +36,8 @@ const Header = () => {
             />
             <span
               style={{
-                marginRight: "2rem",color:"#ffe"
+                marginRight: "2rem",
+                color: "#ffe",
               }}
             >
               {" "}
@@ -46,7 +47,7 @@ const Header = () => {
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="me-auto" navbar>
-            <NavItem>
+              <NavItem>
                 <NavLink to="/">Home</NavLink>
               </NavItem>
               <NavItem>
@@ -54,6 +55,13 @@ const Header = () => {
               </NavItem>
               <NavItem>
                 <NavLink to="/viewRecipes">Recipes</NavLink>
+              </NavItem>
+              <NavItem>
+                {user && user.uid ? (
+                  <NavLink to="/profile">Profile</NavLink>
+                ) : (
+                  <NavLink to="/signIn">Sign In</NavLink>
+                )}
               </NavItem>
             </Nav>
             <NavbarText>

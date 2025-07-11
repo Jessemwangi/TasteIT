@@ -136,7 +136,7 @@ setType(value);
     }
   }, [error, isLoading_, response]);
 
-
+console.log('recipes', recipes);
   if (erro) {
     return (
       <Container className="bg-light border">

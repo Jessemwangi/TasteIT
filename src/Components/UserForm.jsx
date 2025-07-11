@@ -3,7 +3,7 @@ import axios from "axios";
 import { Col, Row } from "react-bootstrap";
 import Select from "react-select";
 
-const UserForm = ({ handleSend, formChange, selectchange }) => {
+const UserForm = ({ handleSend, formChange, handleCountrySelect }) => {
   const [countryOptions, setCountryOptions] = useState([]);
 
   useEffect(() => {
@@ -33,14 +33,11 @@ const UserForm = ({ handleSend, formChange, selectchange }) => {
   }, []);
 
   const handleCountryChange = (selectedOption) => {
-    if (selectchange) {
-      selectchange({
-        target: {
-          name: "country",
-          value: selectedOption.value,
-          flag: selectedOption.flagUrl,
-        },
-      });
+    if (handleCountrySelect) {
+handleCountrySelect({
+      countryName: selectedOption.value,
+      flagUrl: selectedOption.flagUrl,
+    });
     }
   };
 

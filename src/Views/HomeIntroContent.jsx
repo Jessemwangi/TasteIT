@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Col, Container, Row } from 'reactstrap';
 import {SiCodechef} from 'react-icons/si';
+import { Link } from 'react-router-dom';
 
 const HomeIntroContent = () => {
     return (
@@ -33,7 +34,11 @@ const HomeIntroContent = () => {
                             subrecipe is a recipe for an ingredient that will be called for in the instructions for the main recipe.
                             <br />Source <small><i> <a href="https://en.wikipedia.org/wiki/Recipe">
                                 wikipedia</a></i></small></p>
-                <Button className='bg-danger p-3 mt-4 mb-2'>Add and share your Recipe</Button>
+                <Button className='bg-danger p-3 mt-4 mb-2'>
+                    <Link to="/addRecipe" style={{color:"white", textDecoration:"none"}}>
+                    Add and share your Recipe
+                    </Link>
+                    </Button>
                 </div>
                 </Col>
 

@@ -1,54 +1,49 @@
-import React from "react";
-import { auth } from "../../FireBaseInit";
-import { useContext, createContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   GoogleAuthProvider,
   signInWithRedirect,
   signOut,
   onAuthStateChanged,
-} from 'firebase/auth';
+} from "firebase/auth";
+import { auth } from "../../FireBaseInit";
 
+// Create context
 const AuthContext = createContext();
 
+// Provider
 export const AuthContextProvider = ({ children }) => {
+  const [user, setUser] = useState(null); // should start as null
+  const [role, setRole] = useState(false); // useState returns [value, setter]
 
-  const [user, setUser] = useState({});
-  // const [regUser, setRegUser] = useState([]);
-  const role = useState(false)
-
-
+  // Google Sign-in
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(auth, provider)
+    signInWithRedirect(auth, provider);
   };
 
+  // Sign-out
   const logOut = () => {
-    signOut(auth)
-  }
+    signOut(auth);
+  };
+
+  // Listen for auth state changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      // userRoles(user?.email);
-
+      // You can check/set user role here
     });
-    return () => {
-      unsubscribe();
-    };
-  }, [user?.email]);
 
-  useEffect(() => {
+    return () => unsubscribe();
+  }, []);
 
-
-  }, [])
-
- 
   return (
-    <AuthContext.Provider value={{ googleSignIn, logOut, user, role }}>
+    <AuthContext.Provider value={{ user, googleSignIn, logOut, role }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
+// Hook for easy context use
 export const UserAuth = () => {
   return useContext(AuthContext);
 };

@@ -21,6 +21,9 @@ import Comments from "./Pages/Comments";
 import Layout from "./Pages/Layout";
 import PostToColle from "./DataLayer/PostToColle";
 import { auth } from "./FireBaseInit";
+import { AuthContextProvider } from "./DataLayer/Context/Context";
+import Profile from "./Pages/SignIn/Profile";
+import SignIn from "./Pages/SignIn/SignIn";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +36,8 @@ const router = createBrowserRouter(
       <Route path="/help" element={<Help />} />
       <Route path="/comments" element={<Comments />} />
       <Route path="/userForm" element={<NotFound />} />
+      <Route path="/profile" element={<Profile/>} />
+       <Route path="/signIn" element={<SignIn/>} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
@@ -54,7 +59,10 @@ function App() {
 
   return (
     <div className="App">
+      {/* Wrap the RouterProvider with AuthContextProvider to provide auth context */}
+      <AuthContextProvider>
       <RouterProvider router={router} />
+      </AuthContextProvider>
     </div>
   );
 }
