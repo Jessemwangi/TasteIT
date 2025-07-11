@@ -13,7 +13,7 @@ const SignIn = () => {
       await googleSignIn();
 
     } catch (error) {
-      console.log(error);
+      console.error("Google Sign-In Error:", error);
     }
   };
 
@@ -21,7 +21,7 @@ const SignIn = () => {
     if (user) {
       navigate('/profile/');
     }
-  }, [user]);
+  }, [navigate, user]);
 
   return (
     <div className="signin">

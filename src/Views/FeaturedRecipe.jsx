@@ -55,7 +55,7 @@ const FeaturedRecipe = (featured) => {
                 onExiting={() => setAnimating(true)}
                 onExited={() => setAnimating(false)}
             >
-                <img src={`https://source.unsplash.com/1020x400/?${item.name}`} alt={item.altText} />
+                <img src={`https://picsum.photos/seed/${item.name}/1020/400`} alt={item.altText} />
                 <CarouselCaption
                     className="text-danger"
                     captionText={caption}

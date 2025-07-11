@@ -11,7 +11,6 @@ const FilterRecipeByType = ({ getAll,filterType }) => {
   const [erro,setErro] =useState();
 
   const { response, error, isLoading_ } = useGetData('recipe');
-  console.log( response, error, isLoading_ );
   useEffect(() => {
 
 

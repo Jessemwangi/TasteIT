@@ -13,6 +13,7 @@ import { useGetData } from "../DataLayer/DataAccessLayer";
 
 const RecipeViewCard = () => {
   const [, setResponse] = useState(null);
+  const [erro, setErro] = useState(null);
   let location = useLocation();
 const navigate = useNavigate();
 
@@ -122,7 +123,28 @@ setType(value);
     getRecipes();
   }
   const { response, error, isLoading_ } = useGetData('recipe')
-  console.log(response, error, isLoading_);
+  useEffect(() => {
+    if (isLoading_) {
+      setIsloading(isLoading_);
+    }
+    if (error) {
+      setIsloading(isLoading_);
+      setErro('An error occurred:', error);
+    } else if (response) {
+      setIsloading(isLoading_);
+      setRecipes(response);
+    }
+  }, [error, isLoading_, response]);
+
+
+  if (erro) {
+    return (
+      <Container className="bg-light border">
+        <h1 className="notfoundText">An error occurred: {erro}</h1>
+        <Button onClick={refresh}>Retry Loading All</Button>
+      </Container>
+    );
+  }
 
   return (
     <div>
