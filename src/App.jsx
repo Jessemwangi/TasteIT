@@ -45,10 +45,10 @@ function App() {
     // ✅ Sign in anonymously
     signInAnonymously(auth)
       .then(() => {
-        console.log("Signed in anonymously");
+        // console.log("Signed in anonymously");
       })
       .catch((error) => {
-        console.error("Anonymous sign-in failed:", error);
+        console.error("Error:", error);
       });
   }, []);
 
