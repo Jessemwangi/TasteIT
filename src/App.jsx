@@ -4,9 +4,11 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import "./Views/CSS/Views.css";
-import {useEffect} from 'react';
+import { useEffect } from "react";
+import { signInAnonymously } from "firebase/auth";
 
+
+import "./Views/CSS/Views.css";
 import "./App.css";
 
 import Home from "./Pages/Home";
@@ -18,41 +20,38 @@ import NotFound from "./Pages/NotFound";
 import Comments from "./Pages/Comments";
 import Layout from "./Pages/Layout";
 import PostToColle from "./DataLayer/PostToColle";
+import { auth } from "./FireBaseInit";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route index element={<Home />}></Route>
-      <Route path="/addRecipe" element={<AddRecipeForm />}>
-        New Recipe
-      </Route>
-      <Route path="/test" element={<PostToColle/>}></Route>
-      <Route path="/viewRecipes" element={<RecipeViewCard />}>
-        View Recipes
-      </Route>
-      <Route path="/viewRecipe/:id" element={<OneRecipeView />}>
-        View Recipe
-      </Route>
-      <Route path="/help" element={<Help></Help>}>
-        Help
-      </Route>
-      <Route path="/comments" element={<Comments />}>
-        Comments
-      </Route>
-      <Route path="userForm" element={<NotFound />}>
-        Not Found
-      </Route>
-      <Route path="*" element={<NotFound />}>
-        Not Found
-      </Route>
+      <Route index element={<Home />} />
+      <Route path="/addRecipe" element={<AddRecipeForm />} />
+      <Route path="/test" element={<PostToColle />} />
+      <Route path="/viewRecipes" element={<RecipeViewCard />} />
+      <Route path="/viewRecipe/:id" element={<OneRecipeView />} />
+      <Route path="/help" element={<Help />} />
+      <Route path="/comments" element={<Comments />} />
+      <Route path="/userForm" element={<NotFound />} />
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );
 
 function App() {
   useEffect(() => {
-    document.title = 'Taste It';
+    document.title = "Taste It";
+
+    // ✅ Sign in anonymously
+    signInAnonymously(auth)
+      .then(() => {
+        console.log("Signed in anonymously");
+      })
+      .catch((error) => {
+        console.error("Anonymous sign-in failed:", error);
+      });
   }, []);
+
   return (
     <div className="App">
       <RouterProvider router={router} />
