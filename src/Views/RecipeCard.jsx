@@ -16,10 +16,10 @@ const RecipeCard = ({recipes}) => {
                   />
                 </div>
                 <img
-                  src={`https://source.unsplash.com/300x510/?${recipe.name} `}
-                  alt="chef"
-                  className="card__image"
-                />
+  src={`https://picsum.photos/seed/${encodeURIComponent(recipe.name)}/300/510`}
+  alt={recipe.name}
+  className="card__image"
+/>
                 <figcaption className="card__caption">
                   <h2 className="card__title">🥘 {recipe.name}</h2>
                   <small>By</small>

@@ -7,13 +7,9 @@ const Footer = () => {
         <footer className='footer'>
              <div className="disclaimer">
               <p style={{display:"inline-block",marginBottom:"0rem"}}> 
-        picture curtersy of
-        <a className="disclaimer__link"
-          href="https://source.unsplash.com"
-          target="_blank" rel='noreferrer'>
-          unsplash.
-        </a></p>
-        Jesse mwangi 2022
+        all rights reserved &copy; 2022.
+      </p>
+        Jesse mwangi 
       </div>
         </footer>
         </main>
