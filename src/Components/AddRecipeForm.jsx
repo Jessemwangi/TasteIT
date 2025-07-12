@@ -30,7 +30,7 @@ const AddRecipeForm = ({ handleSend }) => {
   const [bodyMessage, setBodyMessage] = useState("");
   const [showInfo, setShowInfo] = useState(false);
   const navigate = useNavigate();
-const {user,isAuthenticated, isAnonymous} =UserAuth()
+const {user,isAuthenticated} =UserAuth()
   const [showNotification, setShowNotification] = useState(false);
   const [notificationTitle, setNotificationTitle] = useState("Notification");
   const [notificationMsg, setnotificationMsg] = useState(

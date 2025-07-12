@@ -6,7 +6,7 @@ import { UserAuth } from "../DataLayer/Context/Context";
 
 const UserForm = ({ handleSend, formChange, handleCountrySelect,forminput }) => {
   const [countryOptions, setCountryOptions] = useState([]);
-  const {user,isAuthenticated, isAnonymous} =UserAuth()
+  const {isAuthenticated, isAnonymous} =UserAuth()
 
   useEffect(() => {
     axios

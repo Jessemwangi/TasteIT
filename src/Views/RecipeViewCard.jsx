@@ -101,7 +101,7 @@ const navigate = useNavigate();
   setIsloading(false);
       setRecipes(filteredRecipes);
    
-  }, [search,type,location, recipes.length]);
+  }, [search, type, location, recipes.length, recipes]);
 
 
   const refresh =(e) =>{
