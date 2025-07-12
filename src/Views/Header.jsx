@@ -19,7 +19,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = UserAuth();
   const isAuthenticated = user && !user.isAnonymous;
-console.log("User in Header:", user);
+
   const toggle = () => setIsOpen(!isOpen);
   return (
     <header className="sticky-top">

@@ -22,7 +22,6 @@ export const AuthContextProvider = ({ children }) => {
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
-      console.log("Google sign-in successful:", result.user);
       return result;
     } catch (error) {
       console.error("Google sign-in error:", error);
@@ -62,7 +61,6 @@ export const AuthContextProvider = ({ children }) => {
       .then((result) => {
         if (result) {
           // User successfully signed in with Google
-          console.log("Google sign-in successful:", result.user);
           setUser(result.user);
           setIsLoading(false);
         }

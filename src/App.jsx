@@ -50,10 +50,10 @@ function App() {
         // Only sign in anonymously if there's no user
         signInAnonymously(auth)
           .then(() => {
-            console.log("Signed in anonymously");
+            // console.log("Signed in anonymously");
           })
           .catch((error) => {
-            console.error("Anonymous sign-in error:", error);
+            // console.error("Anonymous sign-in error:", error);
           });
       }
     });

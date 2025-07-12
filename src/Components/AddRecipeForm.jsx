@@ -26,7 +26,7 @@ import { UserAuth } from "../DataLayer/Context/Context";
     timers: "",
   };
 
-const AddRecipeForm = ({ handleSend, filechange }) => {
+const AddRecipeForm = ({ handleSend }) => {
   const [bodyMessage, setBodyMessage] = useState("");
   const [showInfo, setShowInfo] = useState(false);
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const {user,isAuthenticated, isAnonymous} =UserAuth()
     userId: isAuthenticated  ? user.uid : "guest",
     author: isAuthenticated ? user.displayName : "",
   });
-  
+
   const [ingridients, setIngridients] = useState(innitilaState);
   const [ingredientArray, setIngredientArray] = useState([]);
   const [categories, setCategory] = useState([]);
@@ -64,6 +64,13 @@ const {user,isAuthenticated, isAnonymous} =UserAuth()
       setTimeout(() => setShowNotification(false), 3000);
     }
   }, [showNotification]); 
+  useEffect(() => {
+  setFormInput(prev => ({
+    ...prev,
+    userId: isAuthenticated ? user.uid : "guest",
+    author: isAuthenticated ? (user.displayName || user.email || "") : "",
+  }));
+}, [user, isAuthenticated]);
 
   const formChange = (e) => {
     setFormInput({
@@ -190,7 +197,6 @@ const {user,isAuthenticated, isAnonymous} =UserAuth()
       ingredients: ingredientArray,
       steps: stepsArray,
     };
-
     const result = await post_Data("recipe", recipe, "id");  
     const {message,responseCode} = result
      setResponse(message);
