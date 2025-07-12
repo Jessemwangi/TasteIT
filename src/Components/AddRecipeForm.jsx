@@ -30,7 +30,7 @@ const AddRecipeForm = ({ handleSend, filechange }) => {
   const [bodyMessage, setBodyMessage] = useState("");
   const [showInfo, setShowInfo] = useState(false);
   const navigate = useNavigate();
-const {user} =UserAuth()
+const {user,isAuthenticated, isAnonymous} =UserAuth()
   const [showNotification, setShowNotification] = useState(false);
   const [notificationTitle, setNotificationTitle] = useState("Notification");
   const [notificationMsg, setnotificationMsg] = useState(
@@ -42,7 +42,8 @@ const {user} =UserAuth()
     setShowInfo(false);
   };
   const [forminput, setFormInput] = useState({
-    userId: (user && user.uid) ? user.uid : "guest",
+    userId: isAuthenticated  ? user.uid : "guest",
+    author: isAuthenticated ? user.displayName : "",
   });
   
   const [ingridients, setIngridients] = useState(innitilaState);
@@ -215,7 +216,7 @@ const {user} =UserAuth()
       </Container>
 
       <Container>
-        <UserForm {...{ handleSend, formChange, handleCountrySelect }} />
+        <UserForm {...{ handleSend, formChange, handleCountrySelect ,forminput}} />
         <Ingredients
           addIngridient={addIngridient}
           removeIngridient={removeIngridient}

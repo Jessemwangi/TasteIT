@@ -5,12 +5,9 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { useEffect } from "react";
-import { signInAnonymously } from "firebase/auth";
-
-
+import { signInAnonymously, onAuthStateChanged } from "firebase/auth";
 import "./Views/CSS/Views.css";
 import "./App.css";
-
 import Home from "./Pages/Home";
 import AddRecipeForm from "./Components/AddRecipeForm";
 import RecipeViewCard from "./Views/RecipeViewCard";
@@ -37,7 +34,7 @@ const router = createBrowserRouter(
       <Route path="/comments" element={<Comments />} />
       <Route path="/userForm" element={<NotFound />} />
       <Route path="/profile" element={<Profile/>} />
-       <Route path="/signIn" element={<SignIn/>} />
+      <Route path="/signIn" element={<SignIn/>} />
       <Route path="*" element={<NotFound />} />
     </Route>
   )
@@ -46,22 +43,28 @@ const router = createBrowserRouter(
 function App() {
   useEffect(() => {
     document.title = "Taste It";
+    
+    // Only sign in anonymously if no user is currently signed in
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        // Only sign in anonymously if there's no user
+        signInAnonymously(auth)
+          .then(() => {
+            console.log("Signed in anonymously");
+          })
+          .catch((error) => {
+            console.error("Anonymous sign-in error:", error);
+          });
+      }
+    });
 
-    // ✅ Sign in anonymously
-    signInAnonymously(auth)
-      .then(() => {
-        // console.log("Signed in anonymously");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    return () => unsubscribe();
   }, []);
 
   return (
     <div className="App">
-      {/* Wrap the RouterProvider with AuthContextProvider to provide auth context */}
       <AuthContextProvider>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
       </AuthContextProvider>
     </div>
   );

@@ -5,7 +5,7 @@ import { UserAuth } from '../../DataLayer/Context/Context';
 import GoogleButton from 'react-google-button';
 
 const SignIn = () => {
-  const { googleSignIn, user } = UserAuth();
+  const { googleSignIn, user, isAuthenticated, isAnonymous } = UserAuth();
   const navigate = useNavigate();
 
   const handleGoogleSignIn = async () => {
@@ -18,10 +18,10 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    if (user && user.uid) {
+    if (isAuthenticated && !isAnonymous && user.uid) {
       navigate('/profile/');
     }
-  }, [navigate, user]);
+  }, [isAnonymous, isAuthenticated, navigate, user]);
 
   return (
     <div className="signin">

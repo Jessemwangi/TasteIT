@@ -18,7 +18,8 @@ import { UserAuth } from "../DataLayer/Context/Context";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = UserAuth();
-
+  const isAuthenticated = user && !user.isAnonymous;
+console.log("User in Header:", user);
   const toggle = () => setIsOpen(!isOpen);
   return (
     <header className="sticky-top">
@@ -57,7 +58,7 @@ const Header = () => {
                 <NavLink to="/viewRecipes">Recipes</NavLink>
               </NavItem>
               <NavItem>
-                {user && user.uid ? (
+                {isAuthenticated ? (
                   <NavLink to="/profile">Profile</NavLink>
                 ) : (
                   <NavLink to="/signIn">Sign In</NavLink>

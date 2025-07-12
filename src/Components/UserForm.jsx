@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Col, Row } from "react-bootstrap";
 import Select from "react-select";
+import { UserAuth } from "../DataLayer/Context/Context";
 
-const UserForm = ({ handleSend, formChange, handleCountrySelect }) => {
+const UserForm = ({ handleSend, formChange, handleCountrySelect,forminput }) => {
   const [countryOptions, setCountryOptions] = useState([]);
+  const {user,isAuthenticated, isAnonymous} =UserAuth()
 
   useEffect(() => {
     axios
@@ -66,12 +68,14 @@ handleCountrySelect({
         <Col md={6}>
           <label className="form-label">Author Name:</label>
           <input
+          disabled={isAuthenticated || !isAnonymous}
             type="text"
             name="author"
             onChange={formChange}
             placeholder="e.g. Jesse Mwangi"
-            required
+            required = {isAuthenticated || !isAnonymous}
             className="form-control"
+          value={forminput.author}
           />
         </Col>
 

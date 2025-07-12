@@ -6,28 +6,40 @@ import { useGetData } from "../../DataLayer/DataAccessLayer";
 import "./profile.css";
 
 const Profile = () => {
-  const { user, logOut } = UserAuth();
+  const { user, logOut, isAuthenticated, isAnonymous } = UserAuth();
   const navigate = useNavigate();
 
   const { response: allIngredients, error, isLoading_ } = useGetData('recipe');
   const [userIngredients, setUserIngredients] = useState([]);
 
   useEffect(() => {
-    if (user && user.uid && allIngredients) {
+    if (isAuthenticated && !isAnonymous && allIngredients) {
       const filtered = allIngredients.filter(ingredient => ingredient.userId === user.uid);
       setUserIngredients(filtered);
     }
-  }, [user, allIngredients]);
+  }, [allIngredients, isAnonymous, isAuthenticated, user.uid]);
 
-  const handleLogOut = async () => {
-    try {
-      await logOut();
+const handleLogOut = async () => {
+  try {
+    await logOut();
+    setTimeout(() => {
       navigate("/");
-    } catch (error) {
-      console.error("Logout Error:", error);
-    }
-  };
+    }, 100);
+  } catch (error) {
+    console.error("Logout Error:", error);
+  }
+};
 
+if (!isAuthenticated) {
+  return (
+    <div className="signin-prompt">
+      <h2>Please Sign In to View Your Profile</h2>
+      <button className="btn primary" onClick={() => navigate('/signIn')}>
+        Sign In
+      </button>
+    </div>
+  );
+}
   return (
     <div className="profile-page">
       <div className="profile-container">
