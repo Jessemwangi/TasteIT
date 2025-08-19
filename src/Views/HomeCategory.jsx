@@ -36,7 +36,7 @@ const HomeCategory = () => {
               className="m-2 rounded-bottom home_col"
               key={cat.value}
               style={{
-                backgroundImage: `url( https://source.unsplash.com/200x200/?${
+                backgroundImage: `url( https://foodish-api.com/images/random?${
                   cat.text === "Others"
                     ? "meal"
                     : cat.text.substring(0, cat.text.indexOf(" "))
